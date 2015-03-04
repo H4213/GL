@@ -1,6 +1,6 @@
 #-----------------------------------------------------------------------------------
 LIBPATH =
-LIBS =   -lboost_filesystem
+LIBS =   -lboost_filesystem -lboost_regex
 COMP = g++
 COMPFLAGS = -c
 EXEC = Grammaire
