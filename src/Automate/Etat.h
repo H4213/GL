@@ -12,8 +12,9 @@ class Etat
 {
 	public:
 		Etat(string name);
-		virtual ~Etat(){};
-		virtual void transition(Automate & automate, Symbole *s) = 0;
+		virtual ~Etat(){}
+		virtual bool transition(Automate & automate, Symbole *s) = 0;
+
 	protected:
 	string _name;
 };
