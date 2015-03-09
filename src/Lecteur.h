@@ -7,7 +7,7 @@
 using namespace boost;
 using namespace std;
 
-static const regex simpleSym("\\(|\\+|\\)|\\-|\\*|\\/|\\;|\\=");
+static const regex simpleSym("\\(|\\+|\\)|\\-|\\*|\\/|\\;|\\=|,");
 static const regex doubleSym(":\\=");
 static const regex varSym("var[‘ ‘ , \n , \t]");
 static const regex constSym("const[' ',\n , \t]");
@@ -31,6 +31,12 @@ class Lecteur
         bool isWriteSym (string s);
         bool isIdSym (string s);
         bool isValSym (string s);
+        bool isTerminal (string s);
+
+        vector<string> sepSpaces(string s);
+        vector<string> sepSym (string s , string sym);
+        vector<string> sepWords (vector<string>);
+
 
 
 
