@@ -20,3 +20,29 @@ bool Lecteur::isVarSym(string s)
 {
     return regex_match(s,varSym);
 }
+
+bool Lecteur::isConstSym(string s)
+{
+    return regex_match(s,constSym);
+}
+
+bool Lecteur::isReadSym(string s)
+{
+    return regex_match(s,readSym);
+}
+
+bool Lecteur::isWriteSym(string s)
+{
+    return regex_match(s,writeSym);
+}
+
+bool Lecteur::isIdSym(string s)
+{
+    return regex_match(s,idSym);
+}
+
+bool Lecteur::isValSym(string s)
+{
+    return regex_match(s,valSym);
+}
+

@@ -10,11 +10,11 @@ using namespace std;
 static const regex simpleSym("\\(|\\+|\\)|\\-|\\*|\\/|\\;|\\=");
 static const regex doubleSym(":\\=");
 static const regex varSym("var[‘ ‘ , \n , \t]");
-static const regex constSym;
-static const regex readSym;
-static const regex writeSym;
-static const regex idSym;
-static const regex valSym;
+static const regex constSym("const[' ',\n , \t]");
+static const regex readSym("read[' ' , \n , \t]");
+static const regex writeSym("write[' ' , \n , \t]");
+static const regex idSym("[a-zA-Z][a-zA-Z0-9]*");
+static const regex valSym("[0-9]+");
 
 class Lecteur
 {
