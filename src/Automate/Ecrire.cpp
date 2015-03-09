@@ -1,6 +1,7 @@
 #include "Ecrire.h"
 #include "Identifiants.h"
 
-Ecrire::Ecrire(){
-	Symbole(ID_ECRIRE);
+Ecrire::Ecrire(): Symbole(Identifiants::ID_ECRIRE)
+{
+	_symbole_string = "ecrire";
 }
