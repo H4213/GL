@@ -3,6 +3,8 @@
 
 class Addition : public Symbole{
 
+public:
+	Addition();
 
 };
 

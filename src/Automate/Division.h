@@ -3,6 +3,8 @@
 
 class Division : public Symbole{
 
+public:
+	Division();
 
 };
 

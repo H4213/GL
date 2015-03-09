@@ -1,0 +1,20 @@
+#if !defined ( IDENTIFIANTS_H )
+#define IDENTIFIANTS_H
+
+class Identifiants{
+
+	enum 
+	{
+		ID_ADDITION;
+		ID_SOUSTRACTION;
+		ID_MULTIPLICATION;
+		ID_DIVISION;
+		ID_OUVREPARENTHESE;
+		ID_FERMEPARENTHESE;
+		ID_LIRE;
+		ID_ECRIRE;
+	};
+
+};
+
+#endif 

@@ -3,6 +3,8 @@
 
 class OuvreParenthese : public Symbole{
 
+public:
+	OuvreParenthese();
 
 };
 

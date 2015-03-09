@@ -3,6 +3,8 @@
 
 class Soustraction : public Symbole{
 
+public:
+	Soustraction();
 
 };
 

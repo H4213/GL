@@ -3,6 +3,8 @@
 
 class Lire : public Symbole{
 
+public:
+	Lire();
 
 };
 

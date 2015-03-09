@@ -3,6 +3,8 @@
 
 class Ecrire : public Symbole{
 
+public:
+	Ecrire();
 
 };
 

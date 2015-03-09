@@ -3,6 +3,8 @@
 
 class Multiplication : public Symbole{
 
+public:
+	Multiplication();
 
 };
 

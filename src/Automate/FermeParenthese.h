@@ -3,6 +3,8 @@
 
 class FermeParenthese : public Symbole{
 
+public:
+	FermeParenthese();
 
 };
 
