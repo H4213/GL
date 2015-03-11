@@ -1,11 +1,24 @@
 #include "Lecteur.h"
 
-
-void Lecteur ( )
+Lecteur::Lecteur()
 {
-
 }
+Lecteur::Lecteur (string s)
+{
+    vector<string> phrase;
+       phrase.push_back(s);
 
+    sepWords(phrase);
+
+    cout << "resultat" << endl;
+
+    int i;
+    cout << symTerminaux.size() << endl;
+    for ( i = 0 ; i< symTerminaux.size() ; i++)
+    {
+        symTerminaux[i].print();
+    }
+}
 bool Lecteur::isSimpleSym(string s)
 {
     return regex_match(s,simpleSym);
@@ -112,7 +125,7 @@ vector<string> Lecteur::sepSym(string s , string sym)
 
 }
 
-vector<string> Lecteur::sepWords (vector<string> phrase)
+vector<string> Lecteur::sepWords(vector<string> phrase)
 {
     vector<string> result;
     int i;
@@ -183,18 +196,70 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
         }
         else
         {
-			//construire le symbole correspondant selon correspondance isID etc...
-			//pour idenjtifiant new Id(string ,nom)
-            s.push_back(phrase[i]);
+            Symbole newSymbole = createSymbole(phrase[i]);
+            result.push_back(phrase[i]);
+            symTerminaux.push_back(newSymbole);
+            newSymbole.print();
         }
     }
     return result;
 }
-
-Symbole* getSymbole()
+Symbole Lecteur::createSymbole(string s)
 {
-
-
+    Symbole newSym;
+    if (s=="var")
+    {
+        newSym = Var();
+    }
+    else if (s=="const")
+    {
+        newSym = Const();
+    }
+    else if (s=="ecrire")
+    {
+        newSym = Ecrire();
+    }
+    else if (s=="lire")
+    {
+       newSym = Lire();
+    }
+    else if (s==":=")
+    {
+        newSym = Affectation();
+    }
+    else if (s=="=")
+    {
+        newSym = Egal();
+    }
+    else if (s==";")
+    {
+        newSym = PointVirgule();
+    }
+    else if (s==",")
+    {
+        newSym = Virgule();
+    }
+    else if (s=="+")
+    {
+        newSym = Addition();
+    }
+    else if (s=="-")
+    {
+        newSym = Soustraction();
+    }
+    else if (s=="/")
+    {
+        newSym = Division();
+    }
+    else if (s=="*")
+    {
+        newSym = Multiplication();
+    }
+    else 
+    {
+        newSym = Id(s);
+    }
+   return newSym;
 }
 
 

@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-      Lecteur l;
-      vector<string> phrase;
+      Lecteur l(contents);
+     /* vector<string> phrase;
        phrase.push_back(contents);
 
     vector<string> result = l.sepWords(phrase);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     for ( i = 0 ; i< result.size() ; i++)
     {
         cout << result[i] << endl;
-    }
+    }*/
     return 0;
 }
 
