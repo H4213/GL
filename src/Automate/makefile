@@ -5,8 +5,7 @@ CPPFLAGS=-c
 
 EXE=Automate 
 
-INT=main.h Automate.h Etat.h Symbole.h
-
+INT=main.h Automate.h Etat.h 
 LIBS=
 #At Class
 LIBDIR_INSA=
