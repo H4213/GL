@@ -12,6 +12,7 @@ class Symbole
 		
 	public: 
 		Symbole(int id): _ident(id){}
+		Symbole();
 		virtual ~Symbole(){}
 
 		void print();
