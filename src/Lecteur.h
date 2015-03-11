@@ -23,6 +23,8 @@ class Lecteur
         string temp;
 
     public :
+        Lecteur(){}
+
         bool isSimpleSym (string s);
         bool isDoubleSym (string s);
         bool isVarSym (string s);
@@ -31,7 +33,6 @@ class Lecteur
         bool isWriteSym (string s);
         bool isIdSym (string s);
         bool isValSym (string s);
-
 
 
 };

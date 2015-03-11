@@ -1,11 +1,6 @@
 #include "Lecteur.h"
 
 
-void Lecteur ( )
-{
-
-}
-
 bool Lecteur::isSimpleSym(string s)
 {
     return regex_match(s,simpleSym);
