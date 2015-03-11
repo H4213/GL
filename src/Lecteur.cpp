@@ -178,3 +178,8 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
 
 
 
+
+
+
+
+

@@ -1,16 +1,54 @@
 #include "Lecteur.h"
+//include "stdafx.h"
 
 
+int main(int argc, char *argv[])
+{
+	// ...\lutin.exe cmd.txt -option (-p -a -e -o)
 
-/*
- *
- */
-int main(int argc, char** argv) {
+	FILE *fichier = NULL;
+	string contents;
+    char caractere;
+	char* options = "no option";
+	bool option_o = false;
 
-    Lecteur l;
+    if (argc == 2)
+    {
+        fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+    }
+	else if (argc == 3)
+	{
+		fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+		options = argv[2];				// Récupération de l'option
+	}
+	else if (argc == 4)
+	{
+		fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+		options = argv[2];				// Récupération de l'option
+		option_o = true;
+	}
 
-    vector<string> phrase;
-    phrase.push_back("var   x,y,z;const n= 3, n2=5;read x; write l; x:=18+5/4;");
+    if (fichier != NULL)
+    {
+			
+			fseek(fichier, 0, SEEK_END);
+			contents.resize(ftell(fichier));
+			rewind(fichier);
+			fread(&contents[0], 1, contents.size(), fichier);
+			fclose(fichier);
+           
+        
+
+    }
+    else 
+	{
+		exit(EXIT_FAILURE);
+	}
+
+      Lecteur l;
+      vector<string> phrase;
+       phrase.push_back(contents);
+
     vector<string> result = l.sepWords(phrase);
 
     cout << "resultat" << endl;

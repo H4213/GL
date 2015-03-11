@@ -37,9 +37,6 @@ class Lecteur
         vector<string> sepSym (string s , string sym);
         vector<string> sepWords (vector<string>);
 
-
-
-
 };
 
 
