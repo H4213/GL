@@ -30,14 +30,11 @@ int main(int argc, char *argv[])
 
     if (fichier != NULL)
     {
-
 			fseek(fichier, 0, SEEK_END);
 			contents.resize(ftell(fichier));
 			rewind(fichier);
 			fread(&contents[0], 1, contents.size(), fichier);
 			fclose(fichier);
-
-
 
     }
     else
@@ -46,6 +43,13 @@ int main(int argc, char *argv[])
 	}
 
       Lecteur l(contents);
+
+        cout << "getnext 3 fois" << endl;
+      int i;
+      for (i=0 ; i<3 ; i++){
+       l.getNext()->print();
+      }
+
          return 0;
 }
 

@@ -18,6 +18,7 @@ Lecteur::Lecteur (string s)
     {
         symTerminaux[i].print();
     }
+    readHeader = symTerminaux.begin();
 }
 bool Lecteur::isSimpleSym(string s)
 {
@@ -269,7 +270,11 @@ Symbole Lecteur::createSymbole(string s)
    return newSym;
 }
 
+Symbole* Lecteur::getNext()
+{
 
+    return &*readHeader++;
+}
 
 
 

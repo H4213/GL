@@ -37,8 +37,7 @@ class Lecteur
 {
 
     private :
-        string temp;
-        string* readHeader;
+        vector<Symbole>::iterator readHeader;
         vector<Symbole> symTerminaux;
 
 		bool isSimpleSym (string s);
@@ -60,7 +59,7 @@ class Lecteur
     public :
         Lecteur();
         Lecteur(string s);
-		Symbole getNext();
+		Symbole* getNext();
 
 
 };
