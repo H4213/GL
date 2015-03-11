@@ -183,6 +183,8 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
         }
         else
         {
+			//construire le symbole correspondant selon correspondance isID etc... 
+			//pour idenjtifiant new Id(string ,nom) 
             s.push_back(phrase[i]);
         }
     }
