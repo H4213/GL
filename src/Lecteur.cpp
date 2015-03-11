@@ -52,7 +52,7 @@ bool Lecteur::isTerminal(string s)
     {
         return 1;
     }
-    else 
+    else
     {
         return 0;
     }
@@ -173,7 +173,7 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
             else if(phrase[i].find("\0")!=-1)
             {
                 vector<string> temp = sepWords (sepSep(phrase[i], "\0"));
-                
+
             }
             else
             {
@@ -183,16 +183,19 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
         }
         else
         {
-			//construire le symbole correspondant selon correspondance isID etc... 
-			//pour idenjtifiant new Id(string ,nom) 
+			//construire le symbole correspondant selon correspondance isID etc...
+			//pour idenjtifiant new Id(string ,nom)
             s.push_back(phrase[i]);
         }
     }
     return result;
 }
 
+Symbole* getSymbole()
+{
 
 
+}
 
 
 
