@@ -30,35 +30,22 @@ int main(int argc, char *argv[])
 
     if (fichier != NULL)
     {
-			
+
 			fseek(fichier, 0, SEEK_END);
 			contents.resize(ftell(fichier));
 			rewind(fichier);
 			fread(&contents[0], 1, contents.size(), fichier);
 			fclose(fichier);
-           
-        
+
+
 
     }
-    else 
+    else
 	{
 		exit(EXIT_FAILURE);
 	}
 
       Lecteur l(contents);
-     /* vector<string> phrase;
-       phrase.push_back(contents);
-
-    vector<string> result = l.sepWords(phrase);
-
-    cout << "resultat" << endl;
-
-    int i;
-    cout << result.size() << endl;
-    for ( i = 0 ; i< result.size() ; i++)
-    {
-        cout << result[i] << endl;
-    }*/
-    return 0;
+         return 0;
 }
 

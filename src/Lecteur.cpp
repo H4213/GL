@@ -6,7 +6,7 @@ Lecteur::Lecteur()
 Lecteur::Lecteur (string s)
 {
     vector<string> phrase;
-       phrase.push_back(s);
+    phrase.push_back(s);
 
     sepWords(phrase);
 
@@ -59,9 +59,14 @@ bool Lecteur::isValSym(string s)
     return regex_match(s,valSym);
 }
 
+bool Lecteur::isEOF(string s)
+{
+    return s == "EOF";
+}
+
 bool Lecteur::isTerminal(string s)
 {
-    if(isValSym(s)||isIdSym(s)||isWriteSym(s)||isReadSym(s)||isConstSym(s)||isVarSym(s)||isDoubleSym(s)||isSimpleSym(s))
+    if(isValSym(s)||isIdSym(s)||isWriteSym(s)||isReadSym(s)||isConstSym(s)||isVarSym(s)||isDoubleSym(s)||isSimpleSym(s)|isEOF(s))
     {
         return 1;
     }
@@ -82,7 +87,7 @@ vector<string> Lecteur::sepSep(string s,string sep)
 
         word = s.substr(i,j-i);
         if ( word != "") {
-            cout << word << "|";
+            //cout << word << "|";
             words.push_back(word);
         }
         i=j+1;
@@ -90,7 +95,7 @@ vector<string> Lecteur::sepSep(string s,string sep)
         if (j== -1 )
         {
             word = s.substr(i , s.size());
-            cout<< word << endl;
+            //cout<< word << endl;
             words.push_back(word);
         }
     }
@@ -108,7 +113,7 @@ vector<string> Lecteur::sepSym(string s , string sym)
     {
         word = s.substr(i,j-i);
         if ( word != "") {
-            cout << word + sym <<"|";
+            //cout << word + sym <<"|";
             words.push_back(word);
             words.push_back(sym);
         }
@@ -117,7 +122,7 @@ vector<string> Lecteur::sepSym(string s , string sym)
         if (j == -1)
         {
             word = s.substr(i,s.size());
-            cout << word << endl;
+            //cout << word << endl;
             words.push_back(word);
         }
     }
@@ -183,14 +188,15 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
                 vector<string> temp = sepWords (sepSym(phrase[i], "="));
                 result.insert(result.end(), temp.begin() , temp.end());
             }
-            else if(phrase[i].find("\0")!=-1)
+            else if(phrase[i].find("EOF")!=-1)
             {
-                vector<string> temp = sepWords (sepSep(phrase[i], "\0"));
+                vector<string> temp = sepWords (sepSep(phrase[i], "EOF"));
 
             }
             else
             {
-				cout<<"erreur lexical "<<phrase[i]<<" n'est pas reconnu"<<endl;
+				cout<<"erreur lexical "<< phrase[i]<<" n'est pas reconnu"<<endl;
+
 			}
 
         }
@@ -199,7 +205,7 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
             Symbole newSymbole = createSymbole(phrase[i]);
             result.push_back(phrase[i]);
             symTerminaux.push_back(newSymbole);
-            newSymbole.print();
+            //newSymbole.print();
         }
     }
     return result;
@@ -255,7 +261,8 @@ Symbole Lecteur::createSymbole(string s)
     {
         newSym = Multiplication();
     }
-    else 
+    // ajouter le symbole EOF avec EOF
+    else
     {
         newSym = Id(s);
     }
