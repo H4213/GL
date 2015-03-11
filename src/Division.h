@@ -1,8 +1,9 @@
 #if !defined ( DIVISION_H )
 #define DIVISION_H
 #include "Symbole.h"
+#include "OperationMultiplicative.h"
 
-class Division : public Symbole{
+class Division : public Symbole, public OperationMultiplicative{
 
 public:
 	Division();

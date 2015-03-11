@@ -57,7 +57,7 @@ class Lecteur
         Symbole createSymbole(string s);
     
     public :
-        Lecteur();
+        Lecteur(){}
         Lecteur(string s);
 		Symbole getNext();
         
