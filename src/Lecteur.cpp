@@ -52,17 +52,17 @@ bool Lecteur::isTerminal(string s)
     {
         return 1;
     }
-    else
+    else 
     {
         return 0;
     }
 }
 
-vector<string> Lecteur::sepSpaces(string s)
+vector<string> Lecteur::sepSep(string s,string sep)
 {
     vector<string> words;
     size_t i = 0;
-    size_t j = s.find_first_of(" ", i);
+    size_t j = s.find_first_of(sep, i);
     string word = "";
     while( j != -1 )
     {
@@ -73,7 +73,7 @@ vector<string> Lecteur::sepSpaces(string s)
             words.push_back(word);
         }
         i=j+1;
-        j = s.find_first_of(" ",i);
+        j = s.find_first_of(sep,i);
         if (j== -1 )
         {
             word = s.substr(i , s.size());
@@ -127,7 +127,12 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
             }
             else if (phrase[i].find(" ")!=-1)
             {
-                vector<string> temp = sepWords(sepSpaces(phrase[i]));
+                vector<string> temp = sepWords(sepSep(phrase[i]," "));
+                result.insert(result.end(), temp.begin() , temp.end());
+            }
+            else if (phrase[i].find("\n")!=-1)
+            {
+                vector<string> temp = sepWords(sepSep(phrase[i],"\n"));
                 result.insert(result.end(), temp.begin() , temp.end());
             }
             else if(phrase[i].find(",")!=-1)
@@ -165,12 +170,20 @@ vector<string> Lecteur::sepWords (vector<string> phrase)
                 vector<string> temp = sepWords (sepSym(phrase[i], "="));
                 result.insert(result.end(), temp.begin() , temp.end());
             }
-
+            else if(phrase[i].find("\0")!=-1)
+            {
+                vector<string> temp = sepWords (sepSep(phrase[i], "\0"));
+                
+            }
+            else
+            {
+				cout<<"erreur lexical "<<phrase[i]<<" n'est pas reconnu"<<endl;
+			}
 
         }
         else
         {
-            result.push_back(phrase[i]);
+            s.push_back(phrase[i]);
         }
     }
     return result;

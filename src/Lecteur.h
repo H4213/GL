@@ -21,9 +21,10 @@ class Lecteur
 
     private :
         string temp;
-
-    public :
-        bool isSimpleSym (string s);
+        string* readHeader;
+        vector<Symbole> symTerminaux;
+        
+		bool isSimpleSym (string s);
         bool isDoubleSym (string s);
         bool isVarSym (string s);
         bool isConstSym (string s);
@@ -33,9 +34,14 @@ class Lecteur
         bool isValSym (string s);
         bool isTerminal (string s);
 
-        vector<string> sepSpaces(string s);
+        vector<string> sepSep(string s, string sep);
         vector<string> sepSym (string s , string sym);
         vector<string> sepWords (vector<string>);
+    
+    public :
+    
+		Symbole getNext();
+        
 
 };
 

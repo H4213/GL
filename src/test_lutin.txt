@@ -1,2 +1,2 @@
-var x,y,z;
-const n=3;
+var x,y;
+const t,p;
