@@ -3,7 +3,7 @@
 #include "Symbole.h"
 #include "OperationAdditive.h"
 
-class Soustraction : public Symbole, public OperationAdditive{
+class Soustraction : public OperationAdditive{
 
 public:
 	Soustraction();

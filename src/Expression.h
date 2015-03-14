@@ -9,6 +9,8 @@ public:
 	Expression();
 	virtual ~Expression(){}
 
+	virtual double Eval() = 0;
+
 };
 
 

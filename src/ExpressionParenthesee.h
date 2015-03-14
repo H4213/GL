@@ -6,8 +6,11 @@
 class ExpressionParenthesee : public Expression {
 
 public:
-	ExpressionParenthesee();
+	ExpressionParenthesee(Expression exp);
 	virtual ~ExpressionParenthesee(){}
+
+private:
+	Expression expression;
 
 };
 

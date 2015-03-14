@@ -3,7 +3,7 @@
 #include "Symbole.h"
 #include "OperationMultiplicative.h"
 
-class Division : public Symbole, public OperationMultiplicative{
+class Division : public OperationMultiplicative{
 
 public:
 	Division();
