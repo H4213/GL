@@ -3,8 +3,8 @@
 
 #include <string>
 
-Variable(string n):Expression()
+Variable::Variable(string n):Expression(Identifiants::ID_VARIABLE)
 {
-	nom=n;
-	_symbole_string = "variable "+n;
+	nom = n;
+	_symbole_string = "Variable "+n+;
 }

@@ -7,6 +7,7 @@ class Declaration : public Symbole {
 
 public:
 	Declaration();
+	Declaration(int id);
 	virtual ~Declaration(){}
 
 };

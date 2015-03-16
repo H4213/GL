@@ -8,7 +8,7 @@
 class Programme : public Symbole {
 
 public:
-	Programme();
+	Programme(PartieDeclarative partieD, PartieInstructive partieI);
 	virtual ~Programme(){}
 
 private:

@@ -7,6 +7,7 @@ class Instruction : public Symbole {
 
 public:
 	Instruction();
+	Instruction(int id):Symbole(id){}
 	virtual ~Instruction(){}
 
 };

@@ -7,7 +7,7 @@
 class InstructionLire : public Instruction {
 
 public:
-	InstructionLire();
+	InstructionLire(Variable v);
 	virtual ~InstructionLire(){}
 
 private:

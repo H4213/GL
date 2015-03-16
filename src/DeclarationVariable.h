@@ -4,16 +4,21 @@
 #include "Variable.h"
 
 #include <string>
+#include <vector>
+using namespace std;
 
 class DeclarationVariable : public Declaration {
 
 public:
-	DeclarationVariable(string nomVariable); //peut etre, aussi, un tableau de string pour creer recoursivement les autres declarations variables
+	DeclarationVariable(string nomVariable, vector<string> autresVariables); 
 	virtual ~DeclarationVariable(){}
 
+	vector<string> resteDuTableau(vector<string> autresVariables);
+	void print();
+
 private:
-	Variable var;
-	DeclarationVariable declarationAutreVariable;
+	Variable variable;
+	DeclarationVariable* declarationAutreVariable;
 
 };
 

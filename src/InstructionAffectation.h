@@ -8,7 +8,7 @@
 class InstructionAffectation : public Instruction {
 
 public:
-	InstructionAffectation();
+	InstructionAffectation(Variable v, Expression e);
 	virtual ~InstructionAffectation(){}
 
 private:

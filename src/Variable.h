@@ -9,6 +9,7 @@ class Variable : public Expression {
 
 public:
 	Variable(string n);
+	Variable(){}
 	virtual ~Variable(){}
 
 private:

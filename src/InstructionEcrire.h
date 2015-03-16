@@ -7,7 +7,7 @@
 class InstructionEcrire : public Instruction {
 
 public:
-	InstructionEcrire();
+	InstructionEcrire(Expression e);
 	virtual ~InstructionEcrire(){}
 
 private:

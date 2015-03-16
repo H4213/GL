@@ -7,7 +7,7 @@
 class PartieInstructive : public Symbole {
 
 public:
-	PartieInstructive();
+	PartieInstructive(Instruction i, PartieInstructive partieI); //Voir de passer vector<Instruction> et faire constructeur recurssif...
 	virtual ~PartieInstructive(){}
 
 private:

@@ -7,9 +7,10 @@ class Expression : public Symbole {
 
 public:
 	Expression();
+	Expression(int id);
 	virtual ~Expression(){}
 
-	virtual double Eval() = 0;
+	virtual double Eval();
 
 };
 

@@ -8,7 +8,8 @@
 class Constante : public Expression {
 
 public:
-	Constante(double v, string n);
+	Constante(string n, double v);
+	Constante(){}
 	virtual ~Constante(){}
 
 private:

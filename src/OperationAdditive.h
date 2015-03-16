@@ -7,6 +7,7 @@ class OperationAdditive : public Symbole {
 
 public:
 	OperationAdditive();
+	OperationAdditive(int id):Symbole(id){}
 	virtual ~OperationAdditive(){}
 
 };

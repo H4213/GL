@@ -11,8 +11,8 @@ class Symbole
 		string _symbole_string;
 		
 	public: 
-		Symbole(int id): _ident(id){}
 		Symbole();
+		Symbole(int id): _ident(id){}		
 		virtual ~Symbole(){}
 
 		void print();

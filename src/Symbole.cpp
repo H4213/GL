@@ -6,7 +6,8 @@ using namespace std;
 
 Symbole::Symbole()
 {
-	
+	_ident = ID_SYMBOLE;
+	_symbole_string = "Symbole";
 }
 
 void Symbole::print(){
