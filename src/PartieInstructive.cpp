@@ -1,10 +1,12 @@
 #include "PartieInstructive.h"
 #include "Identifiants.h"
 
-PartieInstructive::PartieInstructive(Intruction i, PartieInstructive partieI) : Symbole(Identifiants::ID_PARTIEINSTRUCTIVE)
+#include <string>
+
+PartieInstructive::PartieInstructive(Instruction i, PartieInstructive* partieI) : Symbole(Identifiants::ID_PARTIEINSTRUCTIVE)
 {
-	instruction = i;	
+	instruction = i;
 	_symbole_string = "PartieInstructive";
-	
-	sousPartieInstructive = partieI;
+
+	sousPartieInstructive = partieI;	
 }

@@ -7,6 +7,6 @@ ExpressionMultiplicative::ExpressionMultiplicative(Expression exp1, Expression e
 {
 	expression1 = exp1;
 	expression2 = exp2;
-	OperationMultiplicative = op;
+	operationMultiplicative = op;
 	_symbole_string = "ExpressionMultiplicative";
 }

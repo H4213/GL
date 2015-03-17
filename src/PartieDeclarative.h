@@ -6,12 +6,13 @@
 class PartieDeclarative : public Symbole {
 
 public:
-	PartieDeclarative(Declaration d, PartieDeclarative partD); //Voir de passer vector<Declaration> et faire constructeur recurssif...
+	PartieDeclarative(Declaration d, PartieDeclarative* partieD); //Voir de passer vector<Declaration> et faire constructeur recurssif...
+	PartieDeclarative(){}
 	virtual ~PartieDeclarative(){}
 
 private:
 	Declaration declaration;
-	PartieDeclarative sousPartieDeclarative;
+	PartieDeclarative* sousPartieDeclarative;
 
 };
 

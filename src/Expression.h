@@ -10,7 +10,7 @@ public:
 	Expression(int id);
 	virtual ~Expression(){}
 
-	virtual double Eval();
+	// virtual double Eval();
 
 };
 

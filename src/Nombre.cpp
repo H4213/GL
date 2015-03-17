@@ -5,5 +5,5 @@
 
 Nombre::Nombre(double v):Expression(Identifiants::ID_NOMBRE)
 {
-	_symbole_string = "Nombre: "+v;
+	_symbole_string = "Nombre";
 }

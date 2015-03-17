@@ -3,7 +3,7 @@
 
 Programme::Programme(PartieDeclarative partieD, PartieInstructive partieI) : Symbole(Identifiants::ID_PROGRAMME)
 {
-	PartieDeclarative = partieD;
-	PartieInstructive = partieI;
+	partieDeclarative = partieD;
+	partieInstructive = partieI;
 	_symbole_string = "Programme";
 }
