@@ -14,7 +14,7 @@ RM = rm
 ECHO = echo
 RMFLAGS = -f
 INCPATH =
-SRCPATH =
+SRCPATH = 
 #====================================================================================
 .PHONY 	: $(CLEAN)
 all	: $(EXEC)

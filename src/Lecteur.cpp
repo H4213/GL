@@ -1,8 +1,5 @@
 #include "Lecteur.h"
 
-Lecteur::Lecteur()
-{
-}
 Lecteur::Lecteur (string s)
 {
     vector<string> phrase;
@@ -20,6 +17,7 @@ Lecteur::Lecteur (string s)
     }
     readHeader = symTerminaux.begin();
 }
+
 bool Lecteur::isSimpleSym(string s)
 {
     return regex_match(s,simpleSym);
