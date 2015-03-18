@@ -6,8 +6,8 @@
 class OperationMultiplicative : public Symbole {
 
 public:
-	OperationMultiplicative():Symbole(Identifiants::ID_OPERATIONMULTIPLICATIVE){}
 	OperationMultiplicative(int id):Symbole(id){}
+	OperationMultiplicative();
 	virtual ~OperationMultiplicative(){}
 
 };

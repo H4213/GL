@@ -11,7 +11,7 @@ class Programme : public Symbole {
 public:
 	Programme(PartieDeclarative partieD, PartieInstructive partieI);
 	Programme():Symbole(Identifiants::ID_PROGRAMME){}
-	virtual ~Programme(){}
+	virtual ~Programme(){} //TODO: tout nettoyer!!
 
 private:
 	PartieDeclarative partieDeclarative;

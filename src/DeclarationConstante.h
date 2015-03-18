@@ -12,7 +12,7 @@ class DeclarationConstante : public Declaration {
 
 public:
 	DeclarationConstante(string nomConstante, double valeur, vector<string> autresConstantes, vector<double> autresValeurs);
-	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTES){}
+	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){}
 	virtual ~DeclarationConstante(){}
 
 private:

@@ -8,7 +8,7 @@ class OperationAdditive : public Symbole {
 
 public:
 	OperationAdditive(int id):Symbole(id){}
-	OperationAdditive():Symbole(Identifiants::ID_OPERATIONADDITIVE){}
+	OperationAdditive();
 	virtual ~OperationAdditive(){}
 
 };

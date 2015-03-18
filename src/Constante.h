@@ -10,8 +10,8 @@ class Constante : public Expression {
 
 public:
 	Constante(string n, double v);
-	Constante(){}
-	virtual ~Constante():Expression(Identifiants::ID_CONSTANTE){}
+	Constante():Expression(Identifiants::ID_CONSTANTE){}
+	virtual ~Constante(){}
 
 private:
 	string nom;
