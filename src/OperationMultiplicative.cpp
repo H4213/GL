@@ -1,5 +1,4 @@
 #include "OperationMultiplicative.h"
-#include "Identifiants.h"
 
 #include <string>
 

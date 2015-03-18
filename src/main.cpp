@@ -10,10 +10,10 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string s = "oi, ";
-	string s1 = "tudo ";
-	string s2 = "bem ";
-	string s3 = "contigo ";
+	string s = "salut, ";
+	string s1 = "ça ";
+	string s2 = "va ";
+	string s3 = "mlle ";
 	string s4 = "? ";
 
 	std::vector<string> v;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 
 	DeclarationVariable d = DeclarationVariable(s,v);
 	d.print();
+	d.comptageVariables();
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 
@@ -49,6 +50,31 @@ int main(int argc, char *argv[])
 	// 	option_o = true;
 	// }
 
+<<<<<<< HEAD
+    if (fichier != NULL)
+    {
+			fseek(fichier, 0, SEEK_END);
+			contents.resize(ftell(fichier));
+			rewind(fichier);
+			fread(&contents[0], 1, contents.size(), fichier);
+			fclose(fichier);
+
+    }
+    else
+	{
+		exit(EXIT_FAILURE);
+	}
+
+      Lecteur l(contents);
+
+        cout << "getnext 3 fois" << endl;
+      int i;
+      for (i=0 ; i<3 ; i++){
+       l.getNext()->print();
+      }
+
+         return 0;
+=======
  //    if (fichier != NULL)
  //    {
 			
@@ -81,5 +107,6 @@ int main(int argc, char *argv[])
  //        cout << result[i] << endl;
  //    }*/
     return 0;
+>>>>>>> 96907f55d00f1edcf05888ca9b09ad684c3eff43
 }
 

@@ -1,5 +1,4 @@
 #include "InstructionLire.h"
-#include "Identifiants.h"
 
 InstructionLire::InstructionLire(Variable v):Instruction(Identifiants::ID_INSTRUCTIONLIRE)
 {
