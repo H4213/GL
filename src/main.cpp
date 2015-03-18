@@ -10,10 +10,10 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string s = "oi, ";
-	string s1 = "tudo ";
-	string s2 = "bem ";
-	string s3 = "contigo ";
+	string s = "salut, ";
+	string s1 = "ça ";
+	string s2 = "va ";
+	string s3 = "mlle ";
 	string s4 = "? ";
 
 	std::vector<string> v;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 
 	DeclarationVariable d = DeclarationVariable(s,v);
 	d.print();
+	d.comptageVariables();
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 

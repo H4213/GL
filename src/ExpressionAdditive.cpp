@@ -1,5 +1,4 @@
 #include "ExpressionAdditive.h"
-#include "Identifiants.h"
 
 #include <string>
 

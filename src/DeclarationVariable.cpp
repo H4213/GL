@@ -1,39 +1,54 @@
 #include "DeclarationVariable.h"
-#include "Identifiants.h"
 
 #include <iostream>
 
 
 DeclarationVariable::DeclarationVariable(string nomVariable, vector<string> autresVariables) : Declaration(Identifiants::ID_DECLARATIONVARIABLE)
 {
-	_symbole_string = "Declaration de la variable ";
+	_symbole_string = "Declaration de la variable " + nomVariable;
 	variable = Variable(nomVariable);
 
-	//construction recurssive, a voir si ça marche
 	if(autresVariables.size() > 0)
 	{
-		// for(int i = 0; i<autresVariables.length ; i++)
-		// {
-			// string var = autresVariables[i];
-			// vector<string> resteDuTableau = resteDuTableau(autresVariables);
-			// declarationAutreVariable = DeclarationVariable(var, resteDuTableau);
-		// }
+			string var = autresVariables[0];
+			resteDuTableau(autresVariables);
+			declarationAutreVariable = new DeclarationVariable(var, autresVariables);
+
+			
+	} 
+	else 
+	{
+		declarationAutreVariable = NULL;
 	}
 	
 }
 
-vector<string> DeclarationVariable::resteDuTableau(vector<string> autresVariables)
+void DeclarationVariable::resteDuTableau(vector<string> &autresVariables)
 {
 	for(int i=1; i<autresVariables.size(); i++)
 	{
 		autresVariables[i-1] = autresVariables[i];
 	}
 	autresVariables.pop_back();
-	return autresVariables;
 }
 
 void DeclarationVariable::print()
 {
 	cout << _symbole_string << endl;
-	declarationAutreVariable;print();
+	if(declarationAutreVariable != NULL)
+	{
+		declarationAutreVariable->print();
+	}
+}
+
+void DeclarationVariable::comptageVariables()
+{
+	static int cpt = 0;
+	cpt++;
+	cout << cpt << endl;
+	if(declarationAutreVariable != NULL)
+	{
+		declarationAutreVariable->comptageVariables();
+	}
+	
 }
