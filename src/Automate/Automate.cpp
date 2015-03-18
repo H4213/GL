@@ -4,34 +4,54 @@
 Programme* Automate::analyser()
 {
 	Symbole *s = NULL;
-	_pileEtats.push_front(new E0());
+	empilerEtat(new E0());
 	
-	//while((s = lecteur.getCourant()) != NULL)
+	while((s = courant()) != NULL)
 	{
-		_pileEtats.front()->transition(*this, s);
+		sommetEtat()->transition(*this, s);
 	}
 	
 }
 
-void Automate::decalage(Symbole *s, Etat*e, bool avecComsommer)
+Etat *Automate::sommetEtat()
+{
+	return _pileEtats.front();
+}
+void Automate::empilerSymbole(Symbole*s)
 {
 	this->_pileSymboles.push_front(s);
+}
+Symbole* Automate::depilerSymbole()
+{
+	Symbole *s = _pileSymboles.front();
+	_pileSymboles.pop_front();
+
+	return s;
+}
+void Automate::empilerEtat(Etat*e)
+{
 	this->_pileEtats.push_front(e);
-
-
-	//avancer
-	if(avecComsommer)
-	this->avancerAuSuivant();
+}
+void Automate::depilerEtat(int n)
+{
+	for(int i = 0; i < n;i++)
+		_pileEtats.pop_front();
 }
 
-void Automate::reduction(Symbole *A)
+void Automate::decalage(Symbole *s, Etat*e)
 {
-	
+	empilerEtat(e);
+	empilerSymbole(s);
+	avancerLecteur();
+}
+
+/*void Automate::reduction(Symbole *A)
+{
 	this->_pileSymboles.push_front(A);
 	
 	Etat *sommet = _pileEtats.front();
 	sommet->transition(*this, A);
-}
+}*/
 
 void Automate::accepter()
 {
@@ -41,10 +61,12 @@ void Automate::erreur()
 {
 	
 }
-void Automate::avancerAuSuivant()
+void Automate::avancerLecteur()
 {
-	 lecteur.moveReadHeader();
+	 //lecteur.moveReadHeader();
 }
-void Automate::lecture()
+Symbole* Automate::courant()
 {
+	//return lecteur.getNext();
+	return NULL;
 }

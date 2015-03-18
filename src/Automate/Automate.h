@@ -19,13 +19,25 @@ class Automate
 		Programme* analyser();
 		
 		void decalage(Symbole *s, Etat*);
-		void reduction(Symbole *s);
+		//void reduction(Symbole *s);
 		void accepter();
 		void erreur();
-		void lecture();
+
+		void empilerEtat(Etat*e);
+		void depilerEtat(int n);
+
+		void empilerSymbole(Symbole*s);
+		Symbole* depilerSymbole();
+
+		Etat *sommetEtat();
+
+		void avancerLecteur();
+		Symbole* courant();
+
 	private:
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
+		//Lecteur lecteur;
 };
 
 #endif
