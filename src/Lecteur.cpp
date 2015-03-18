@@ -268,9 +268,27 @@ Symbole Lecteur::createSymbole(string s)
    return newSym;
 }
 
+
 Symbole* Lecteur::getNext()
 {
-    return &*readHeader++;
+	if ( readHeader < symTerminaux.end() ) 
+	{
+		return &*readHeader;
+
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+
+void Lecteur::moveReadHeader()
+{
+	if (readHeader != symTerminaux.end())
+	{
+		readHeader++;
+	}
 }
 
 

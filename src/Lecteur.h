@@ -59,7 +59,8 @@ class Lecteur
     public :
         Lecteur(){}
         Lecteur(string s);
-	Symbole* getNext();
+		Symbole* getNext();
+		void moveReadHeader();
 
 
 };

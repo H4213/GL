@@ -54,8 +54,10 @@ int main(int argc, char *argv[])
 
         cout << "getnext 3 fois" << endl;
       int i;
-      for (i=0 ; i<3 ; i++){
-       l.getNext()->print();
+      for (i=0 ; i<20 ; i++){
+		  
+	   l.getNext()->print();
+       l.moveReadHeader();
       }
 
          return 0;
