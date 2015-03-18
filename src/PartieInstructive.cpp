@@ -1,5 +1,4 @@
 #include "PartieInstructive.h"
-#include "Identifiants.h"
 
 #include <string>
 

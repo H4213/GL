@@ -1,5 +1,4 @@
 #include "OperationAdditive.h"
-#include "Identifiants.h"
 
 #include <string>
 

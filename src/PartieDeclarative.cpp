@@ -1,5 +1,4 @@
 #include "PartieDeclarative.h"
-#include "Identifiants.h"
 
 #include <string>
 

@@ -2,12 +2,14 @@
 #define INSTRUCTIONLIRE_H
 #include "Instruction.h"
 #include "Variable.h"
+#include "Instruction.h"
 
 
 class InstructionLire : public Instruction {
 
 public:
 	InstructionLire(Variable v);
+	InstructionLire():Instruction(Identifiants::ID_INSTRUCTIONLIRE){}
 	virtual ~InstructionLire(){}
 
 private:

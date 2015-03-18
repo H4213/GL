@@ -2,6 +2,7 @@
 #define DECLARATIONVARIABLE_H
 #include "Declaration.h"
 #include "Variable.h"
+#include "Identifiants.h"
 
 #include <string>
 #include <vector>
@@ -10,7 +11,8 @@ using namespace std;
 class DeclarationVariable : public Declaration {
 
 public:
-	DeclarationVariable(string nomVariable, vector<string> autresVariables); 
+	DeclarationVariable(string nomVariable, vector<string> autresVariables);
+	DeclarationVariable():Declaration(Identifiants::ID_DECLARATIONVARIABLE){}
 	virtual ~DeclarationVariable(){}
 
 	vector<string> resteDuTableau(vector<string> autresVariables);

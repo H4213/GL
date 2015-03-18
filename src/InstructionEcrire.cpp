@@ -1,5 +1,4 @@
 #include "InstructionEcrire.h"
-#include "Identifiants.h"
 
 InstructionEcrire::InstructionEcrire( Expression e):Instruction(Identifiants::ID_INSTRUCTIONECRTIRE)
 {
