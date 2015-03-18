@@ -18,16 +18,20 @@ void E0::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_CONST:
 		case Identifiants::ID_ID:
 		case Identifiants::ID_ENDOFFILE:
-			//reduction par la regle 3
-			symbole= new PartieDeclarative();
-			automate.reduction(symbole);
+			//reduction par la regle 3 PD -> .
+			symbole = new PartieDeclarative();
+			automate.empilerSymbole(symbole);
+			automate.empilerEtat(new E1());
 		break;
 		
-		case Identifiants::ID_PROGRAMME:
-			automate.decalage(automate,                                                                                                                                                                                                                     
+		case Identifiants::ID_PROGRAMME:    
+			automate.decalage(s, new E1(), false);                                                                                                                                                                                                                
+		break;
+		case Identifiants::ID_PARTIEDECLARATIVE:    
+			automate.decalage(s, new E2(), false);                                                                                                                                                                                                                
 		break;
 		default:
-			                                   
+			automate.erreur();   	                            
 		break;
 	}
 
@@ -57,20 +61,25 @@ void E2::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_ID:
 			//reduction par la regle 11
 			symbole= new PartieInstructive();
-			//automate.reduction(symbole);
+			automate.empilerSymbole(symbole);
+			automate.empilerEtat(new E3());
 		break;
 		case Identifiants::ID_CONST:
 		//decalage vers l'etat 6 
-			automate.decalage(s, new E6());
+			automate.decalage(s, new E6(), true);
 		break;
 		case Identifiants::ID_VAR:
 		//decalage vers l'etat 5
-			automate.decalage(s, new E5());
+			automate.decalage(s, new E5(), true);
 		break;
 		
 		
-		case Identifiants::ID_ID:
-		
+		case Identifiants::ID_PARTIEINSTRUCTIVE:    
+			automate.decalage(s, new E3(), false);                                                                                                                                                                                                                
+		break;
+		case Identifiants::ID_DECLARATION:    
+			automate.decalage(s, new E4(), false);                                                                                                                                                                                                                
+		break;
 		default:
 			automate.erreur();
 		break;
@@ -84,14 +93,14 @@ void E3::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_LIRE:
 		//decalage vers l'etat 10 
-			automate.decalage(s, new E10());
+			automate.decalage(s, new E10(), true);
 		break;
 		case Identifiants::ID_ECRIRE:
 		//decalage vers l'etat 9 
-			automate.decalage(s, new E9());
+			automate.decalage(s, new E9(), true);
 		break;
 		case Identifiants::ID_ID:
-			automate.decalage(s, new E8());
+			automate.decalage(s, new E8(), true);
 		break;
 		default:
 			automate.erreur();

@@ -18,7 +18,7 @@ class Automate
 		
 		Programme* analyser();
 		
-		void decalage(Symbole *s, Etat*);
+		void decalage(Symbole *s, Etat*, bool);
 		//void reduction(Symbole *s);
 		void accepter();
 		void erreur();

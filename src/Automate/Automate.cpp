@@ -35,13 +35,17 @@ void Automate::empilerEtat(Etat*e)
 void Automate::depilerEtat(int n)
 {
 	for(int i = 0; i < n;i++)
+	{
+		delete _pileEtats.front();
 		_pileEtats.pop_front();
+	}
 }
 
-void Automate::decalage(Symbole *s, Etat*e)
+void Automate::decalage(Symbole *s, Etat*e, bool avancerSymbole)
 {
 	empilerEtat(e);
 	empilerSymbole(s);
+	if(avancerSymbole)
 	avancerLecteur();
 }
 
