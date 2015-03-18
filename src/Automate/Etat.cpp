@@ -1,12 +1,15 @@
 #include "Etat.h"
 #include "Automate.h"
 #include "Symbole.h"
-
+#include "../Identifiants.h"
 
 
 void E0::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case ID_
+	}
 
 }
 
