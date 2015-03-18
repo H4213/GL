@@ -14,6 +14,7 @@ public:
 	virtual ~DeclarationVariable(){}
 
 	vector<string> resteDuTableau(vector<string> autresVariables);
+	void comptageVariables();
 	void print();
 
 private:
