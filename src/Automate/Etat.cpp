@@ -23,7 +23,7 @@ void E0::transition(Automate & automate, Symbole *s)
 			automate.empilerSymbole(symbole);
 			automate.empilerEtat(new E1());
 		break;
-		
+		//non terminaux
 		case Identifiants::ID_PROGRAMME:    
 			automate.decalage(s, new E1(), false);                                                                                                                                                                                                                
 		break;
@@ -102,6 +102,12 @@ void E3::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_ID:
 			automate.decalage(s, new E8(), true);
 		break;
+
+		//non terminaux 
+		case Identifiants::ID_INSTRUCTION:
+			automate.decalage(s, new E7(), false);
+		break;
+
 		default:
 			automate.erreur();
 		break;
@@ -110,37 +116,100 @@ void E3::transition(Automate & automate, Symbole *s)
 
 void E4::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_POINTVIRGULE:
+			automate.decalage(s, new E11(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E5::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E12(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E6::transition(Automate & automate, Symbole *s)
 {
-	
-
+	switch(*s)
+	{
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E13(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 }
 
 void E7::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_POINTVIRGULE:
+			automate.decalage(s, new E14(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E8::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_AFFECTATION:
+			automate.decalage(s, new E15(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E9::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+		///non terminaux
+
+		/*case Identifiants::ID_EXPRESSION:
+			automate.decalage(s, new E36(), false);
+		break;
+		case Identifiants::ID_EXPRESSION:
+			automate.decalage(s, new E36(), false);
+		break;
+
+		default:
+			automate.erreur();
+		break;*/
+	}
 
 }
 void E10::transition(Automate & automate, Symbole *s)
