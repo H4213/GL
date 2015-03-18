@@ -15,6 +15,9 @@ public:
 	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){}
 	virtual ~DeclarationConstante(){}
 
+	void resteDuTableau(vector<string> &tabConstantes, vector<double> &tabValeurs);
+	void print();
+
 private:
 	Constante constante;
 	DeclarationConstante* declarationAutreConstante;

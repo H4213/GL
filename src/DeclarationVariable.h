@@ -15,7 +15,7 @@ public:
 	DeclarationVariable():Declaration(Identifiants::ID_DECLARATIONVARIABLE){}
 	virtual ~DeclarationVariable(){}
 
-	vector<string> resteDuTableau(vector<string> autresVariables);
+	void resteDuTableau(vector<string> &autresVariables);
 	void comptageVariables();
 	void print();
 

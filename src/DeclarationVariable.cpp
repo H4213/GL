@@ -11,8 +11,10 @@ DeclarationVariable::DeclarationVariable(string nomVariable, vector<string> autr
 	if(autresVariables.size() > 0)
 	{
 			string var = autresVariables[0];
-			vector<string> nouveauTableau = resteDuTableau(autresVariables);
-			declarationAutreVariable = new DeclarationVariable(var, nouveauTableau);
+			resteDuTableau(autresVariables);
+			declarationAutreVariable = new DeclarationVariable(var, autresVariables);
+
+			
 	} 
 	else 
 	{
@@ -21,14 +23,13 @@ DeclarationVariable::DeclarationVariable(string nomVariable, vector<string> autr
 	
 }
 
-vector<string> DeclarationVariable::resteDuTableau(vector<string> autresVariables)
+void DeclarationVariable::resteDuTableau(vector<string> &autresVariables)
 {
 	for(int i=1; i<autresVariables.size(); i++)
 	{
 		autresVariables[i-1] = autresVariables[i];
 	}
 	autresVariables.pop_back();
-	return autresVariables;
 }
 
 void DeclarationVariable::print()
