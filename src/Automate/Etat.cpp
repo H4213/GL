@@ -17,13 +17,14 @@ void E0::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_VAR:
 		case Identifiants::ID_CONST:
 		case Identifiants::ID_ID:
+		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 3
 			symbole= new PartieDeclarative();
 			automate.reduction(symbole);
 		break;
 		
 		case Identifiants::ID_PROGRAMME:
-			automate.transition(automate,                                                                                                                                                                                                                     
+			automate.decalage(automate,                                                                                                                                                                                                                     
 		break;
 		default:
 			                                   

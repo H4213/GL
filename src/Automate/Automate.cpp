@@ -13,13 +13,14 @@ Programme* Automate::analyser()
 	
 }
 
-void Automate::decalage(Symbole *s, Etat*e)
+void Automate::decalage(Symbole *s, Etat*e, bool avecComsommer)
 {
 	this->_pileSymboles.push_front(s);
 	this->_pileEtats.push_front(e);
 
 
 	//avancer
+	if(avecComsommer)
 	this->avancerAuSuivant();
 }
 
