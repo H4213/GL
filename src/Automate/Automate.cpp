@@ -49,17 +49,16 @@ void Automate::decalage(Symbole *s, Etat*e, bool avancerSymbole)
 	avancerLecteur();
 }
 
-/*void Automate::reduction(Symbole *A)
+void Automate::reduction(Symbole *s)
 {
-	this->_pileSymboles.push_front(A);
+	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
+	_pileEtats.front()->transition(this, s);
 	
-	Etat *sommet = _pileEtats.front();
-	sommet->transition(*this, A);
-}*/
+}
 
 void Automate::accepter()
 {
-
+	
 }
 void Automate::erreur()
 {

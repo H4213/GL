@@ -5,6 +5,7 @@
 
 #include "../PartieDeclarative.h"
 #include "../PartieInstructive.h"
+#include "../Programme.h"
 
 
 void E0::transition(Automate & automate, Symbole *s)
@@ -18,10 +19,12 @@ void E0::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_CONST:
 		case Identifiants::ID_ID:
 		case Identifiants::ID_ENDOFFILE:
-			//reduction par la regle 3 PD -> .
+			//reduction par la regle 3 : PD -> .
 			symbole = new PartieDeclarative();
 			automate.empilerSymbole(symbole);
-			automate.empilerEtat(new E1());
+			//on depile |b| etats
+			automate.depilerEtat(0);
+			automate.reduction(symbole);
 		break;
 		//non terminaux
 		case Identifiants::ID_PROGRAMME:    
@@ -59,10 +62,12 @@ void E2::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_LIRE:
 		case Identifiants::ID_ECRIRE:
 		case Identifiants::ID_ID:
-			//reduction par la regle 11
+		case Identifiants::ID_ENDOFFILE:
+			//reduction par la regle 11 : PI-> .
 			symbole= new PartieInstructive();
-			automate.empilerSymbole(symbole);
-			automate.empilerEtat(new E3());
+			//on depile |b| etats
+			automate.depilerEtat(0);
+			automate.reduction(symbole);
 		break;
 		case Identifiants::ID_CONST:
 		//decalage vers l'etat 6 
@@ -72,7 +77,7 @@ void E2::transition(Automate & automate, Symbole *s)
 		//decalage vers l'etat 5
 			automate.decalage(s, new E5(), true);
 		break;
-		
+
 		
 		case Identifiants::ID_PARTIEINSTRUCTIVE:    
 			automate.decalage(s, new E3(), false);                                                                                                                                                                                                                
@@ -89,6 +94,7 @@ void E2::transition(Automate & automate, Symbole *s)
 
 void E3::transition(Automate & automate, Symbole *s)
 {
+	Programme *programme;
 	switch(*s)
 	{
 		case Identifiants::ID_LIRE:
@@ -101,6 +107,17 @@ void E3::transition(Automate & automate, Symbole *s)
 		break;
 		case Identifiants::ID_ID:
 			automate.decalage(s, new E8(), true);
+		break;
+
+		case Identifiants::ID_ENDOFFILE:
+			//reduction par la regle 1 : Pr -> PD PI
+			PartieInstructive *pi = 
+					(PartieInstructive*)automate.depilerSymbole();
+			PartieDeclarative *pd = 
+					(PartieDeclarative*)automate.depilerSymbole();
+			programme = new Programme(pd, pi);
+			automate.depilerEtat(2);
+			automate.reduction(programme);
 		break;
 
 		//non terminaux 
@@ -199,34 +216,110 @@ void E9::transition(Automate & automate, Symbole *s)
 
 		///non terminaux
 
-		/*case Identifiants::ID_EXPRESSION:
-			automate.decalage(s, new E36(), false);
-		break;
 		case Identifiants::ID_EXPRESSION:
 			automate.decalage(s, new E36(), false);
 		break;
 
+
+		////*******************************/////
+		//// Pas complet
+		////*******************************/////
 		default:
 			automate.erreur();
-		break;*/
+		break;
 	}
 
 }
 void E10::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+		///non terminaux
+
+		case Identifiants::ID_EXPRESSION:
+			automate.decalage(s, new E16(), false);
+		break;
+		////*******************************/////
+		//// Pas complet
+		////*******************************/////
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 void E11::transition(Automate & automate, Symbole *s)
 {
-	
+	PartieDeclarative *pd, *newPD;
+	Declaration *d;
+	switch(*s)
+	{
+		
+		case Identifiants::ID_VAR:
+		case Identifiants::ID_CONST:
+		case Identifiants::ID_POINTVIRGULE:
+			//reduction par la regle 2 PD -> PD D PV
+
+			//depiler pv
+			automate.depilerSymbole();
+			//depiler D
+			d = (Declaration)automate.depilerSymbole();
+			//depiler pd
+			pd = (PartieDeclarative)automate.depilerSymbole();
+			
+			newPD = new PartieDeclarative(pd, d);
+
+			automate.depilerEtat(3);
+
+			automate.reduction(newPD);
+		break;
+
+		///non terminaux
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E12::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		
+		case Identifiants::ID_VIRGULE:
+		case Identifiants::ID_POINTVIRGULE:
+			//reduction par la regle 2 PD -> PD D PV
 
+			//depiler pv
+			automate.depilerSymbole();
+			//depiler D
+			d = (Declaration)automate.depilerSymbole();
+			//depiler pd
+			pd = (PartieDeclarative)automate.depilerSymbole();
+			
+			newPD = new PartieDeclarative(pd, d);
+
+			automate.depilerEtat(3);
+
+			automate.reduction(newPD);
+		break;
+
+		///non terminaux
+		default:
+			automate.erreur();
+		break;
+	}
 }
 
 void E13::transition(Automate & automate, Symbole *s)
