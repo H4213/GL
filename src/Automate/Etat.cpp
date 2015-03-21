@@ -6,7 +6,10 @@
 #include "../PartieDeclarative.h"
 #include "../PartieInstructive.h"
 #include "../Programme.h"
+#include "../Expression.h"
 
+#include "../Lire.h"
+#include "../Ecrire.h"
 
 void E0::transition(Automate & automate, Symbole *s)
 {
@@ -285,8 +288,11 @@ void E11::transition(Automate & automate, Symbole *s)
 		break;
 
 		///non terminaux
+		case ID_VIRGULE:
+			automate.decalage(automate)
+		break;
 		default:
-			automate.erreur();
+			automate.erreur(s, new E22(), false);
 		break;
 	}
 
@@ -299,20 +305,9 @@ void E12::transition(Automate & automate, Symbole *s)
 		
 		case Identifiants::ID_VIRGULE:
 		case Identifiants::ID_POINTVIRGULE:
-			//reduction par la regle 2 PD -> PD D PV
+			//reduction par la regle 7 PD -> PD D PV
 
-			//depiler pv
-			automate.depilerSymbole();
-			//depiler D
-			d = (Declaration)automate.depilerSymbole();
-			//depiler pd
-			pd = (PartieDeclarative)automate.depilerSymbole();
 			
-			newPD = new PartieDeclarative(pd, d);
-
-			automate.depilerEtat(3);
-
-			automate.reduction(newPD);
 		break;
 
 		///non terminaux
@@ -324,25 +319,106 @@ void E12::transition(Automate & automate, Symbole *s)
 
 void E13::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		
+		case Identifiants::ID_VIRGULE:
+		case Identifiants::ID_POINTVIRGULE:
+			automate.decalage(s, new E23(), true);
+		break;
+
+		///non terminaux
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E14::transition(Automate & automate, Symbole *s)
 {
-	
+	PartieInstructive *PI, *newPI;
+	Instruction I;
+	switch(*s)
+	{
+		case Identifiants::ID_LIRE:
+		case Identifiants::ID_ECRIRE:
+		case Identifiants::ID_ID:
+		case Identifiants::ID_POINTVIRGULE:
+			//reduction par la regle 10
+
+		//depiler 3 etats
+		automate.depilerEtat(3);
+		//depiler point virgule
+		automate.depilerSymbole();
+		//depiler I
+		I = automate.depilerSymbole();
+		//depiler PI
+		PI = automate.depilerSymbole();
+
+		newPI = new PartieInstructive(PI, I);
+		automate.reduction(newPI);	
+		break;
+
+		///non terminaux
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E15::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+		///non terminaux
+
+		case Identifiants::ID_EXPRESSION:
+			automate.decalage(s, new E37(), false);
+		break;
+
+
+		////*******************************/////
+		//// Pas complet
+		////*******************************/////
+		default:
+			automate.erreur();
+		break;
 
 }
 
 void E16::transition(Automate & automate, Symbole *s)
 {
-	
+	Instruction *newI;
+	Expression *e;
+	Lire *l;
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVEVAR:
+			automate.decalage(s, new E32(), true);
+		break;
+
+
+		case Identifiants::ID_POINTVIRGULE:
+			//reduction par la regle 14
+			e = automate.depilerSymbole();
+			l = automate.depilerSymbole();
+		break;
+
+		default:
+			automate.erreur();
+		break;
 
 }
 void E17::transition(Automate & automate, Symbole *s)
