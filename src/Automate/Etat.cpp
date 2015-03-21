@@ -11,6 +11,8 @@
 #include "../Lire.h"
 #include "../Ecrire.h"
 
+#include "../Variable.h"
+
 void E0::transition(Automate & automate, Symbole *s)
 {
 	PartieDeclarative *symbole;
@@ -274,7 +276,7 @@ void E11::transition(Automate & automate, Symbole *s)
 			//reduction par la regle 2 PD -> PD D PV
 
 			//depiler pv
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			//depiler D
 			d = (Declaration)automate.depilerSymbole();
 			//depiler pd
@@ -358,6 +360,8 @@ void E14::transition(Automate & automate, Symbole *s)
 
 		newPI = new PartieInstructive(PI, I);
 		automate.reduction(newPI);	
+
+
 		break;
 
 		///non terminaux
@@ -401,29 +405,46 @@ void E15::transition(Automate & automate, Symbole *s)
 void E16::transition(Automate & automate, Symbole *s)
 {
 	Instruction *newI;
-	Expression *e;
+	Variable *v;
 	Lire *l;
 	switch(*s)
 	{
-		case Identifiants::ID_OPERATIONADDITIVEVAR:
+		case Identifiants::ID_OPERATIONADDITIVE:
 			automate.decalage(s, new E32(), true);
 		break;
 
 
 		case Identifiants::ID_POINTVIRGULE:
+
+			//depiler 3 etats
+			automate.depilerEtat(2);
 			//reduction par la regle 14
-			e = automate.depilerSymbole();
-			l = automate.depilerSymbole();
+			v = automate.depilerSymbole();
+			delete automate.depilerSymbole();
+
+			automate.reduction(new InstructionLire(v));
 		break;
 
 		default:
 			automate.erreur();
 		break;
-
+	}
 }
 void E17::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case ID_OPERATIONADDITIVE:
+		case ID_FERMEPARANTHESE:
+		case ID_POINTVIRGULE:
+			//reduction regle 18
+			 
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
