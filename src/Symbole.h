@@ -17,6 +17,7 @@ class Symbole
 
 		void print();
 		operator int() const {return _ident;}
+		virtual void executer() = 0;
 };
 
 #endif

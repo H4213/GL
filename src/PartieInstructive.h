@@ -10,16 +10,18 @@ using namespace std;
 class PartieInstructive : public Symbole {
 
 public:
-	PartieInstructive(Instruction i, vector<Instruction> autresInstructions);
+	PartieInstructive(Instruction *i, vector<Instruction*> autresInstructions);
 	PartieInstructive():Symbole(Identifiants::ID_PARTIEINSTRUCTIVE){}
 	virtual ~PartieInstructive(){}
 
-	void resteDuTableau(vector<Instruction> &vectInstructions);
+	virtual void executer();
 	void print();
 
 private:
-	Instruction instruction;
-	PartieInstructive* sousPartieInstructive;
+	Instruction *instruction;
+	PartieInstructive *sousPartieInstructive;
+	
+	void resteDuTableau(vector<Instruction*> &vectInstructions);
 
 };
 

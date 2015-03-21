@@ -8,6 +8,8 @@ class Egal : public Symbole {
 public:
 	Egal();
 	virtual ~Egal(){}
+	
+	virtual void executer();
 
 };
 

@@ -8,6 +8,8 @@ class Soustraction : public OperationAdditive{
 public:
 	Soustraction();
 	virtual ~Soustraction(){}
+	
+	virtual void executer();
 
 };
 

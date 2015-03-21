@@ -1,6 +1,6 @@
 #include "InstructionAffectation.h"
 
-InstructionAffectation::InstructionAffectation(Variable v, Expression e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
+InstructionAffectation::InstructionAffectation(Variable *v, Expression *e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
 {
 	variable = v;
 	expression = e;

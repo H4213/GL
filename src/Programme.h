@@ -9,13 +9,15 @@
 class Programme : public Symbole {
 
 public:
-	Programme(PartieDeclarative partieD, PartieInstructive partieI);
+	Programme(PartieDeclarative *partieD, PartieInstructive *partieI);
 	Programme():Symbole(Identifiants::ID_PROGRAMME){}
 	virtual ~Programme(){} //TODO: tout nettoyer!!
 
+	virtual void executer();
+
 private:
-	PartieDeclarative partieDeclarative;
-	PartieInstructive partieInstructive;
+	PartieDeclarative *partieDeclarative;
+	PartieInstructive *partieInstructive;
 
 };
 

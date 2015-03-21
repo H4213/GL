@@ -10,6 +10,10 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	/* 
+	Test du constructeur declaration de variable
+	*/
+
 	string s = "salut, ";
 	string s1 = "ça ";
 	string s2 = "va ";
@@ -25,6 +29,10 @@ int main(int argc, char *argv[])
 	DeclarationVariable d = DeclarationVariable(s,v);
 	d.print();
 	d.comptageVariables();
+
+	/*
+	Fin du test
+	*/
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 
@@ -50,63 +58,30 @@ int main(int argc, char *argv[])
 	// 	option_o = true;
 	// }
 
-<<<<<<< HEAD
-    if (fichier != NULL)
-    {
-			fseek(fichier, 0, SEEK_END);
-			contents.resize(ftell(fichier));
-			rewind(fichier);
-			fread(&contents[0], 1, contents.size(), fichier);
-			fclose(fichier);
 
-    }
-    else
-	{
-		exit(EXIT_FAILURE);
-	}
-
-      Lecteur l(contents);
-
-        cout << "getnext 3 fois" << endl;
-      int i;
-      for (i=0 ; i<3 ; i++){
-       l.getNext()->print();
-      }
-
-         return 0;
-=======
  //    if (fichier != NULL)
  //    {
-			
 	// 		fseek(fichier, 0, SEEK_END);
 	// 		contents.resize(ftell(fichier));
 	// 		rewind(fichier);
 	// 		fread(&contents[0], 1, contents.size(), fichier);
 	// 		fclose(fichier);
-           
-        
 
  //    }
- //    else 
+ //    else
 	// {
 	// 	exit(EXIT_FAILURE);
 	// }
 
  //      Lecteur l(contents);
- //     /* vector<string> phrase;
- //       phrase.push_back(contents);
 
- //    vector<string> result = l.sepWords(phrase);
+ //        cout << "getnext 3 fois" << endl;
+ //      int i;
+ //      for (i=0 ; i<3 ; i++){
+ //       l.getNext()->print();
+ //      }
 
- //    cout << "resultat" << endl;
+         return 0;
 
- //    int i;
- //    cout << result.size() << endl;
- //    for ( i = 0 ; i< result.size() ; i++)
- //    {
- //        cout << result[i] << endl;
- //    }*/
-    return 0;
->>>>>>> 96907f55d00f1edcf05888ca9b09ad684c3eff43
 }
 

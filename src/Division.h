@@ -8,6 +8,8 @@ class Division : public OperationMultiplicative{
 public:
 	Division();
 	virtual ~Division(){}
+	
+	virtual void executer();
 
 };
 

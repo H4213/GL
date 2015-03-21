@@ -9,6 +9,8 @@ public:
 	Declaration();
 	Declaration(int id);
 	virtual ~Declaration(){}
+	
+	virtual void executer(){}
 
 };
 

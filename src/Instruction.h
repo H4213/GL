@@ -9,6 +9,8 @@ public:
 	Instruction();
 	Instruction(int id):Symbole(id){}
 	virtual ~Instruction(){}
+	
+	virtual void executer();
 
 };
 

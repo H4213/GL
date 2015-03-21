@@ -8,6 +8,8 @@ class Const : public Symbole {
 public:
 	Const();
 	virtual ~Const(){}
+	
+	virtual void executer(){}
 
 };
 

@@ -7,6 +7,8 @@ class OuvreParenthese : public Symbole{
 public:
 	OuvreParenthese();
 	virtual ~OuvreParenthese(){}
+	
+	virtual void executer();
 };
 
 #endif 

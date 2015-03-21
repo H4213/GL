@@ -12,6 +12,9 @@ public:
 	Nombre(double v);
 	Nombre():Expression(Identifiants::ID_NOMBRE){}
 	virtual ~Nombre(){}
+	
+	virtual void executer();
+	Expression Eval();
 
 private:
 	double valeur;

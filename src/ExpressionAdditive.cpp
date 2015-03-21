@@ -2,7 +2,7 @@
 
 #include <string>
 
-ExpressionAdditive::ExpressionAdditive(Expression exp1, Expression exp2, OperationAdditive op):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
+ExpressionAdditive::ExpressionAdditive(Expression *exp1, Expression *exp2, OperationAdditive *op):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
 {
 	expression1 = exp1;
 	expression2 = exp2;

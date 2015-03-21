@@ -3,14 +3,14 @@
 #include <string>
 #include <iostream>
 
-PartieDeclarative::PartieDeclarative(Declaration d, vector<Declaration> autresDeclarations) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
+PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autresDeclarations) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
 {
 	declaration = d;
 	_symbole_string = "PartieDeclarative";
 
 	if(autresDeclarations.size() > 0)
 	{
-		Declaration decla = autresDeclarations[0];
+		Declaration *decla = autresDeclarations[0];
 		resteDuTableau(autresDeclarations);
 		sousPartieDeclarative = new PartieDeclarative(decla, autresDeclarations);
 	} 
@@ -20,7 +20,7 @@ PartieDeclarative::PartieDeclarative(Declaration d, vector<Declaration> autresDe
 	}
 }
 
-void PartieDeclarative::resteDuTableau(vector<Declaration> &vectDeclarations)
+void PartieDeclarative::resteDuTableau(vector<Declaration*> &vectDeclarations)
 {
 	for(int i=1; i<vectDeclarations.size(); i++)
 	{

@@ -8,12 +8,14 @@
 class InstructionEcrire : public Instruction {
 
 public:
-	InstructionEcrire(Expression e);
+	InstructionEcrire(Expression *e);
 	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){}
 	virtual ~InstructionEcrire(){}
+	
+	virtual void executer();
 
 private:
-	Expression expression;
+	Expression *expression;
 
 };
 

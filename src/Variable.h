@@ -12,6 +12,9 @@ public:
 	Variable(string n);
 	Variable():Expression(Identifiants::ID_VARIABLE){}
 	virtual ~Variable(){}
+	
+	virtual void executer();
+	Expression Eval();
 
 private:
 	string nom;

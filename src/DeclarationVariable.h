@@ -14,14 +14,16 @@ public:
 	DeclarationVariable(string nomVariable, vector<string> autresVariables);
 	DeclarationVariable():Declaration(Identifiants::ID_DECLARATIONVARIABLE){}
 	virtual ~DeclarationVariable(){}
-
-	void resteDuTableau(vector<string> &autresVariables);
+	
+	virtual void executer();
 	void comptageVariables();
 	void print();
 
 private:
 	Variable variable;
-	DeclarationVariable* declarationAutreVariable;
+	DeclarationVariable *declarationAutreVariable;
+
+	void resteDuTableau(vector<string> &autresVariables);
 
 };
 

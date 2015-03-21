@@ -7,6 +7,8 @@ class Ecrire : public Symbole{
 public:
 	Ecrire();
 	virtual ~Ecrire(){}
+	
+	virtual void executer();
 
 };
 

@@ -8,6 +8,8 @@ class Multiplication : public OperationMultiplicative{
 public:
 	Multiplication();
 	virtual ~Multiplication(){}
+	
+	virtual void executer();
 
 };
 

@@ -10,6 +10,8 @@ public:
 	Id(string nom);
 	Id():Symbole(Identifiants::ID_ID){}
 	virtual ~Id(){}
+	
+	virtual void executer();
 
 };
 

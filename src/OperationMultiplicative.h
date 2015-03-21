@@ -9,6 +9,8 @@ public:
 	OperationMultiplicative(int id):Symbole(id){}
 	OperationMultiplicative();
 	virtual ~OperationMultiplicative(){}
+	
+	virtual void executer();
 
 };
 

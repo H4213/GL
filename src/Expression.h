@@ -9,8 +9,9 @@ public:
 	Expression();
 	Expression(int id);
 	virtual ~Expression(){}
-
-	// virtual double Eval();
+	
+	virtual void executer();
+	virtual Expression Eval();
 
 };
 

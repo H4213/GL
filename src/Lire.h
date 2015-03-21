@@ -7,6 +7,8 @@ class Lire : public Symbole{
 public:
 	Lire();
 	virtual ~Lire(){}
+	
+	virtual void executer();
 
 };
 

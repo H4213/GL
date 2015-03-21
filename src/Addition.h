@@ -9,6 +9,8 @@ public:
 	Addition();
 	virtual ~Addition(){}
 
+	virtual void executer(){}
+
 };
 
 

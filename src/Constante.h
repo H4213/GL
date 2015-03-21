@@ -12,6 +12,9 @@ public:
 	Constante(string n, double v);
 	Constante():Expression(Identifiants::ID_CONSTANTE){}
 	virtual ~Constante(){}
+	
+	virtual void executer();
+	Expression Eval();
 
 private:
 	string nom;

@@ -14,14 +14,15 @@ public:
 	DeclarationConstante(string nomConstante, double valeur, vector<string> autresConstantes, vector<double> autresValeurs);
 	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){}
 	virtual ~DeclarationConstante(){}
-
-	void resteDuTableau(vector<string> &tabConstantes, vector<double> &tabValeurs);
+	
+	virtual void executer();
 	void print();
 
 private:
 	Constante constante;
-	DeclarationConstante* declarationAutreConstante;
+	DeclarationConstante* declarationAutreConstante
 
+	void resteDuTableau(vector<string> &tabConstantes, vector<double> &tabValeurs);
 };
 
 

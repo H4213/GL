@@ -7,6 +7,8 @@ class FermeParenthese : public Symbole{
 public:
 	FermeParenthese();
 	virtual ~FermeParenthese(){}
+	
+	virtual void executer();
 
 };
 

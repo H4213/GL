@@ -10,6 +10,8 @@ public:
 	OperationAdditive(int id):Symbole(id){}
 	OperationAdditive();
 	virtual ~OperationAdditive(){}
+	
+	virtual void executer();
 
 };
 
