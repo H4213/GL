@@ -2,7 +2,6 @@
 #define EXPRESSIONMULTIPLICATIVE_H
 #include "Expression.h"
 #include "OperationMultiplicative.h"
-#include "Identifiants.h"
 
 class ExpressionMultiplicative : public Expression {
 
@@ -11,7 +10,7 @@ public:
 	ExpressionMultiplicative():Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){}
 	virtual ~ExpressionMultiplicative(){}
 
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 	Expression Eval();
 
 private:

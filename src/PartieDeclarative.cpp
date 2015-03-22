@@ -1,6 +1,5 @@
 #include "PartieDeclarative.h"
 
-#include <string>
 #include <iostream>
 
 PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autresDeclarations) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
@@ -17,6 +16,15 @@ PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autres
 	else 
 	{
 		sousPartieDeclarative = NULL;
+	}
+}
+
+void PartieDeclarative::executer(map<string,double> &mapV)
+{
+	declaration->executer(mapV);
+	if(sousPartieDeclarative!=NULL)
+	{
+		sousPartieDeclarative->executer(mapV);
 	}
 }
 

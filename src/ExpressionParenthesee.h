@@ -1,7 +1,6 @@
 #if !defined ( EXPRESSIONPARENTHESEE_H )
 #define EXPRESSIONPARENTHESEE_H
 #include "Expression.h"
-#include "Identifiants.h"
 
 
 class ExpressionParenthesee : public Expression {
@@ -11,7 +10,7 @@ public:
 	ExpressionParenthesee():Expression(Identifiants::ID_EXPRESSIONPARENTHESEE){}
 	virtual ~ExpressionParenthesee(){}
 
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 	Expression Eval();
 
 private:

@@ -3,7 +3,6 @@
 #include "Instruction.h"
 #include "Expression.h"
 #include "Variable.h"
-#include "Identifiants.h"
 
 class InstructionAffectation : public Instruction {
 
@@ -12,7 +11,7 @@ public:
 	InstructionAffectation():Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION){}
 	virtual ~InstructionAffectation(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 private:
 	Variable *variable;

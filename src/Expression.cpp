@@ -11,3 +11,8 @@ Expression::Expression(int id):Symbole(id)
 {
 	
 }
+
+void Expression::executer(map<string,double> &mapV)
+{
+
+}

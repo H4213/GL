@@ -10,8 +10,8 @@ public:
 	Expression(int id);
 	virtual ~Expression(){}
 	
-	virtual void executer();
-	virtual Expression Eval();
+	virtual void executer(map<string,double> &mapV);
+	// virtual Expression Eval();
 
 };
 

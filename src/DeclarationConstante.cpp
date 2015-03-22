@@ -20,6 +20,24 @@ DeclarationConstante::DeclarationConstante(string nomConstante, double valeur, v
 	}
 }
 
+void DeclarationConstante::executer(map<string,double> &mapV)
+{
+	mapV[constante.getNom()] = constante.getValeur();
+	if(declarationAutreConstante!=NULL)
+	{
+		declarationAutreConstante->executer(mapV);
+	}
+}
+
+void DeclarationConstante::print()
+{
+	cout << _symbole_string << endl;
+	if(declarationAutreConstante != NULL)
+	{
+		declarationAutreConstante->print();
+	}
+}
+
 void DeclarationConstante::resteDuTableau(vector<string> &tabConstantes, vector<double> &tabValeurs)
 {
 	for(int i=1; i<tabConstantes.size(); i++)
@@ -31,11 +49,3 @@ void DeclarationConstante::resteDuTableau(vector<string> &tabConstantes, vector<
 	tabValeurs.pop_back();
 }
 
-void DeclarationConstante::print()
-{
-	cout << _symbole_string << endl;
-	if(declarationAutreConstante != NULL)
-	{
-		declarationAutreConstante->print();
-	}
-}

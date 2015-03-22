@@ -9,7 +9,7 @@ public:
 	Var();
 	virtual ~Var(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

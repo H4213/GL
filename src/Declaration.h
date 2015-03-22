@@ -10,7 +10,7 @@ public:
 	Declaration(int id);
 	virtual ~Declaration(){}
 	
-	virtual void executer(){}
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

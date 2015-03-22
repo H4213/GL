@@ -8,7 +8,7 @@ public:
 	Lire();
 	virtual ~Lire(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

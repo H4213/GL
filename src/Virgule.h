@@ -9,7 +9,7 @@ public:
 	Virgule();
 	virtual ~Virgule(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

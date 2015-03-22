@@ -1,7 +1,6 @@
 #if !defined ( VARIABLE_H )
 #define VARIABLE_H
 #include "Expression.h"
-#include "Identifiants.h"
 
 #include <string>
 
@@ -13,8 +12,9 @@ public:
 	Variable():Expression(Identifiants::ID_VARIABLE){}
 	virtual ~Variable(){}
 	
-	virtual void executer();
-	Expression Eval();
+	virtual void executer(map<string,double> &mapV);
+	// Expression Eval();
+	string getNom();
 
 private:
 	string nom;

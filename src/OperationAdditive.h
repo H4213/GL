@@ -1,8 +1,6 @@
 #if !defined ( OPERATIONADDITIVE_H )
 #define OPERATIONADDITIVE_H
 #include "Symbole.h"
-#include "Identifiants.h"
-
 
 class OperationAdditive : public Symbole {
 
@@ -11,7 +9,7 @@ public:
 	OperationAdditive();
 	virtual ~OperationAdditive(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

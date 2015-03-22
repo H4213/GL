@@ -10,7 +10,7 @@ public:
 	Instruction(int id):Symbole(id){}
 	virtual ~Instruction(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

@@ -2,7 +2,6 @@
 #define INSTRUCTIONECRIRE_H
 #include "Instruction.h"
 #include "Expression.h"
-#include "Identifiants.h"
 
 
 class InstructionEcrire : public Instruction {
@@ -12,7 +11,7 @@ public:
 	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){}
 	virtual ~InstructionEcrire(){}
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 
 private:
 	Expression *expression;

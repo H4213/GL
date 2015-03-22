@@ -2,7 +2,6 @@
 #define EXPRESSIONADDITIVE_H
 #include "Expression.h"
 #include "OperationAdditive.h"
-#include "Identifiants.h"
 
 
 class ExpressionAdditive : public Expression {
@@ -13,7 +12,7 @@ public:
 	virtual ~ExpressionAdditive(){}
 
 	
-	virtual void executer();
+	virtual void executer(map<string,double> &mapV){}
 	Expression Eval();
 
 private:

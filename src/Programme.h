@@ -3,7 +3,8 @@
 #include "Symbole.h"
 #include "PartieDeclarative.h"
 #include "PartieInstructive.h"
-#include "Identifiants.h"
+
+using namespace std;
 
 
 class Programme : public Symbole {
@@ -13,11 +14,15 @@ public:
 	Programme():Symbole(Identifiants::ID_PROGRAMME){}
 	virtual ~Programme(){} //TODO: tout nettoyer!!
 
-	virtual void executer();
+	void afficherVariables();
+	// map<string,double> getVariables();		
+	void executer(){executer(map_variables);}
+	virtual void executer(map<string,double> &mapV);
 
 private:
 	PartieDeclarative *partieDeclarative;
 	PartieInstructive *partieInstructive;
+	map<string,double> map_variables;
 
 };
 

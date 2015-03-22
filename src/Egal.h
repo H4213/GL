@@ -9,8 +9,7 @@ public:
 	Egal();
 	virtual ~Egal(){}
 	
-	virtual void executer();
-
+	virtual void executer(map<string,double> &mapV){}
 };
 
 

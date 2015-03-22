@@ -1,7 +1,6 @@
 #if !defined ( CONSTANTE_H )
 #define CONSTANTE_H
 #include "Expression.h"
-#include "Identifiants.h"
 
 #include <string>
 
@@ -13,8 +12,10 @@ public:
 	Constante():Expression(Identifiants::ID_CONSTANTE){}
 	virtual ~Constante(){}
 	
-	virtual void executer();
-	Expression Eval();
+	virtual void executer(map<string,double> &mapV);
+	// Expression Eval();
+	string getNom();
+	double getValeur();
 
 private:
 	string nom;
