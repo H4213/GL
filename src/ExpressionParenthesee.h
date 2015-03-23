@@ -10,8 +10,7 @@ public:
 	ExpressionParenthesee():Expression(Identifiants::ID_EXPRESSIONPARENTHESEE){}
 	virtual ~ExpressionParenthesee(){}
 
-	virtual void executer(map<string,double> &mapV){}
-	Expression Eval();
+	virtual double eval(map<string,double> &mapV);
 
 private:
 	Expression *expression;

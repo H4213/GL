@@ -4,4 +4,5 @@
 Soustraction::Soustraction():OperationAdditive(Identifiants::ID_SOUSTRACTION)
 {
 	_symbole_string = "-";
+	_operation = '-';
 }

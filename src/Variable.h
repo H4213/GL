@@ -12,9 +12,8 @@ public:
 	Variable():Expression(Identifiants::ID_VARIABLE){}
 	virtual ~Variable(){}
 	
-	virtual void executer(map<string,double> &mapV);
-	// Expression Eval();
 	string getNom();
+	virtual double eval(map<string,double> &mapV);	
 
 private:
 	string nom;

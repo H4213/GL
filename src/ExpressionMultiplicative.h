@@ -10,8 +10,7 @@ public:
 	ExpressionMultiplicative():Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){}
 	virtual ~ExpressionMultiplicative(){}
 
-	virtual void executer(map<string,double> &mapV){}
-	Expression Eval();
+	virtual double eval(map<string,double> &mapV);
 
 private:
 	Expression *expression1;

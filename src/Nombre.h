@@ -2,9 +2,6 @@
 #define NOMBRE_H
 #include "Expression.h"
 
-#include <string>
-
-
 class Nombre : public Expression {
 
 public:
@@ -12,8 +9,8 @@ public:
 	Nombre():Expression(Identifiants::ID_NOMBRE){}
 	virtual ~Nombre(){}
 	
-	virtual void executer(map<string,double> &mapV){}
-	Expression Eval();
+	double getValeur();
+	virtual double eval(map<string,double> &mapV);
 
 private:
 	double valeur;

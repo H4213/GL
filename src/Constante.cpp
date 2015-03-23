@@ -1,6 +1,5 @@
 #include "Constante.h"
-
-#include <string>
+#include "Nombre.h"
 
 Constante::Constante(string n, double v):Expression(Identifiants::ID_CONSTANTE)
 {
@@ -9,9 +8,10 @@ Constante::Constante(string n, double v):Expression(Identifiants::ID_CONSTANTE)
 	_symbole_string = "Constante ";
 }
 
-void Constante::executer(map<string,double> &mapV)
+double Constante::eval(map<string,double> &mapV)
 {
-	
+	//TODO: Peut etre, plutot chercher dans la map la valeur de la constante?
+	return valeur;
 }
 
 string Constante::getNom()

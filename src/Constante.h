@@ -12,10 +12,9 @@ public:
 	Constante():Expression(Identifiants::ID_CONSTANTE){}
 	virtual ~Constante(){}
 	
-	virtual void executer(map<string,double> &mapV);
-	// Expression Eval();
 	string getNom();
 	double getValeur();
+	virtual double eval(map<string,double> &mapV);
 
 private:
 	string nom;

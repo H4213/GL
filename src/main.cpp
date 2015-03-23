@@ -6,6 +6,16 @@
 #include "Programme.h"
 #include "PartieDeclarative.h"
 #include "PartieInstructive.h"
+#include "Expression.h"
+#include "Constante.h"
+#include "Variable.h"
+#include "Nombre.h"
+#include "ExpressionAdditive.h"
+#include "ExpressionMultiplicative.h"
+#include "ExpressionParenthesee.h"
+#include "Addition.h"
+#include "Multiplication.h"
+#include "Division.h"
 
 #include <string>
 #include <map>
@@ -17,59 +27,81 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
+	/*
+	Test de l'eval des expressions
+	*/	
+	map<string,double> m;
+	Nombre *n1 = new Nombre(3);
+	Nombre *n2 = new Nombre(5);
+	OperationAdditive *opA = new Addition();
+	Expression *expA1 = new ExpressionAdditive(n1, n2, opA); // expA1 : 3+5 = 8
+	cout<< "expA1: "<<expA1->eval(m)<< endl; //ça ne marche que si ExpressionA. est un pointeur (pourquoi?????)
+
+	ExpressionParenthesee *expP = new ExpressionParenthesee(expA1); // expP: (3+5) =8
+	cout<< "expP: "<<expP->eval(m)<< endl;
+
+	Nombre *n3 = new Nombre(6);
+	OperationMultiplicative *opM = new Multiplication();
+	Expression *expM1 = new ExpressionMultiplicative(n3, expP, opM); //expM1: (3+5)*6 =48
+	cout<< "expM1: "<<expM1->eval(m)<< endl;
+	/*
+	Fin du teste
+	*/
+
+// -----------------------------------------------------------------
 	
 	/* 
 	Test du constructeur declaration de variable/constante et execution des declarations
 	*/
+	// string s = "salut, ";
+	// string s1 = "ça ";
+	// string s2 = "va ";
+	// string s3 = "mlle ";
+	// string s4 = "? ";
 
-	string s = "salut, ";
-	string s1 = "ça ";
-	string s2 = "va ";
-	string s3 = "mlle ";
-	string s4 = "? ";
+	// vector<string> v = vector<string>();
+	// cout<<"size: "<<v.size()<<endl;
+	// v.push_back(s1);
+	// v.push_back(s2);
+	// v.push_back(s3);
+	// v.push_back(s4);
 
-	vector<string> v = vector<string>();
-	cout<<"size: "<<v.size()<<endl;
-	v.push_back(s1);
-	v.push_back(s2);
-	v.push_back(s3);
-	v.push_back(s4);
+	// Declaration *dv = new DeclarationVariable(s,v);
+	// //d->print();
 
-	Declaration *dv = new DeclarationVariable(s,v);
-	//d->print();
+	// string c1 = "const1";
+	// string c2 = "const2";
+	// string c3 = "const3";
 
-	string c1 = "const1";
-	string c2 = "const2";
-	string c3 = "const3";
+	// std::vector<string> vc;
+	// vc.push_back(c2);
+	// vc.push_back(c3);
 
-	std::vector<string> vc;
-	vc.push_back(c2);
-	vc.push_back(c3);
+	// double v1=12;
+	// double v2=13;
+	// double v3= -8;
 
-	double v1=12;
-	double v2=13;
-	double v3= -8;
+	// std::vector<double> vv;
+	// vv.push_back(v2);
+	// vv.push_back(v3);
 
-	std::vector<double> vv;
-	vv.push_back(v2);
-	vv.push_back(v3);
+	// Declaration *dc = new DeclarationConstante(c1, v1, vc, vv);
 
-	Declaration *dc = new DeclarationConstante(c1, v1, vc, vv);
+	// std::vector<Declaration*> vd;
+	// vd.push_back(dc);
 
-	std::vector<Declaration*> vd;
-	vd.push_back(dc);
+	// PartieInstructive *pi = new PartieInstructive();
+	// PartieDeclarative *pd = new PartieDeclarative(dv, vd);	
+	// Programme p = Programme(pd,pi);
 
-	PartieInstructive *pi = new PartieInstructive();
-	PartieDeclarative *pd = new PartieDeclarative(dv, vd);	
-	Programme p = Programme(pd,pi);
-
-	p.afficherVariables();
-	p.executer();
-	p.afficherVariables();
-
+	// p.afficherVariables();
+	// p.executer();
+	// p.afficherVariables();
 	/*
 	Fin du test
 	*/
+	
+// --------------------------------------------------------------------
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 

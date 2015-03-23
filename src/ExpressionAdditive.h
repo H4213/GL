@@ -11,9 +11,7 @@ public:
 	ExpressionAdditive():Expression(Identifiants::ID_EXPRESSIONADDITIVE){}
 	virtual ~ExpressionAdditive(){}
 
-	
-	virtual void executer(map<string,double> &mapV){}
-	Expression Eval();
+	virtual double eval(map<string,double> &mapV);
 
 private:
 	Expression *expression1;
