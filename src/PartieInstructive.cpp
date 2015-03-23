@@ -1,16 +1,15 @@
 #include "PartieInstructive.h"
 
-#include <string>
 #include <iostream>
 
-PartieInstructive::PartieInstructive(Instruction i, vector<Instruction> autresInstructions) : Symbole(Identifiants::ID_PARTIEINSTRUCTIVE)
+PartieInstructive::PartieInstructive(Instruction *i, vector<Instruction*> autresInstructions) : Symbole(Identifiants::ID_PARTIEINSTRUCTIVE)
 {
 	instruction = i;
 	_symbole_string = "PartieInstructive";
 
 	if(autresInstructions.size() > 0)
 	{
-		Instruction ins = autresInstructions[0];
+		Instruction *ins = autresInstructions[0];
 		resteDuTableau(autresInstructions);
 		sousPartieInstructive = new PartieInstructive(ins, autresInstructions);
 	} 
@@ -20,7 +19,16 @@ PartieInstructive::PartieInstructive(Instruction i, vector<Instruction> autresIn
 	}
 }
 
-void PartieInstructive::resteDuTableau(vector<Instruction> &vectInstructions)
+void PartieInstructive::executer(map<string,double> &mapV)
+{
+	instruction->executer(mapV);
+	if(sousPartieInstructive != NULL)
+	{
+		sousPartieInstructive->executer(mapV);
+	}
+}
+
+void PartieInstructive::resteDuTableau(vector<Instruction*> &vectInstructions)
 {
 	for(int i=1; i<vectInstructions.size(); i++)
 	{

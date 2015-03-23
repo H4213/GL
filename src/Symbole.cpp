@@ -14,4 +14,3 @@ Symbole::Symbole()
 void Symbole::print(){
 	cout << _symbole_string << endl;
 }
-

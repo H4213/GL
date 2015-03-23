@@ -1,6 +1,7 @@
 #include "DeclarationVariable.h"
 
 #include <iostream>
+using namespace std;
 
 
 DeclarationVariable::DeclarationVariable(string nomVariable, vector<string> autresVariables) : Declaration(Identifiants::ID_DECLARATIONVARIABLE)
@@ -23,13 +24,16 @@ DeclarationVariable::DeclarationVariable(string nomVariable, vector<string> autr
 	
 }
 
-void DeclarationVariable::resteDuTableau(vector<string> &autresVariables)
+void DeclarationVariable::executer(map<string,double> &mapV)
 {
-	for(int i=1; i<autresVariables.size(); i++)
+	//TODO: à l'initialisation la valeur est igual a 0 et pas a NULL
+	// je pense qu'il y a pas de soucis parce que l'analyse statique ne laisserai pas afficher une variable vide...
+	mapV[variable.getNom()]; 
+	if (declarationAutreVariable != NULL)
 	{
-		autresVariables[i-1] = autresVariables[i];
+		declarationAutreVariable->executer(mapV);		
 	}
-	autresVariables.pop_back();
+	
 }
 
 void DeclarationVariable::print()
@@ -39,6 +43,15 @@ void DeclarationVariable::print()
 	{
 		declarationAutreVariable->print();
 	}
+}
+
+void DeclarationVariable::resteDuTableau(vector<string> &autresVariables)
+{
+	for(int i=1; i<autresVariables.size(); i++)
+	{
+		autresVariables[i-1] = autresVariables[i];
+	}
+	autresVariables.pop_back();
 }
 
 void DeclarationVariable::comptageVariables()

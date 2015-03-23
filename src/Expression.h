@@ -2,15 +2,14 @@
 #define EXPRESSION_H
 #include "Symbole.h"
 
-
 class Expression : public Symbole {
 
 public:
 	Expression();
-	Expression(int id);
+	Expression(int id):Symbole(id){}
 	virtual ~Expression(){}
-
-	// virtual double Eval();
+	
+	virtual double eval(map<string,double> &mapV){}
 
 };
 

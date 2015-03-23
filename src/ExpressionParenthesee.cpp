@@ -1,9 +1,13 @@
 #include "ExpressionParenthesee.h"
 
-#include <string>
-
-ExpressionParenthesee::ExpressionParenthesee(Expression exp):Expression(Identifiants::ID_EXPRESSIONPARENTHESEE)
+ExpressionParenthesee::ExpressionParenthesee(Expression *exp):Expression(Identifiants::ID_EXPRESSIONPARENTHESEE)
 {
 	expression = exp;
 	_symbole_string = "ExpressionParenthesee";
+}
+
+double ExpressionParenthesee::eval(map<string,double> &mapV)
+{
+	double d = expression->eval(mapV);
+	return d;
 }

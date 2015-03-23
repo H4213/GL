@@ -1,5 +1,5 @@
 #include "Declaration.h"
-#include "Identifiants.h"
+// #include "Identifiants.h"
 
 Declaration::Declaration() : Symbole(Identifiants::ID_DECLARATION)
 {

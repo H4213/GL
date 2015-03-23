@@ -8,6 +8,8 @@ class Var : public Symbole {
 public:
 	Var();
 	virtual ~Var(){}
+	
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

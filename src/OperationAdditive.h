@@ -1,15 +1,21 @@
 #if !defined ( OPERATIONADDITIVE_H )
 #define OPERATIONADDITIVE_H
 #include "Symbole.h"
-#include "Identifiants.h"
 
-
-class OperationAdditive : public Symbole {
+class OperationAdditive : public Symbole 
+{
 
 public:
 	OperationAdditive(int id):Symbole(id){}
 	OperationAdditive();
 	virtual ~OperationAdditive(){}
+
+	operator char() const {return _operation;}
+	
+	virtual void executer(map<string,double> &mapV){}
+
+protected:
+	char _operation;
 
 };
 

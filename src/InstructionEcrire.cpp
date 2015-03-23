@@ -1,8 +1,14 @@
 #include "InstructionEcrire.h"
 
-InstructionEcrire::InstructionEcrire( Expression e):Instruction(Identifiants::ID_INSTRUCTIONECRIRE)
+#include <iostream>
+
+InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::ID_INSTRUCTIONECRIRE)
 {
 	expression = e;	
 	_symbole_string = "InstructionEcrire";
-	//TODO
+}
+
+void InstructionEcrire::executer(map<string,double> &mapV)
+{
+	cout << expression->eval(mapV) << endl;
 }

@@ -8,6 +8,8 @@ class PointVirgule : public Symbole {
 public:
 	PointVirgule();
 	virtual ~PointVirgule(){}
+	
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

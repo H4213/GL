@@ -8,6 +8,8 @@ class EndOfFile : public Symbole {
 public:
 	EndOfFile();
 	virtual ~EndOfFile(){}
+	
+	virtual void executer(map<string,double> &mapV){}
 
 };
 
