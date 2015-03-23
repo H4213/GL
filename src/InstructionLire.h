@@ -11,7 +11,7 @@ public:
 	InstructionLire():Instruction(Identifiants::ID_INSTRUCTIONLIRE){}
 	virtual ~InstructionLire(){}
 	
-	virtual void executer(map<string,double> &mapV){}
+	virtual void executer(map<string,double> &mapV);
 
 private:
 	Variable *variable;

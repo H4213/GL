@@ -16,6 +16,8 @@
 #include "Addition.h"
 #include "Multiplication.h"
 #include "Division.h"
+#include "Instruction.h"
+#include "InstructionLire.h"
 
 #include <string>
 #include <map>
@@ -28,22 +30,35 @@ int main(int argc, char *argv[])
 {
 
 	/*
+	Test de l'execut de l'instruction Lire
+	*/
+	// map<string,double> m;
+	// Variable *variable = new Variable("gab");
+	// m["gab"];
+	// Instruction *i = new InstructionLire(variable);
+	// i->executer(m);
+	// cout << m["gab"] << endl;
+	/*
+	Fin du test
+	*/
+//-------------------------------------------------------------------------------
+	/*
 	Test de l'eval des expressions
 	*/	
-	map<string,double> m;
-	Nombre *n1 = new Nombre(3);
-	Nombre *n2 = new Nombre(5);
-	OperationAdditive *opA = new Addition();
-	Expression *expA1 = new ExpressionAdditive(n1, n2, opA); // expA1 : 3+5 = 8
-	cout<< "expA1: "<<expA1->eval(m)<< endl; //ça ne marche que si ExpressionA. est un pointeur (pourquoi?????)
+	// map<string,double> m;
+	// Nombre *n1 = new Nombre(3);
+	// Nombre *n2 = new Nombre(5);
+	// OperationAdditive *opA = new Addition();
+	// Expression *expA1 = new ExpressionAdditive(n1, n2, opA); // expA1 : 3+5 = 8
+	// cout<< "expA1: "<<expA1->eval(m)<< endl; //ça ne marche que si ExpressionA. est un pointeur (pourquoi?????)
 
-	ExpressionParenthesee *expP = new ExpressionParenthesee(expA1); // expP: (3+5) =8
-	cout<< "expP: "<<expP->eval(m)<< endl;
+	// ExpressionParenthesee *expP = new ExpressionParenthesee(expA1); // expP: (3+5) =8
+	// cout<< "expP: "<<expP->eval(m)<< endl;
 
-	Nombre *n3 = new Nombre(6);
-	OperationMultiplicative *opM = new Multiplication();
-	Expression *expM1 = new ExpressionMultiplicative(n3, expP, opM); //expM1: (3+5)*6 =48
-	cout<< "expM1: "<<expM1->eval(m)<< endl;
+	// Nombre *n3 = new Nombre(6);
+	// OperationMultiplicative *opM = new Multiplication();
+	// Expression *expM1 = new ExpressionMultiplicative(n3, expP, opM); //expM1: (3+5)*6 =48
+	// cout<< "expM1: "<<expM1->eval(m)<< endl;
 	/*
 	Fin du teste
 	*/
@@ -60,7 +75,6 @@ int main(int argc, char *argv[])
 	// string s4 = "? ";
 
 	// vector<string> v = vector<string>();
-	// cout<<"size: "<<v.size()<<endl;
 	// v.push_back(s1);
 	// v.push_back(s2);
 	// v.push_back(s3);
@@ -100,7 +114,7 @@ int main(int argc, char *argv[])
 	/*
 	Fin du test
 	*/
-	
+
 // --------------------------------------------------------------------
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)

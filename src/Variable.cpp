@@ -1,5 +1,4 @@
 #include "Variable.h"
-#include "Nombre.h"
 
 Variable::Variable(string n):Expression(Identifiants::ID_VARIABLE)
 {

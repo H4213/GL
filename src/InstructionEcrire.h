@@ -11,7 +11,7 @@ public:
 	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){}
 	virtual ~InstructionEcrire(){}
 	
-	virtual void executer(map<string,double> &mapV){}
+	virtual void executer(map<string,double> &mapV);
 
 private:
 	Expression *expression;

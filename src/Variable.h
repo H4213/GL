@@ -2,9 +2,6 @@
 #define VARIABLE_H
 #include "Expression.h"
 
-#include <string>
-
-
 class Variable : public Expression {
 
 public:

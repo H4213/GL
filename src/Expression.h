@@ -9,7 +9,7 @@ public:
 	Expression(int id):Symbole(id){}
 	virtual ~Expression(){}
 	
-	virtual double eval(map<string,double> &mapV);
+	virtual double eval(map<string,double> &mapV){}
 
 };
 

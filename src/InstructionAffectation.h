@@ -11,7 +11,7 @@ public:
 	InstructionAffectation():Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION){}
 	virtual ~InstructionAffectation(){}
 	
-	virtual void executer(map<string,double> &mapV){}
+	virtual void executer(map<string,double> &mapV);
 
 private:
 	Variable *variable;

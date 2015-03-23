@@ -19,6 +19,9 @@ public:
 	void executer(){executer(map_variables);}
 	virtual void executer(map<string,double> &mapV);
 
+	
+	map<string,double> getMap(){return map_variables;}
+
 private:
 	PartieDeclarative *partieDeclarative;
 	PartieInstructive *partieInstructive;

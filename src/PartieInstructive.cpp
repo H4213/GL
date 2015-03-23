@@ -21,7 +21,6 @@ PartieInstructive::PartieInstructive(Instruction *i, vector<Instruction*> autres
 
 void PartieInstructive::executer(map<string,double> &mapV)
 {
-	cout<< "tchau" << endl;
 	instruction->executer(mapV);
 	if(sousPartieInstructive != NULL)
 	{
