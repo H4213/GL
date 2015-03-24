@@ -255,7 +255,7 @@ void E10::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E16(), false);
 		break;
 		////*******************************/////
-		//// Pas complet
+		//// TODO Pas complet
 		////*******************************/////
 		default:
 			automate.erreur();
@@ -289,12 +289,8 @@ void E11::transition(Automate & automate, Symbole *s)
 			automate.reduction(newPD);
 		break;
 
-		///non terminaux
-		case ID_VIRGULE:
-			automate.decalage(automate)
-		break;
 		default:
-			automate.erreur(s, new E22(), false);
+			automate.erreur();
 		break;
 	}
 
@@ -307,12 +303,15 @@ void E12::transition(Automate & automate, Symbole *s)
 		
 		case Identifiants::ID_VIRGULE:
 		case Identifiants::ID_POINTVIRGULE:
-			//reduction par la regle 7 PD -> PD D PV
+			//TODO reduction par la regle 7 PD -> PD D PV
 
 			
 		break;
 
 		///non terminaux
+		case Identifiants::ID_VARIABLE:
+			automate.decalage(s, new E22(), false);
+		break;
 		default:
 			automate.erreur();
 		break;
@@ -329,7 +328,6 @@ void E13::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E23(), true);
 		break;
 
-		///non terminaux
 		default:
 			automate.erreur();
 		break;
@@ -349,22 +347,21 @@ void E14::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction par la regle 10
 
-		//depiler 3 etats
-		automate.depilerEtat(3);
-		//depiler point virgule
-		automate.depilerSymbole();
-		//depiler I
-		I = automate.depilerSymbole();
-		//depiler PI
-		PI = automate.depilerSymbole();
+			//depiler 3 etats
+			automate.depilerEtat(3);
+			//depiler point virgule
+			automate.depilerSymbole();
+			//depiler I
+			I = automate.depilerSymbole();
+			//depiler PI
+			PI = automate.depilerSymbole();
 
-		newPI = new PartieInstructive(PI, I);
-		automate.reduction(newPI);	
+			newPI = new PartieInstructive(PI, I);
+			automate.reduction(newPI);	
 
 
 		break;
 
-		///non terminaux
 		default:
 			automate.erreur();
 		break;
@@ -394,7 +391,7 @@ void E15::transition(Automate & automate, Symbole *s)
 
 
 		////*******************************/////
-		//// Pas complet
+		//// TODO Pas complet
 		////*******************************/////
 		default:
 			automate.erreur();
@@ -434,13 +431,17 @@ void E17::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case ID_OPERATIONADDITIVE:
-		case ID_FERMEPARANTHESE:
-		case ID_POINTVIRGULE:
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 18
 			 
 		break;
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+			//decalage vers 34
+			automate.decalage(s, new E34(), true);
 
+		break;
 		default:
 			automate.erreur();
 		break;
@@ -450,127 +451,405 @@ void E17::transition(Automate & automate, Symbole *s)
 
 void E18::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 16
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E19::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+
+		//non-terminaux 
+
+		case Identifiants::ID_EXPRESSION:
+		break;
+
+		///TODO pas complet
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E20::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 20
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E21::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 21
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E22::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 4
+			 
+		break;
+		case Identifiants::ID_VIRGULE:
+			automate.decalage(s, new E24(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E23::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		//TODO à reverifier
+		case Identifiants::ID_NOMBRE:
+			automate.decalage(s, new E26(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E24::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		//TODO à reverifier
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E25(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E25::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VIRGULE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 6
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E26::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VIRGULE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 9
+		break;
+		//non terminaux
 
+		case ID_CONST:
+			automate.decalage(s, new E27, true);
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 }
 
 void E27::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VIRGULE:
+		automate.decalage(s, new E28(), true);
+		break;
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 5
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
+void E28::transition(Automate & automate, Symbole *s)
+{
+	switch(*s)
+	{
+		case Identifiants::ID_ID:
+		automate.decalage(s, new E29(), true);
+		break;
 
+		default:
+			automate.erreur();
+		break;
+	}
+
+}
 void E29::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_EGAL:
+		automate.decalage(s, new E30(), true);
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E30::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		//TODO à verifier
+		case Identifiants::ID_NOMBRE:
+		automate.decalage(s, new E31(), true);
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E31::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VIRGULE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 8
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
+
 
 }
 
 void E32::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+
+		//non-terminaux 
+
+		///TODO  non-terminaux
+
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E33::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 17
+			 
+		break;
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+			//decalage vers 34
+			automate.decalage(s, new E34(), true);
+
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E34::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_VAR:
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(s, new E19(), true);
+		break;
+
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E35::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 15
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E36::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+			//decalage vers 34
+			automate.decalage(s, new E32(), true);
+		break;
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 13
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 void E37::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+			//decalage vers 34
+			automate.decalage(s, new E32(), true);
+		break;
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 12
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
+
 
 }
 
 void E38::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_FERMEPARANTHESE:
+			//decalage vers 34
+			automate.decalage(s, new E39(), true);
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
 
 
 void E39::transition(Automate & automate, Symbole *s)
 {
-	
+	switch(*s)
+	{
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_POINTVIRGULE:
+			//TODO reduction regle 19
+			 
+		break;
+		default:
+			automate.erreur();
+		break;
+	}
 
 }
