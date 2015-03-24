@@ -8,7 +8,12 @@ Programme::Programme(PartieDeclarative partieD, PartieInstructive partieI) : Sym
 	_symbole_string = "Programme";
 }
 
-vector<Variable> Programme::getVariables() {
+vector<Variable*> Programme::getVariables() {
 
     return partieDeclarative.getVariables();
+}
+
+vector<Constante*> Programme::getConstantes()
+{
+    return partieDeclarative.getConstantes();
 }

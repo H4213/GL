@@ -1,4 +1,5 @@
 #include "Automate.h"
+#include "limits.h"
 
 void Automate::decalage(Symbole *s, Etat*e)
 {
@@ -43,15 +44,40 @@ void Automate::analyseStatique() {
 	}
 	else
 	{
-
 		//nitialisation des maps de variables et constantes déclarés
-		map<Variable, int> variables;
-		map<Constante, int> constantes;
-        dynamic_cast<Programme*> (_pileSymboles.front())->getVariables();
-        //vector<Variable> temp = dynamic_cast<Programme> (*_pileSymboles.front())->getVariables();
-        //this->_pileSymboles.front().partieDeclarative.getConstantes();
-        //(Programme) *_pileSymboles.front();
+		map<basic_string<char>, int> variables;
+		vector<Constante*> constantes;
 
+        //Recuperation des variables et verification de l'unicité
+        vector<Variable*> allVariables =  dynamic_cast<Programme*> (_pileSymboles.front())->getVariables();
+        for (int i = 0 ; i<allVariables.size() ; i++ )
+        {
+            pair<std::map<string,int>::iterator,bool> ret;
+            ret = variables.insert(pair<basic_string<char>,int>(allVariables[i]->getNom(),INT_MAX));
+            if (ret.second == false )
+            {
+                cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
+                break;
+            }
+        }
+
+        // Recuperation des constantes
+        vector<Constante*> allConstantes = dynamic_cast<Programme*> (_pileSymboles.front())->getConstantes();
+
+        // Verification de l'unicité des constantes
+        vector<string> toTest;
+
+        for (int i = 0 ; i<allConstantes.size() ; i++)
+        {
+            if ( std::find(toTest.begin(), toTest.end(), (basic_string<char>) allConstantes[i]->getNom()) != toTest.end() )
+            {
+                constantes.insert(constantes.end(), allConstantes.begin() + i , allConstantes.begin() + 2 );
+            }
+            else
+            {
+                cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
+            }
+        }
 	}
 
 }

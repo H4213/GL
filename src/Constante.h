@@ -9,8 +9,10 @@ class Constante : public Expression {
 
 public:
 	Constante(string n, double v);
-	Constante(){}
-	virtual ~Constante(){}
+	Constante(){};
+	virtual ~Constante(){};
+    string getNom();
+    double getValeur();
 
 private:
 	string nom;
@@ -19,4 +21,4 @@ private:
 };
 
 
-#endif 
+#endif

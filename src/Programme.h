@@ -11,7 +11,8 @@ class Programme : public Symbole {
 public:
 	Programme(PartieDeclarative partieD, PartieInstructive partieI);
 	virtual ~Programme(){}
-	vector<Variable> getVariables();
+	vector<Variable*> getVariables();
+	vector<Constante*> getConstantes();
 
 private:
 	PartieDeclarative partieDeclarative;

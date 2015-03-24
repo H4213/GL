@@ -9,8 +9,9 @@ class Variable : public Expression {
 
 public:
 	Variable(string n);
-	Variable(){}
-	virtual ~Variable(){}
+	Variable(){};
+	virtual ~Variable(){};
+    string getNom();
 
 private:
 	string nom;
@@ -18,4 +19,4 @@ private:
 };
 
 
-#endif 
+#endif

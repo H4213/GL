@@ -5,6 +5,9 @@
 #include "Symbole.h"
 #include "Etat.h"
 #include <map>
+#include <utility>
+#include <algorithm>
+
 
 #include "Addition.h"
 #include "Affectation.h"
