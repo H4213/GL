@@ -7,3 +7,8 @@ Programme::Programme(PartieDeclarative partieD, PartieInstructive partieI) : Sym
 	partieInstructive = partieI;
 	_symbole_string = "Programme";
 }
+
+vector<Variable> Programme::getVariables() {
+
+    return partieDeclarative.getVariables();
+}

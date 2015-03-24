@@ -1,3 +1,4 @@
+
 #include "Declaration.h"
 #include "Identifiants.h"
 
@@ -8,5 +9,5 @@ Declaration::Declaration() : Symbole(Identifiants::ID_DECLARATION)
 
 Declaration::Declaration(int id) : Symbole(id)
 {
-	
+
 }

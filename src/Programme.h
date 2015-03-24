@@ -3,6 +3,7 @@
 #include "Symbole.h"
 #include "PartieDeclarative.h"
 #include "PartieInstructive.h"
+#include "Variable.h"
 
 
 class Programme : public Symbole {
@@ -10,6 +11,7 @@ class Programme : public Symbole {
 public:
 	Programme(PartieDeclarative partieD, PartieInstructive partieI);
 	virtual ~Programme(){}
+	vector<Variable> getVariables();
 
 private:
 	PartieDeclarative partieDeclarative;
@@ -17,4 +19,4 @@ private:
 
 };
 
-#endif 
+#endif

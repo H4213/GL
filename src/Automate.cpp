@@ -28,7 +28,7 @@ void Automate::accepter()
 }
 void Automate::erreur()
 {
-	
+
 }
 void Automate::lecture()
 {
@@ -36,18 +36,22 @@ void Automate::lecture()
 }
 
 void Automate::analyseStatique() {
-	
-	
-	
-	if (this->_pileSymboles.size() != 1 && this->_pileSymboles.front()->_symbole_string == "Programme") 
+
+	if (this->_pileSymboles.size() != 1  |  (int) *_pileSymboles.front() == Identifiants::ID_PROGRAMME)
 	{
 		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
 	}
-	else 
+	else
 	{
-		//Initialisation des maps de variables et constantes déclarés
+
+		//nitialisation des maps de variables et constantes déclarés
 		map<Variable, int> variables;
 		map<Constante, int> constantes;
-	}  
-	
+        dynamic_cast<Programme*> (_pileSymboles.front())->getVariables();
+        //vector<Variable> temp = dynamic_cast<Programme> (*_pileSymboles.front())->getVariables();
+        //this->_pileSymboles.front().partieDeclarative.getConstantes();
+        //(Programme) *_pileSymboles.front();
+
+	}
+
 }

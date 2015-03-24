@@ -21,14 +21,18 @@
 #include "Soustraction.h"
 #include "Var.h"
 #include "Virgule.h"
-Addition.h                Expression.h                  Multiplication.h
-Affectation.h             ExpressionMultiplicative.h    Nombre.h
-Automate.h                             OperationMultiplicative.h
-Constante.h                                                              PartieDeclarative.h
-DeclarationConstante.h    InstructionAffectation.h                     PartieInstructive.h
-Declaration.h   InstructionEcrire.h
-DeclarationVariable.h     Instruction.h                            Programme.h                InstructionLire.h                     Symbole.h                    EndOfFile.h                                        Variable.h
-ExpressionAdditive.h      
+#include "Variable.h"
+#include "Constante.h"
+#include "Identifiants.h"
+#include "Programme.h"
+//Addition.h                Expression.h                  Multiplication.h
+//Affectation.h             ExpressionMultiplicative.h    Nombre.h
+//Automate.h                             OperationMultiplicative.h
+//Constante.h                                                              PartieDeclarative.h
+//DeclarationConstante.h    InstructionAffectation.h                     PartieInstructive.h
+//Declaration.h   InstructionEcrire.h
+//DeclarationVariable.h     Instruction.h                            Programme.h                InstructionLire.h                     Symbole.h                    EndOfFile.h                                        Variable.h
+//ExpressionAdditive.h
 
 using namespace std;
 
@@ -44,7 +48,7 @@ class Automate
 		void accepter();
 		void erreur();
 		void lecture();
-		
+
 		void analyseStatique();
 	private:
 		deque<Symbole*> _pileSymboles;
