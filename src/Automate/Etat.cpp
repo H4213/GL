@@ -100,6 +100,8 @@ void E2::transition(Automate & automate, Symbole *s)
 void E3::transition(Automate & automate, Symbole *s)
 {
 	Programme *programme;
+	PartieInstructive *pi;
+	PartieDeclarative *pd;
 	switch(*s)
 	{
 		case Identifiants::ID_LIRE:
@@ -116,10 +118,8 @@ void E3::transition(Automate & automate, Symbole *s)
 
 		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 1 : Pr -> PD PI
-			PartieInstructive *pi = 
-					(PartieInstructive*)automate.depilerSymbole();
-			PartieDeclarative *pd = 
-					(PartieDeclarative*)automate.depilerSymbole();
+			pi = (PartieInstructive*)automate.depilerSymbole();
+			pd = (PartieDeclarative*)automate.depilerSymbole();
 			programme = new Programme(pd, pi);
 			automate.depilerEtat(2);
 			automate.reduction(programme);
@@ -278,9 +278,9 @@ void E11::transition(Automate & automate, Symbole *s)
 			//depiler pv
 			delete automate.depilerSymbole();
 			//depiler D
-			d = (Declaration)automate.depilerSymbole();
+			d = (Declaration*)automate.depilerSymbole();
 			//depiler pd
-			pd = (PartieDeclarative)automate.depilerSymbole();
+			pd = (PartieDeclarative*)automate.depilerSymbole();
 			
 			newPD = new PartieDeclarative(pd, d);
 

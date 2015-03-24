@@ -52,7 +52,7 @@ void Automate::decalage(Symbole *s, Etat*e, bool avancerSymbole)
 void Automate::reduction(Symbole *s)
 {
 	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
-	_pileEtats.front()->transition(this, s);
+	_pileEtats.front()->transition(*this, s);
 	
 }
 
