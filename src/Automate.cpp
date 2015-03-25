@@ -1,8 +1,33 @@
 #include "Automate.h"
 #include <iostream>
 
+Automate::Automate(string filename)
+{
+	lecteur = new Lecteur(filename);
+	
+}
+
+/* /!\Attention /!\
+ * Le lecteur n'est pas reinitialisé à la deuxième analyse
+ * */
 Programme*  Automate::analyser()
 {
+	//libération des piles avant leurs utilisations
+	deque<Symbole*>::iterator is = _pileSymboles.begin();
+	while(is != _pileSymboles.end())
+	{
+		delete *is++;
+	}
+	_pileSymboles.clear();
+	
+	deque<Etat*>::iterator ie = _pileEtats.begin();
+	while(ie != _pileEtats.end())
+	{
+		delete *ie++;
+	}
+	_pileEtats.clear();
+	
+	
 	Symbole *s = NULL;
 	empilerEtat(new E0());
 	
@@ -68,13 +93,12 @@ void Automate::erreur()
 }
 void Automate::avancerLecteur()
 {
-	 //lecteur.moveReadHeader();
+	 lecteur->moveReadHeader();
 }
 
 Symbole* Automate::courant()
 {
-	//return lecteur.getNext();
-	return NULL;
+	return lecteur->getNext();
 }
 
 void Automate::analyseStatique() {

@@ -6,13 +6,14 @@
 #include "Programme.h"
 #include "Etat.h"
 
+#include "Lecteur.h"
 using namespace std;
 
 class Etat;
 class Automate
 {
 	public:
-		Automate(){}
+		Automate(string filename);
 		virtual ~Automate(){}
 		
 		
@@ -39,7 +40,7 @@ class Automate
 	private:
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
-		//Lecteur lecteur;
+		Lecteur *lecteur;
 };
 
 #endif
