@@ -144,7 +144,7 @@ void Automate::analyseStatique() {
 				}
 				else
 				{
-					//getIds à implémenter
+					//TODO:getIds à implémenter
 					vector<string> idTemp = affectation->getExpression()->getIds();
 					for( int j =0;j<idTemp.size();j++)
 					{

@@ -11,7 +11,7 @@ public:
 	virtual ~ExpressionParenthesee(){}
 
 	virtual double eval(map<string,double> &mapV);
-
+	vector<string> getIds();
 private:
 	Expression *expression;
 

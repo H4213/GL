@@ -16,7 +16,7 @@ public:
 	string getNom();
 	double getValeur();
 	virtual double eval(map<string,double> &mapV);
-
+	vector<string> getIds(); 
 
 private:
 	string nom;

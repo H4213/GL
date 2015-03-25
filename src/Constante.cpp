@@ -24,3 +24,9 @@ double Constante::getValeur()
 {
 	return valeur;
 }
+vector<string> Constante::getIds()
+{
+	vector<string> temp;
+	temp.push_back(nom);
+	return temp;
+}

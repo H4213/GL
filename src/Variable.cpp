@@ -27,3 +27,10 @@ string Variable::getNom()
 {
 	return nom;
 }
+
+vector<string> Variable::getIds()
+{
+	vector<string> temp;
+	temp.push_back(nom);
+	return temp;
+}

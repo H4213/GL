@@ -11,7 +11,7 @@ public:
 	
 	double getValeur();
 	virtual double eval(map<string,double> &mapV);
-
+	vector<string> getIds(){}
 private:
 	double valeur;
 
