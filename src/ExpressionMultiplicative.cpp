@@ -1,9 +1,9 @@
 #include "ExpressionMultiplicative.h"
 
-ExpressionMultiplicative::ExpressionMultiplicative(Expression *exp1, Expression *exp2, OperationMultiplicative *op):Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE)
+ExpressionMultiplicative::ExpressionMultiplicative(Terme *t, Facteur *f, OperationMultiplicative *opM):Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE)
 {
-	expression1 = exp1;
-	expression2 = exp2;
+	terme = t;
+	facteur = f;
 	operationMultiplicative = op;
 	_symbole_string = "ExpressionMultiplicative";
 }
@@ -11,21 +11,21 @@ ExpressionMultiplicative::ExpressionMultiplicative(Expression *exp1, Expression 
 double ExpressionMultiplicative::eval(map<string,double> &mapV)
 {
 	double d;
-	double valeurExp1 = expression1->eval(mapV);
-	double valeurExp2 = expression2->eval(mapV);
+	double valeurTerme = terme->eval(mapV);
+	double valeurFacteur = facteur->eval(mapV);
 
 	switch(char(*operationMultiplicative))//tester cast to char
 	{
 		case '*':
 			//tester
-			d = valeurExp1 * valeurExp2;
+			d = valeurTerme * valeurFacteur;
 		break;
 		
 		case '/':
 			//tester
 			if(valeurExp2 != 0)
 			{
-				d = valeurExp1 / valeurExp2;
+				d = valeurTerme / valeurFacteur;
 			}
 			else
 			{
