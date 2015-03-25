@@ -2,7 +2,8 @@
 #define TERME_H
 #include "Expression.h"
 
-class Terme : public Expression {
+class Terme : public Expression 
+{
 
 public:
 	Terme();

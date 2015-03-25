@@ -2,11 +2,11 @@
 	
 #include <iostream>
 
-ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditive *op):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
+ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditive *opA):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
 {
 	expression = e;
 	terme = t;
-	operationAdditive = op;
+	operationAdditive = opA;
 	_symbole_string = "ExpressionAdditive";
 }
 

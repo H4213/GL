@@ -2,7 +2,8 @@
 #define TERME_H
 #include "Terme.h"
 
-class Facteur : public Terme {
+class Facteur : public Terme 
+{
 
 public:
 	Facteur();

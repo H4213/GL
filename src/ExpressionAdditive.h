@@ -5,10 +5,11 @@
 #include "OperationAdditive.h"
 
 
-class ExpressionAdditive : public Expression {
+class ExpressionAdditive : public Expression 
+{
 
 public:
-	ExpressionAdditive(Expression *exp, Terme *t, OperationAdditive *op);
+	ExpressionAdditive(Expression *exp, Terme *t, OperationAdditive *opA);
 	ExpressionAdditive():Expression(Identifiants::ID_EXPRESSIONADDITIVE){est_vide = true;}
 	virtual ~ExpressionAdditive(){}
 
