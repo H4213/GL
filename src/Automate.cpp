@@ -107,22 +107,27 @@ void Automate::analyseStatique() {
         // Recuperation des constantes déclarées
         vector<Constante*> allConstantes = Pr->getConstantes();
 
-        // Verification de l'unicité des constantes
-        vector<string> toTest;
+        // Verification de l'unicité des constantes et de l'unicité constante/variable
 
-        /*for (int i = 0 ; i<allConstantes.size() ; i++)
+        for (int i = 0 ; i<allConstantes.size() ; i++)
         {
-            if ( std::find(toTest.begin(), toTest.end(), (basic_string<char>) allConstantes[i]->getNom()) != toTest.end() )
+            if (find(constantes.begin(), constantes.end(),allConstantes[i]->getNom()) == constantes.end() )
             {
-                constantes.insert(constantes.end(), allConstantes.begin() + i , allConstantes.begin() + 2 );
+				if(variables.find(allConstantes[i]->getNom()) !=variables.end())
+				{
+					cout<<"L'identifiant "+allConstantes[i]->getNom()+" est utilisé pour une variable ET une constante"<<endl;
+				}
+				else
+				{
+                constantes.push_back(allConstantes[i]->getNom());
+				}
             }
             else
             {
                 cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
             }
-        }*/
+        }
         
-        //TODO: Verifier unicité entre constante et variables
         
         //Verification des instructions.
         // Initialisation de vector d'instructions
@@ -137,14 +142,18 @@ void Automate::analyseStatique() {
 			if (affectation != NULL)
 			{
 				string temp = affectation->getVariable()->getNom();
-				if(variables.find(temp)==variables.end())
+				if (find(constantes.begin(), constantes.end(),temp)!=constantes.end())
+				{
+					//Affectation de constante
+					cout <<"On n'affecte pas une constante !!!!"<<endl;
+				}
+				else if(variables.find(temp)==variables.end())
 				{
 					//La variable affecté n'est pas déclaré
 					cout << "La variable "+temp+" n'a pas été déclaré"<<endl;
 				}
 				else
 				{
-					//TODO:getIds à implémenter
 					vector<string> idTemp = affectation->getExpression()->getIds();
 					for( int j =0;j<idTemp.size();j++)
 					{

@@ -11,7 +11,7 @@ public:
 	virtual ~Expression(){}
 	
 	virtual double eval(map<string,double> &mapV){}
-	virtual vector<string> getIds();
+	virtual vector<string> getIds(){}
 };
 
 
