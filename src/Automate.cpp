@@ -10,7 +10,7 @@ Programme* Automate::analyser()
 	{
 		sommetEtat()->transition(*this, s);
 	}
-	return _pileSymboles->front();
+	return (Programme*)_pileSymboles.front();
 	
 }
 
@@ -63,7 +63,7 @@ void Automate::accepter()
 }
 void Automate::erreur()
 {
-	std::cout << "Erreur : le symbole " << _pileSymboles->front() << 
+	std::cout << "Erreur : le symbole " << _pileSymboles.front() << 
 					" inattendu à l'etat " << sommetEtat()->nom();
 }
 void Automate::avancerLecteur()
