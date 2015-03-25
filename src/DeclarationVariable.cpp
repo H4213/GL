@@ -37,7 +37,7 @@ void DeclarationVariable::compterVariables()
 	cout << cpt << endl;
 	if(!declarationAutreVariable->estVide())
 	{
-		declarationAutreVariable->comptageVariables();
+		declarationAutreVariable->compterVariables();
 	}
 	
 }

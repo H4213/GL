@@ -3,17 +3,18 @@
 #include "Facteur.h"
 
 
-class FacteurParenthesee : public Facteur {
+class ExpressionParenthesee : public Facteur
+{
 
 public:
-	FacteurParenthesee(Facteur *exp);
-	FacteurParenthesee():Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE){est_vide = true;}
-	virtual ~FacteurParenthesee(){}
+	ExpressionParenthesee(Expression *exp);
+	ExpressionParenthesee():Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE){est_vide = true;}
+	virtual ~ExpressionParenthesee(){}
 
 	virtual double eval(map<string,double> &mapV);
 
 private:
-	Facteur *expression;
+	Expression *expression;
 
 };
 

@@ -1,7 +1,7 @@
-#include "Terme.h"
+#include "Facteur.h"
 
-Terme::Terme():Expression(Identifiants::ID_TERME)
+Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 {
-	_symbole_string = "Terme";
+	_symbole_string = "Facteur";
 	est_vide = true;
 }

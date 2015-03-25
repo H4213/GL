@@ -21,7 +21,9 @@ double Variable::eval(map<string,double> &mapV)
 		// e = Erreur("Variable inexistante");
 	}
 
-	return d;
+
+	//return d;
+	return 0;
 }
 
 string Variable::getNom()
