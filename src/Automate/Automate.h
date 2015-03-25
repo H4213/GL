@@ -38,6 +38,7 @@ class Automate
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
 		//Lecteur lecteur;
+		bool 
 };
 
 #endif
