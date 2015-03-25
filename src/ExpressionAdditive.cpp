@@ -2,10 +2,10 @@
 	
 #include <iostream>
 
-ExpressionAdditive::ExpressionAdditive(Expression *exp1, Expression *exp2, OperationAdditive *op):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
+ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditive *op):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
 {
-	expression1 = exp1;
-	expression2 = exp2;
+	expression = e;
+	terme = t;
 	operationAdditive = op;
 	_symbole_string = "ExpressionAdditive";
 }
@@ -13,17 +13,17 @@ ExpressionAdditive::ExpressionAdditive(Expression *exp1, Expression *exp2, Opera
 double ExpressionAdditive::eval(map<string,double> &mapV)
 {
 	double d;
-	double valeurExp1 = expression1->eval(mapV);
-	double valeurExp2 = expression2->eval(mapV);
+	double valeurExp = expression->eval(mapV);
+	double valeurTerme = terme->eval(mapV);
 
 	switch(char(*operationAdditive))
 	{
 		cout<<"dentro do switch"<<endl;
 		case '+':
-			d = valeurExp1 + valeurExp2;
+			d = valeurExp + valeurTerme;
 		break;
 		case '-':
-			d = valeurExp1 - valeurExp2;
+			d = valeurExp - valeurTerme;
 		break;
 	}
 

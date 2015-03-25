@@ -7,7 +7,7 @@ class ExpressionMultiplicative : public Expression {
 
 public:
 	ExpressionMultiplicative(Expression *exp1, Expression *exp2, OperationMultiplicative *op);
-	ExpressionMultiplicative():Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){}
+	ExpressionMultiplicative():Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){est_vide = true;}
 	virtual ~ExpressionMultiplicative(){}
 
 	virtual double eval(map<string,double> &mapV);

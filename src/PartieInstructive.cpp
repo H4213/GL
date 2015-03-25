@@ -11,7 +11,7 @@ PartieInstructive::PartieInstructive(Instruction *i, PartieInstructive *pI) : Sy
 
 void PartieInstructive::executer(map<string,double> &mapV)
 {
-	if(sousPartieInstructive != NULL)
+	if(!sousPartieInstructive->estVide())
 	{
 		sousPartieInstructive->executer(mapV);
 	}
@@ -21,7 +21,7 @@ void PartieInstructive::executer(map<string,double> &mapV)
 void PartieInstructive::print()
 {
 	cout << _symbole_string << endl;
-	if(sousPartieInstructive != NULL)
+	if(!sousPartieInstructive->estVide())
 	{
 		sousPartieInstructive->print();
 	}

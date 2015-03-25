@@ -41,7 +41,7 @@ vector<Constante*> PartieDeclarative::getConstantes() {
 
 void PartieDeclarative::executer(map<string,double> &mapV)
 {
-	if(sousPartieDeclarative!=NULL)
+	if(!sousPartieDeclarative->estVide())
 	{
 		sousPartieDeclarative->executer(mapV);
 	}

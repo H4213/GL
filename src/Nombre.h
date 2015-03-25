@@ -1,12 +1,12 @@
 #if !defined ( NOMBRE_H )
 #define NOMBRE_H
-#include "Expression.h"
+#include "Facteur.h"
 
-class Nombre : public Expression {
+class Nombre : public Facteur {
 
 public:
 	Nombre(double v);
-	Nombre():Expression(Identifiants::ID_NOMBRE){}
+	Nombre():Facteur(Identifiants::ID_NOMBRE){est_vide = true;}
 	virtual ~Nombre(){}
 	
 	double getValeur();

@@ -14,9 +14,7 @@ DeclarationVariable::DeclarationVariable(Variable *v, DeclarationVariable *dV) :
 
 void DeclarationVariable::executer(map<string,double> &mapV)
 {
-	//TODO: à l'initialisation la valeur est igual a 0 et pas a NULL
-	// je pense qu'il y a pas de soucis parce que l'analyse statique ne laisserai pas afficher une variable vide...
-	if (declarationAutreVariable != NULL)
+	if (!declarationAutreVariable->estVide())
 	{
 		declarationAutreVariable->executer(mapV);		
 	}
@@ -32,7 +30,7 @@ void DeclarationVariable::print()
 	}
 }
 
-void DeclarationVariable::comptageVariables()
+void DeclarationVariable::compterVariables()
 {
 	static int cpt = 0;
 	cpt++;

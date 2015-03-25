@@ -1,6 +1,6 @@
 #include "Variable.h"
 
-Variable::Variable(string n):Expression(Identifiants::ID_VARIABLE)
+Variable::Variable(string n):Facteur(Identifiants::ID_VARIABLE)
 {
 	nom = n;
 	_symbole_string = "Variable "+n;
@@ -9,10 +9,11 @@ Variable::Variable(string n):Expression(Identifiants::ID_VARIABLE)
 
 double Variable::eval(map<string,double> &mapV)
 {
-	double d;
+	double valeur;
+	//Verification si la variable est declaree
 	if(mapV.find(nom) != mapV.end())
 	{
-		d = mapV[nom];
+		valeur = mapV[nom];
 	}
 	else
 	{
