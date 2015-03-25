@@ -142,9 +142,6 @@ int main(int argc, char *argv[])
 	 	options = argv[2];				// Récupération de l'option
 	 	option_o = true;
 	 }
-
-
-
     if (fichier != NULL)
     {
 			fseek(fichier, 0, SEEK_END);
@@ -152,7 +149,6 @@ int main(int argc, char *argv[])
 			rewind(fichier);
 			fread(&contents[0], 1, contents.size(), fichier);
 			fclose(fichier);
-
     }
     else
 	{

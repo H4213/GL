@@ -14,28 +14,22 @@ class Automate
 	public:
 		Automate(){}
 		virtual ~Automate(){}
-		
-		
+
 		Programme* analyser();
-		
+
 		void decalage(Symbole *s, Etat*, bool);
 		void reduction(Symbole*);
 		void accepter();
 		void erreur();
-
 		void empilerEtat(Etat*e);
 		void depilerEtat(int n);
-
 		void empilerSymbole(Symbole*s);
 		Symbole* depilerSymbole();
-
 		Etat *sommetEtat();
-
 		void avancerLecteur();
 		Symbole* courant();
-		
 		void analyseStatique();
-		
+
 	private:
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
