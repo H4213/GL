@@ -2,11 +2,12 @@
 
 #include <iostream>
 
-DeclarationConstante::DeclarationConstante(Constante *c, DeclarationConstante *dC) : Declaration(Identifiants::ID_DECLARATIONCONSTANTE)
+DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConstante *dC) : Declaration(Identifiants::ID_DECLARATIONCONSTANTE)
 {
-	constante = c;
+	id = idO;
 	declarationAutreConstante = dC;
-	_symbole_string = "Declaration de la constante " + constante->getNom();
+	val = n;
+	_symbole_string = "Declaration de la constante " /*+ constante->getNom()*/;
 }
 
 void DeclarationConstante::executer(map<string,double> &mapV)
@@ -15,7 +16,7 @@ void DeclarationConstante::executer(map<string,double> &mapV)
 	{
 		declarationAutreConstante->executer(mapV);
 	}
-	mapV[constante->getNom()] = constante->getValeur();
+	//mapV[constante->getNom()] = constante->getValeur();
 }
 
 void DeclarationConstante::print()

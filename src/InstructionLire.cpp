@@ -2,15 +2,15 @@
 
 #include <iostream>
 
-InstructionLire::InstructionLire(Variable *v):Instruction(Identifiants::ID_INSTRUCTIONLIRE)
+InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTIONLIRE)
 {
-	variable = v;	
+	id = idO;	
 	_symbole_string = "InstructionEcrire";
 }
 
 void InstructionLire::executer(map<string,double> &mapV)
 {
-	double valeur;
+	/*double valeur;
 	if(not(cin >> valeur))
 	{
 		cout<< "error!!!"<<endl;
@@ -28,6 +28,6 @@ void InstructionLire::executer(map<string,double> &mapV)
 			cout<< "error!!!"<<endl;
 			//Erreur
 		}
-	}
+	}*/
 
 }

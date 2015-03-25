@@ -1,15 +1,15 @@
 #include "InstructionAffectation.h"
 
-InstructionAffectation::InstructionAffectation(Variable *v, Expression *e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
+InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
 {
-	variable = v;
+	id = idO;
 	expression = e;
 	_symbole_string = "InstructionAffectation";
 }
 
 void InstructionAffectation::executer(map<string,double> &mapV)
 {
-	string nom_var = variable->getNom();
+	/*string nom_var = variable->getNom();
 	double valeur = expression->eval(mapV);
 	if (mapV.find(nom_var) != mapV.end())
 	{
@@ -18,5 +18,5 @@ void InstructionAffectation::executer(map<string,double> &mapV)
 	else
 	{
 		//Erreur
-	}
+	}*/
 }

@@ -4,11 +4,11 @@
 using namespace std;
 
 
-DeclarationVariable::DeclarationVariable(Variable *v, DeclarationVariable *dV) : Declaration(Identifiants::ID_DECLARATIONVARIABLE)
+DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Declaration(Identifiants::ID_DECLARATIONVARIABLE)
 {
-	variable = v;
+	id = idO;
 	declarationAutreVariable = dV;
-	_symbole_string = "Declaration de la variable " + variable->getNom();
+	_symbole_string = "Declaration de la variable " /*+ id->getNom()*/;
 	
 }
 
@@ -18,7 +18,7 @@ void DeclarationVariable::executer(map<string,double> &mapV)
 	{
 		declarationAutreVariable->executer(mapV);		
 	}
-	mapV[variable->getNom()]; 	
+	//mapV[variable->getNom()]; 	
 }
 
 void DeclarationVariable::print()

@@ -18,7 +18,7 @@ public:
 
 	void afficherVariables();
 	map<string,double> getVariables(){return map_variables;}
-	vector<Variable*> getVariables();
+	//vector<Variable*> getVariables();
 	vector<Constante*> getConstantes();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}

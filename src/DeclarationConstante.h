@@ -1,8 +1,9 @@
-#if !defined ( DECLARATIONCONSTANTE_H )
-#define DECLARATIONCONSTANTE_H
+#if !defined ( DECLARATIONid_H )
+#define DECLARATIONid_H
 #include "Declaration.h"
-#include "Constante.h"
+#include "Id.h"
 
+#include "Nombre.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -10,17 +11,18 @@ using namespace std;
 class DeclarationConstante : public Declaration {
 
 public:
-	DeclarationConstante(Constante *c, DeclarationConstante *dC = new DeclarationConstante());
+	DeclarationConstante(Id *c, Nombre*n, DeclarationConstante *dC = new DeclarationConstante());
 	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){est_vide = true;}
 	virtual ~DeclarationConstante(){}
 	
-	Constante* getConstante(){return constante;}
+	Id* getId(){return id;}
 	DeclarationConstante* getDeclarationConstante(){return declarationAutreConstante;}
 	virtual void executer(map<string,double> &mapV);
 	void print();
 
 private:
-	Constante* constante;
+	Id* id;
+	Nombre*val;
 	DeclarationConstante* declarationAutreConstante;
 };
 
