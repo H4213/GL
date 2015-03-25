@@ -355,8 +355,7 @@ void E13::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		
-		case Identifiants::ID_VIRGULE:
-		case Identifiants::ID_POINTVIRGULE:
+		case Identifiants::ID_EGAL:
 			automate.decalage(s, new E23(), true);
 		break;
 

@@ -87,7 +87,7 @@ void Automate::reduction(Symbole *s)
 
 void Automate::accepter()
 {
-
+	cout << "BRAVOOO! J'accepte!";
 }
 void Automate::erreur()
 {
