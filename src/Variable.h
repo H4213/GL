@@ -1,12 +1,12 @@
 #if !defined ( VARIABLE_H )
 #define VARIABLE_H
-#include "Expression.h"
+#include "Facteur.h"
 
-class Variable : public Expression {
+class Variable : public Facteur {
 
 public:
 	Variable(string n);
-	Variable():Expression(Identifiants::ID_VARIABLE){}
+	Variable():Facteur(Identifiants::ID_VARIABLE){est_vide = true;}
 	virtual ~Variable(){}
 	string getNom();
 	virtual double eval(map<string,double> &mapV);

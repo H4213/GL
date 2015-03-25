@@ -1,6 +1,6 @@
 #include "Nombre.h"
 
-Nombre::Nombre(double v):Expression(Identifiants::ID_NOMBRE)
+Nombre::Nombre(double v):Facteur(Identifiants::ID_NOMBRE)
 {
 	valeur = v;
 	_symbole_string = "Nombre";

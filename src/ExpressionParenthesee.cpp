@@ -1,6 +1,6 @@
 #include "ExpressionParenthesee.h"
 
-ExpressionParenthesee::ExpressionParenthesee(Expression *exp):Expression(Identifiants::ID_EXPRESSIONPARENTHESEE)
+ExpressionParenthesee::ExpressionParenthesee(Expression *exp):Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE)
 {
 	expression = exp;
 	_symbole_string = "ExpressionParenthesee";

@@ -23,7 +23,7 @@ private:
 	Variable *variable;
 	DeclarationVariable *declarationAutreVariable;
 
-	void comptageVariables();
+	void compterVariables();
 
 };
 

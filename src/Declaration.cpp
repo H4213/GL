@@ -14,6 +14,7 @@ Declaration::Declaration(int id) : Symbole(id)
 vector<Variable*> Declaration::getVariables() {
 
 }
+
 vector<Constante*> Declaration::getConstantes() {
 
 }

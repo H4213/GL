@@ -1,7 +1,7 @@
 #include "Constante.h"
 #include "Nombre.h"
 
-Constante::Constante(string n, double v):Expression(Identifiants::ID_CONSTANTE)
+Constante::Constante(string n, double v):Facteur(Identifiants::ID_CONSTANTE)
 {
 	nom = n;
 	valeur = v;

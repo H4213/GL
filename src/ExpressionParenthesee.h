@@ -1,19 +1,19 @@
 #if !defined ( EXPRESSIONPARENTHESEE_H )
 #define EXPRESSIONPARENTHESEE_H
-#include "Expression.h"
+#include "Facteur.h"
 
 
-class ExpressionParenthesee : public Expression {
+class FacteurParenthesee : public Facteur {
 
 public:
-	ExpressionParenthesee(Expression *exp);
-	ExpressionParenthesee():Expression(Identifiants::ID_EXPRESSIONPARENTHESEE){}
-	virtual ~ExpressionParenthesee(){}
+	FacteurParenthesee(Facteur *exp);
+	FacteurParenthesee():Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE){est_vide = true;}
+	virtual ~FacteurParenthesee(){}
 
 	virtual double eval(map<string,double> &mapV);
 
 private:
-	Expression *expression;
+	Facteur *expression;
 
 };
 

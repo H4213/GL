@@ -1,16 +1,14 @@
 #if !defined ( CONSTANTE_H )
 #define CONSTANTE_H
-#include "Expression.h"
+#include "Facteur.h"
 
 #include <string>
 
-
-class Constante : public Expression {
+class Constante : public Facteur {
 
 public:
 	Constante(string n, double v);
-
-	Constante():Expression(Identifiants::ID_CONSTANTE){}
+	Constante():Facteur(Identifiants::ID_CONSTANTE){est_vide = true;}
 	virtual ~Constante(){}
 
 	string getNom();

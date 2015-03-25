@@ -20,11 +20,11 @@ vector<Constante*> Programme::getConstantes()
 
 void Programme::executer(map<string,double> &mapV)
 {
-	if(partieDeclarative!=NULL)
+	if(!partieDeclarative->estVide())
 	{
 		partieDeclarative->executer(mapV);
 	}
-	if(partieInstructive!=NULL)
+	if(!partieInstructive->estVide())
 	{
 		partieInstructive->executer(mapV);
 	}

@@ -4,7 +4,6 @@
 #include "Declaration.h"
 #include "Variable.h"
 #include "Constante.h"
-#include <vector>
 
 #include <vector>
 using namespace std;
@@ -17,6 +16,7 @@ public:
 	PartieDeclarative(Declaration *d, PartieDeclarative *pD = new PartieDeclarative());
 	PartieDeclarative():Symbole(Identifiants::ID_PARTIEDECLARATIVE){est_vide = true;}
 	virtual ~PartieDeclarative(){}
+	
 	Declaration* getDeclaration(){return declaration;}
 	PartieDeclarative* getPartieDeclarative(){return sousPartieDeclarative;}
 	vector<Variable*> getVariables();
