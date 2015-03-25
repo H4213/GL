@@ -33,6 +33,7 @@ Programme*  Automate::analyser()
 	
 	while((s = courant()) != NULL)
 	{
+		cout <<"Symbole: " << *s << "Etat: " << sommetEtat()->nom() << endl;
 		sommetEtat()->transition(*this, s);
 	}
 	return (Programme*)_pileSymboles.front();

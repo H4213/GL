@@ -656,6 +656,14 @@ void E29::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_EGAL:
 		automate.decalage(s, new E30(), true);
 		break;
+		
+		
+		/*case Identifiants::ID_NOMBRE:
+		automate.decalage(new Egal(), new E30(), false);
+		automate.decalage(s, new E31(), true);
+		cout << Erreur récupérée (égal manquant) <<endl;
+		break;*/
+		
 
 		default:
 			automate.erreur();
