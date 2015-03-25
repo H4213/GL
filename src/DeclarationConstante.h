@@ -10,18 +10,18 @@ using namespace std;
 class DeclarationConstante : public Declaration {
 
 public:
-	DeclarationConstante(string nomConstante, double valeur, vector<string> autresConstantes = vector<string>(), vector<double> autresValeurs = vector<double>());
-	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){}
+	DeclarationConstante(Constante *c, DeclarationConstante *dC = new DeclarationConstante());
+	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){est_vide = true;}
 	virtual ~DeclarationConstante(){}
 	
+	Constante* getConstante(){return constante;}
+	DeclarationConstante* getDeclarationConstante(){return declarationAutreConstante;}
 	virtual void executer(map<string,double> &mapV);
 	void print();
 
 private:
-	Constante constante;
+	Constante* constante;
 	DeclarationConstante* declarationAutreConstante;
-
-	void resteDuTableau(vector<string> &tabConstantes, vector<double> &tabValeurs);
 };
 
 

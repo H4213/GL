@@ -13,21 +13,24 @@ class Programme : public Symbole {
 public:
 
 	Programme(PartieDeclarative *partieD, PartieInstructive *partieI);
-	Programme():Symbole(Identifiants::ID_PROGRAMME){}
-	virtual ~Programme(){} //TODO: tout nettoyer!!
+	Programme():Symbole(Identifiants::ID_PROGRAMME){est_vide=true;}
+	virtual ~Programme(){}
+
 	void afficherVariables();
-	// map<string,double> getVariables();
-	void executer(){executer(map_variables);}
-	virtual void executer(map<string,double> &mapV);
-	map<string,double> getMap();
+	//map<string,double> getVariables(){return map_variables;}
+	//map<string,double> getConstantes(){return map_constantes;}
 	vector<Variable*> getVariables();
 	vector<Constante*> getConstantes();
-
+	PartieInstructive* getPartieInstructive(){return partieInstructive;}
+	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
+	void executer(){executer(map_variables);}
+	virtual void executer(map<string,double> &mapV);
 
 private:
 	PartieDeclarative *partieDeclarative;
 	PartieInstructive *partieInstructive;
 	map<string,double> map_variables;
+	map<string,double> map_constantes;
 
 };
 
