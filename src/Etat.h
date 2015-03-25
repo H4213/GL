@@ -11,8 +11,8 @@ class Symbole;class Automate;
 class Etat
 {
 	public:
-		Etat();
-		virtual ~Etat(){_name = "E";}
+		Etat(){_name = "E";}
+		virtual ~Etat(){}
 		virtual void transition(Automate & automate, Symbole *s) = 0;
 		virtual string nom(){return _name;}
 

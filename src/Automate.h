@@ -2,8 +2,8 @@
 #define AUTOMATE_H
 #include <deque>
 #include <vector>
-#include "../Symbole.h"
-#include "../Programme.h"
+#include "Symbole.h"
+#include "Programme.h"
 #include "Etat.h"
 
 using namespace std;

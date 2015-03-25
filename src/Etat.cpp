@@ -1,17 +1,18 @@
 #include "Etat.h"
 #include "Automate.h"
-#include "../Symbole.h"
-#include "../Identifiants.h"
+#include "Symbole.h"
+#include "Identifiants.h"
 
-#include "../PartieDeclarative.h"
-#include "../PartieInstructive.h"
-#include "../Programme.h"
-#include "../Expression.h"
+#include "PartieDeclarative.h"
+#include "PartieInstructive.h"
+#include "Programme.h"
+#include "Expression.h"
 
-#include "../Lire.h"
-#include "../Ecrire.h"
+#include "Lire.h"
+#include "Ecrire.h"
+#include "InstructionLire.h"
 
-#include "../Variable.h"
+#include "Variable.h"
 
 void E0::transition(Automate & automate, Symbole *s)
 {
@@ -282,7 +283,7 @@ void E11::transition(Automate & automate, Symbole *s)
 			//depiler pd
 			pd = (PartieDeclarative*)automate.depilerSymbole();
 			
-			newPD = new PartieDeclarative(pd, d);
+			//newPD = new PartieDeclarative(pd, d);
 
 			automate.depilerEtat(3);
 
@@ -338,7 +339,7 @@ void E13::transition(Automate & automate, Symbole *s)
 void E14::transition(Automate & automate, Symbole *s)
 {
 	PartieInstructive *PI, *newPI;
-	Instruction I;
+	Instruction *I;
 	switch(*s)
 	{
 		case Identifiants::ID_LIRE:
@@ -352,11 +353,11 @@ void E14::transition(Automate & automate, Symbole *s)
 			//depiler point virgule
 			automate.depilerSymbole();
 			//depiler I
-			I = automate.depilerSymbole();
+			I = (Instruction*)automate.depilerSymbole();
 			//depiler PI
-			PI = automate.depilerSymbole();
+			PI = (PartieInstructive*)automate.depilerSymbole();
 
-			newPI = new PartieInstructive(PI, I);
+			//newPI = new PartieInstructive(PI, I);
 			automate.reduction(newPI);	
 
 
@@ -396,6 +397,7 @@ void E15::transition(Automate & automate, Symbole *s)
 		default:
 			automate.erreur();
 		break;
+	}
 
 }
 
@@ -404,6 +406,7 @@ void E16::transition(Automate & automate, Symbole *s)
 	Instruction *newI;
 	Variable *v;
 	Lire *l;
+	InstructionLire *il;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
@@ -416,10 +419,10 @@ void E16::transition(Automate & automate, Symbole *s)
 			//depiler 3 etats
 			automate.depilerEtat(2);
 			//reduction par la regle 14
-			v = automate.depilerSymbole();
+			v = (Variable*)automate.depilerSymbole();
 			delete automate.depilerSymbole();
-
-			automate.reduction(new InstructionLire(v));
+			il = new InstructionLire(v);
+			automate.reduction(il);
 		break;
 
 		default:
@@ -432,7 +435,7 @@ void E17::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 18
 			 
@@ -455,7 +458,7 @@ void E18::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 16
 			 
@@ -502,7 +505,7 @@ void E20::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 20
 			 
@@ -520,7 +523,7 @@ void E21::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 21
 			 
@@ -605,7 +608,7 @@ void E26::transition(Automate & automate, Symbole *s)
 		break;
 		//non terminaux
 
-		case ID_CONST:
+		case Identifiants::ID_CONST:
 			automate.decalage(s, new E27, true);
 		break;
 
@@ -725,7 +728,7 @@ void E33::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 17
 			 
@@ -769,7 +772,7 @@ void E35::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 15
 			 
@@ -824,7 +827,7 @@ void E38::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 			//decalage vers 34
 			automate.decalage(s, new E39(), true);
 		break;
@@ -842,7 +845,7 @@ void E39::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
-		case Identifiants::ID_FERMEPARANTHESE:
+		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//TODO reduction regle 19
 			 
