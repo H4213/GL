@@ -17,8 +17,9 @@ public:
 	virtual ~Programme(){} //TODO: tout nettoyer!!
 	
 	void afficherVariables();
-	map<string,double> getVariables(){return map_variables;}
-	map<string,double> getConstantes(){return map_constantes;}
+	vector<Variable*> getVariables();
+	vector<Constante*> getConstantes();
+	vector<Instruction*> getInstructions();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
 	void executer(){executer(map_variables);}

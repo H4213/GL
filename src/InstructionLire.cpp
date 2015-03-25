@@ -31,3 +31,4 @@ void InstructionLire::executer(map<string,double> &mapV)
 	}
 
 }
+

@@ -5,6 +5,9 @@
 #include "Symbole.h"
 #include "Programme.h"
 #include "Etat.h"
+#include "InstructionAffectation.h"
+#include "InstructionLire.h"
+#include "InstructionEcrire.h"
 
 using namespace std;
 

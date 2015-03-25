@@ -7,20 +7,7 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 	declaration = d;
 	sousPartieDeclarative = pD;
 	_symbole_string = "PartieDeclarative";
-<<<<<<< HEAD
 
-	if(autresDeclarations.size() > 0)
-	{
-		Declaration *decla = autresDeclarations[0];
-		resteDuTableau(autresDeclarations);
-		sousPartieDeclarative = new PartieDeclarative(decla, autresDeclarations);
-	}
-	else
-	{
-		sousPartieDeclarative = NULL;
-	}
-=======
->>>>>>> dev-symboles
 }
 
 
@@ -69,7 +56,5 @@ void PartieDeclarative::print()
 		sousPartieDeclarative->print();
 	}
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> dev-symboles
+

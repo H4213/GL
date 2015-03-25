@@ -29,3 +29,11 @@ double ExpressionAdditive::eval(map<string,double> &mapV)
 
 	return d;
 }
+
+vector <string> ExpressionAdditive::getIds()
+{
+	vector<string> temp1=expression1->getIds();
+	vector<string> temp2=expression2->getIds();
+	temp1.insert(temp1.end(),temp2.begin(),temp2.end());
+	return temp1;
+}

@@ -26,3 +26,19 @@ void PartieInstructive::print()
 		sousPartieInstructive->print();
 	}
 }
+
+vector<Instruction*> PartieInstructive::getInstructions()
+{
+	if (sousPartieInstructive != NULL)
+	{
+		vector<Instruction*> temp;
+		temp.push_back(instruction);
+		return temp;
+	}
+	else 
+	{
+		vector<Instruction*> temp= sousPartieInstructive->getInstructions();
+		temp.push_back(instruction);
+		return temp;
+	}
+}

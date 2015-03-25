@@ -14,7 +14,7 @@ public:
 	Variable* getVariable(){return variable;}
 	Expression* getExpression(){return expression;}
 	virtual void executer(map<string,double> &mapV);
-
+	
 private:
 	Variable *variable;
 	Expression *expression;

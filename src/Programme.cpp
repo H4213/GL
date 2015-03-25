@@ -18,6 +18,11 @@ vector<Constante*> Programme::getConstantes()
     return partieDeclarative->getConstantes();
 }
 
+vector<Instruction*> Programme::getInstructions()
+{	
+	return partieInstructive->getInstructions();
+}
+
 void Programme::executer(map<string,double> &mapV)
 {
 	if(partieDeclarative!=NULL)

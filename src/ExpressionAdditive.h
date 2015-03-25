@@ -2,7 +2,7 @@
 #define EXPRESSIONADDITIVE_H
 #include "Expression.h"
 #include "OperationAdditive.h"
-
+#include <vector>
 
 class ExpressionAdditive : public Expression {
 
@@ -13,6 +13,7 @@ public:
 
 	virtual double eval(map<string,double> &mapV);
 
+	vector<string> getIds();
 private:
 	Expression *expression1;
 	Expression *expression2;

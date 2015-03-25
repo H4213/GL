@@ -2,6 +2,7 @@
 #define EXPRESSIONMULTIPLICATIVE_H
 #include "Expression.h"
 #include "OperationMultiplicative.h"
+#include <vector>
 
 class ExpressionMultiplicative : public Expression {
 
@@ -11,6 +12,8 @@ public:
 	virtual ~ExpressionMultiplicative(){}
 
 	virtual double eval(map<string,double> &mapV);
+	
+	vector<string> getIds();
 
 private:
 	Expression *expression1;

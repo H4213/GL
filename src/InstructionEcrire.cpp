@@ -12,3 +12,5 @@ void InstructionEcrire::executer(map<string,double> &mapV)
 {
 	cout << expression->eval(mapV) << endl;
 }
+
+
