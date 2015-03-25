@@ -8,9 +8,10 @@ class InstructionEcrire : public Instruction {
 
 public:
 	InstructionEcrire(Expression *e);
-	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){}
+	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){est_vide = true;}
 	virtual ~InstructionEcrire(){}
 	
+	Expression* getExpression(){return expression;}
 	virtual void executer(map<string,double> &mapV);
 
 private:

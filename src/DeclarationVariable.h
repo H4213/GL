@@ -10,18 +10,19 @@ using namespace std;
 class DeclarationVariable : public Declaration {
 
 public:
-	DeclarationVariable(string nomVariable, vector<string> autresVariables = vector<string>());
-	DeclarationVariable():Declaration(Identifiants::ID_DECLARATIONVARIABLE){}
+	DeclarationVariable(Variable *v, DeclarationVariable *dV = new DeclarationVariable());
+	DeclarationVariable():Declaration(Identifiants::ID_DECLARATIONVARIABLE){est_vide = true;}
 	virtual ~DeclarationVariable(){}
 	
+	Variable* getVariable(){return variable;}
+	DeclarationVariable* getDeclarationVariable(){return declarationAutreVariable;}
 	virtual void executer(map<string,double> &mapV);
 	void print();
 
 private:
-	Variable variable;
+	Variable *variable;
 	DeclarationVariable *declarationAutreVariable;
 
-	void resteDuTableau(vector<string> &autresVariables);
 	void comptageVariables();
 
 };

@@ -2,39 +2,20 @@
 
 #include <iostream>
 
-PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autresDeclarations) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
+PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
 {
 	declaration = d;
+	sousPartieDeclarative = pD;
 	_symbole_string = "PartieDeclarative";
-
-	if(autresDeclarations.size() > 0)
-	{
-		Declaration *decla = autresDeclarations[0];
-		resteDuTableau(autresDeclarations);
-		sousPartieDeclarative = new PartieDeclarative(decla, autresDeclarations);
-	} 
-	else 
-	{
-		sousPartieDeclarative = NULL;
-	}
 }
 
 void PartieDeclarative::executer(map<string,double> &mapV)
 {
-	declaration->executer(mapV);
 	if(sousPartieDeclarative!=NULL)
 	{
 		sousPartieDeclarative->executer(mapV);
 	}
-}
-
-void PartieDeclarative::resteDuTableau(vector<Declaration*> &vectDeclarations)
-{
-	for(int i=1; i<vectDeclarations.size(); i++)
-	{
-		vectDeclarations[i-1] = vectDeclarations[i];
-	}
-	vectDeclarations.pop_back();
+	declaration->executer(mapV);
 }
 
 void PartieDeclarative::print()
