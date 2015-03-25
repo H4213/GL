@@ -8,6 +8,8 @@ class Affectation : public Symbole {
 public:
 	Affectation();
 	virtual ~Affectation(){}
+	
+	virtual void executer(map<string,double> &mapV){}
 
 };
 

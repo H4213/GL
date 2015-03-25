@@ -9,6 +9,8 @@ public:
 	Addition();
 	virtual ~Addition(){}
 
+	void executer(map<string,double> &mapV){}
+
 };
 
 

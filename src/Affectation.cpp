@@ -4,4 +4,5 @@
 Affectation::Affectation():Symbole(Identifiants::ID_AFFECTATION)
 {
 	_symbole_string = ":=";
-}	
+}
+

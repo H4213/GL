@@ -4,16 +4,18 @@
 #include "Expression.h"
 #include "Variable.h"
 
-
 class InstructionAffectation : public Instruction {
 
 public:
-	InstructionAffectation(Variable v, Expression e);
+	InstructionAffectation(Variable *v, Expression *e);
+	InstructionAffectation():Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION){}
 	virtual ~InstructionAffectation(){}
+	
+	virtual void executer(map<string,double> &mapV);
 
 private:
-	Variable variable;
-	Expression expression;
+	Variable *variable;
+	Expression *expression;
 
 };
 

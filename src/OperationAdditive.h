@@ -2,13 +2,20 @@
 #define OPERATIONADDITIVE_H
 #include "Symbole.h"
 
-
-class OperationAdditive : public Symbole {
+class OperationAdditive : public Symbole 
+{
 
 public:
-	OperationAdditive();
 	OperationAdditive(int id):Symbole(id){}
+	OperationAdditive();
 	virtual ~OperationAdditive(){}
+
+	operator char() const {return _operation;}
+	
+	virtual void executer(map<string,double> &mapV){}
+
+protected:
+	char _operation;
 
 };
 
