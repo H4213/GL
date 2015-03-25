@@ -14,11 +14,13 @@ public:
 
 	Programme(PartieDeclarative *partieD, PartieInstructive *partieI);
 	Programme():Symbole(Identifiants::ID_PROGRAMME){est_vide=true;}
-	virtual ~Programme(){} //TODO: tout nettoyer!!
-	
+	virtual ~Programme(){}
+
 	void afficherVariables();
-	map<string,double> getVariables(){return map_variables;}
-	map<string,double> getConstantes(){return map_constantes;}
+	//map<string,double> getVariables(){return map_variables;}
+	//map<string,double> getConstantes(){return map_constantes;}
+	vector<Variable*> getVariables();
+	vector<Constante*> getConstantes();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
 	void executer(){executer(map_variables);}

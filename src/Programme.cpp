@@ -35,11 +35,12 @@ void Programme::afficherVariables()
 	map<string,double>::iterator it;
 	for (it=map_variables.begin(); it!=map_variables.end(); ++it)
 	{
-		cout << it->first << " => "; 
+		cout << it->first << " => ";
 		if(it->second == 0) cout<< "vide"<<endl;
-		else 
+		else
 		{
 			cout<< it->second <<endl;
 		}
 	}
 }
+
