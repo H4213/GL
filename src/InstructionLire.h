@@ -8,9 +8,10 @@ class InstructionLire : public Instruction {
 
 public:
 	InstructionLire(Variable *v);
-	InstructionLire():Instruction(Identifiants::ID_INSTRUCTIONLIRE){}
+	InstructionLire():Instruction(Identifiants::ID_INSTRUCTIONLIRE){est_vide = true;}
 	virtual ~InstructionLire(){}
 	
+	Variable* getVariable(){return variable;}
 	virtual void executer(map<string,double> &mapV);
 
 private:

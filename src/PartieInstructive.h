@@ -9,18 +9,18 @@ using namespace std;
 class PartieInstructive : public Symbole {
 
 public:
-	PartieInstructive(Instruction *i, vector<Instruction*> autresInstructions = vector<Instruction*>());
-	PartieInstructive():Symbole(Identifiants::ID_PARTIEINSTRUCTIVE){}
+	PartieInstructive(Instruction *i, PartieInstructive *pI = new PartieInstructive());
+	PartieInstructive():Symbole(Identifiants::ID_PARTIEINSTRUCTIVE){est_vide = true;}
 	virtual ~PartieInstructive(){}
 
+	Instruction* getInstruction(){return instruction;}
+	PartieInstructive* getPartieInstructive(){return sousPartieInstructive;}
 	virtual void executer(map<string,double> &mapV);
 	void print();
 
 private:
 	Instruction *instruction;
 	PartieInstructive *sousPartieInstructive;
-
-	void resteDuTableau(vector<Instruction*> &vectInstructions);
 
 };
 

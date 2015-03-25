@@ -2,10 +2,12 @@
 
 #include <iostream>
 
-PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autresDeclarations) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
+PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Symbole(Identifiants::ID_PARTIEDECLARATIVE)
 {
 	declaration = d;
+	sousPartieDeclarative = pD;
 	_symbole_string = "PartieDeclarative";
+<<<<<<< HEAD
 
 	if(autresDeclarations.size() > 0)
 	{
@@ -17,6 +19,8 @@ PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autres
 	{
 		sousPartieDeclarative = NULL;
 	}
+=======
+>>>>>>> dev-symboles
 }
 
 
@@ -50,20 +54,11 @@ vector<Constante*> PartieDeclarative::getConstantes() {
 
 void PartieDeclarative::executer(map<string,double> &mapV)
 {
-	declaration->executer(mapV);
 	if(sousPartieDeclarative!=NULL)
 	{
 		sousPartieDeclarative->executer(mapV);
 	}
-}
-
-void PartieDeclarative::resteDuTableau(vector<Declaration*> &vectDeclarations)
-{
-	for(int i=1; i<vectDeclarations.size(); i++)
-	{
-		vectDeclarations[i-1] = vectDeclarations[i];
-	}
-	vectDeclarations.pop_back();
+	declaration->executer(mapV);
 }
 
 void PartieDeclarative::print()
@@ -74,4 +69,7 @@ void PartieDeclarative::print()
 		sousPartieDeclarative->print();
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev-symboles

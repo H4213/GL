@@ -12,11 +12,20 @@ using namespace std;
 class PartieDeclarative : public Symbole {
 
 public:
+<<<<<<< HEAD
 	PartieDeclarative(Declaration *d, vector<Declaration*> autresDeclarations = vector<Declaration*>());
 	PartieDeclarative():Symbole(Identifiants::ID_PARTIEDECLARATIVE){}
 	virtual ~PartieDeclarative(){}
 	vector<Variable*> getVariables();
 	vector<Constante*> getConstantes();
+=======
+	PartieDeclarative(Declaration *d, PartieDeclarative *pD = new PartieDeclarative()); 
+	PartieDeclarative():Symbole(Identifiants::ID_PARTIEDECLARATIVE){est_vide = true;}
+	virtual ~PartieDeclarative(){}
+
+	Declaration* getDeclaration(){return declaration;}
+	PartieDeclarative* getPartieDeclarative(){return sousPartieDeclarative;}
+>>>>>>> dev-symboles
 	virtual void executer(map<string,double> &mapV);
 	void print();
 
@@ -24,8 +33,6 @@ public:
 private:
 	Declaration *declaration;
 	PartieDeclarative *sousPartieDeclarative;
-
-	void resteDuTableau(vector<Declaration*> &vectDeclarations);
 
 };
 

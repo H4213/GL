@@ -9,6 +9,7 @@ Symbole::Symbole()
 {
 	_ident = Identifiants::ID_SYMBOLE;
 	_symbole_string = "Symbole";
+	est_vide = true;
 }
 
 void Symbole::print(){

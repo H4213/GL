@@ -35,17 +35,11 @@ void Programme::afficherVariables()
 	map<string,double>::iterator it;
 	for (it=map_variables.begin(); it!=map_variables.end(); ++it)
 	{
-		cout << it->first << " => ";
-		if(it->second == 0) cout<< "NULL"<<endl;
-		else
+		cout << it->first << " => "; 
+		if(it->second == 0) cout<< "vide"<<endl;
+		else 
 		{
 			cout<< it->second <<endl;
 		}
 	}
-	cout<<"-~-~o~-~o~-~o~-~o~-~o~-~o~-~o~-~o~-~-"<<endl;
-}
-
-map<string,double> Programme::getMap()
-{
-    return map_variables;
 }
