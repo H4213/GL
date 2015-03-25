@@ -1,39 +1,80 @@
 #include "Automate.h"
-#include "limits.h"
+#include <iostream>
 
-void Automate::decalage(Symbole *s, Etat*e)
+Programme*  Automate::analyser()
 {
-	this->_pileSymboles.push_front(s);
-	this->_pileEtats.push_front(e);
-
-	this->lecture();
+	Symbole *s = NULL;
+	empilerEtat(new E0());
+	
+	while((s = courant()) != NULL)
+	{
+		sommetEtat()->transition(*this, s);
+	}
+	return (Programme*)_pileSymboles.front();
+	
 }
 
-void Automate::reduction(Symbole *A, Etat*E, int tailleBeta)
+Etat *Automate::sommetEtat()
 {
-	for(int i=0; i < tailleBeta;i++)
+	return _pileEtats.front();
+}
+void Automate::empilerSymbole(Symbole*s)
+{
+	this->_pileSymboles.push_front(s);
+}
+Symbole* Automate::depilerSymbole()
+{
+	Symbole *s = _pileSymboles.front();
+	_pileSymboles.pop_front();
+
+	return s;
+}
+void Automate::empilerEtat(Etat*e)
+{
+	this->_pileEtats.push_front(e);
+}
+void Automate::depilerEtat(int n)
+{
+	for(int i = 0; i < n;i++)
 	{
-		this->_pileSymboles.pop_front();
-		this->_pileEtats.pop_front();
+		delete _pileEtats.front();
+		_pileEtats.pop_front();
 	}
-	this->_pileSymboles.push_front(A);
-	this->_pileEtats.push_front(E);
+}
 
+void Automate::decalage(Symbole *s, Etat*e, bool avancerSymbole)
+{
+	empilerEtat(e);
+	empilerSymbole(s);
+	if(avancerSymbole)
+	avancerLecteur();
+}
 
-	//TODO afficher la production
+void Automate::reduction(Symbole *s)
+{
+	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
+	_pileEtats.front()->transition(*this, s);
+	
 }
 
 void Automate::accepter()
 {
-
+	
 }
 void Automate::erreur()
 {
-
+	std::cout << "Erreur : le symbole " << _pileSymboles.front() << 
+					" inattendu à l'etat " << sommetEtat()->nom();
 }
-void Automate::lecture()
+void Automate::avancerLecteur()
 {
+	 //lecteur.moveReadHeader();
+}
 
+Symbole* Automate::courant()
+{
+	//return lecteur.getNext();
+	return NULL;
 }
 
 void Automate::analyseStatique() {
