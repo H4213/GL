@@ -33,7 +33,9 @@ class Automate
 
 		void avancerLecteur();
 		Symbole* courant();
-
+		
+		void analyseStatique();
+		
 	private:
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;

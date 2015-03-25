@@ -7,15 +7,24 @@ PartieDeclarative::PartieDeclarative(Declaration *d, vector<Declaration*> autres
 	declaration = d;
 	_symbole_string = "PartieDeclarative";
 
-<<<<<<< HEAD
-	sousPartieDeclarative = partieD;
+	if(autresDeclarations.size() > 0)
+	{
+		Declaration *decla = autresDeclarations[0];
+		resteDuTableau(autresDeclarations);
+		sousPartieDeclarative = new PartieDeclarative(decla, autresDeclarations);
+	}
+	else
+	{
+		sousPartieDeclarative = NULL;
+	}
 }
+
 
 vector<Variable*> PartieDeclarative::getVariables() {
 
     // Variable de la déclaration
     vector<Variable*> result;
-    result.insert(result.end() , declaration.getVariables().begin() , declaration.getVariables().end());
+    result.insert(result.end() , declaration->getVariables().begin() , declaration->getVariables().end());
 
     // Variables de la sous partie declarative
     vector<Variable*> partVariables = sousPartieDeclarative->getVariables();
@@ -28,7 +37,7 @@ vector<Constante*> PartieDeclarative::getConstantes() {
 
     // Variable de la déclaration
     vector<Constante*> result;
-    result.insert(result.end() , declaration.getConstantes().begin() , declaration.getConstantes().end());
+    result.insert(result.end() , declaration->getConstantes().begin() , declaration->getConstantes().end());
 
     // Variables de la sous partie declarative
     vector<Constante*> partConstantes= sousPartieDeclarative->getConstantes();
@@ -37,18 +46,7 @@ vector<Constante*> PartieDeclarative::getConstantes() {
     return result;
 
 }
-=======
-	if(autresDeclarations.size() > 0)
-	{
-		Declaration *decla = autresDeclarations[0];
-		resteDuTableau(autresDeclarations);
-		sousPartieDeclarative = new PartieDeclarative(decla, autresDeclarations);
-	} 
-	else 
-	{
-		sousPartieDeclarative = NULL;
-	}
-}
+
 
 void PartieDeclarative::executer(map<string,double> &mapV)
 {
@@ -76,4 +74,4 @@ void PartieDeclarative::print()
 		sousPartieDeclarative->print();
 	}
 }
->>>>>>> eba44e39f24c62f3d560db3081ec1095d5871ea5
+
