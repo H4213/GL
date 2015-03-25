@@ -1,10 +1,10 @@
 #include "Automate.h"
 #include <iostream>
 
-Automate::Automate(string filename)
+Automate::Automate(string fileContent)
 {
-	lecteur = new Lecteur(filename);
-	
+	lecteur = new Lecteur(fileContent);
+
 }
 
 /* /!\Attention /!\
@@ -19,25 +19,27 @@ Programme*  Automate::analyser()
 		delete *is++;
 	}
 	_pileSymboles.clear();
-	
+
 	deque<Etat*>::iterator ie = _pileEtats.begin();
 	while(ie != _pileEtats.end())
 	{
 		delete *ie++;
 	}
 	_pileEtats.clear();
-	
-	
+
+
 	Symbole *s = NULL;
 	empilerEtat(new E0());
-	
+
 	while((s = courant()) != NULL)
 	{
-		cout <<"Symbole: " << *s << "Etat: " << sommetEtat()->nom() << endl;
+		cout <<"Symbole: ";
+		 s->print();
+		 cout << "Etat: " << sommetEtat()->nom() << endl;
 		sommetEtat()->transition(*this, s);
 	}
 	return (Programme*)_pileSymboles.front();
-	
+
 }
 
 Etat *Automate::sommetEtat()
@@ -80,16 +82,16 @@ void Automate::reduction(Symbole *s)
 {
 	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
 	_pileEtats.front()->transition(*this, s);
-	
+
 }
 
 void Automate::accepter()
 {
-	
+
 }
 void Automate::erreur()
 {
-	std::cout << "Erreur : le symbole " << _pileSymboles.front() << 
+	std::cout << "Erreur : le symbole " << _pileSymboles.front() <<
 					" inattendu à l'etat " << sommetEtat()->nom();
 }
 void Automate::avancerLecteur()

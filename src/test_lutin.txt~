@@ -1,2 +1,3 @@
-var x,y;
-const t,p 2L;
+var x;
+const t;
+EOF

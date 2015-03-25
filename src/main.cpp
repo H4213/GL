@@ -1,4 +1,4 @@
-#include "Lecteur.h"
+#include "Automate.h"
 
 #include "Symbole.h"
 #include "DeclarationConstante.h"
@@ -155,15 +155,9 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-     Lecteur l(contents);
+     Automate automate(contents);
+     automate.analyser();
 
-        cout << "getnext 3 fois" << endl;
-      int i;
-      for (i=0 ; i<20 ; i++){
-
-	   l.getNext()->print();
-       l.moveReadHeader();
-      }
     return 0;
 
 
