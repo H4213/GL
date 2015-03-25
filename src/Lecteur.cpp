@@ -194,9 +194,9 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
             }
             else
             {
-				cout<<"erreur lexical "<< phrase[i]<<" n'est pas reconnu"<<endl;
+		cout<<"erreur lexical "<< phrase[i]<<" n'est pas reconnu"<<endl;
 
-			}
+		}
 
         }
         else
@@ -268,10 +268,27 @@ Symbole Lecteur::createSymbole(string s)
    return newSym;
 }
 
+
 Symbole* Lecteur::getNext()
 {
+	if ( readHeader < symTerminaux.end() ) 
+	{
+		return &*readHeader;
 
-    return &*readHeader++;
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+
+void Lecteur::moveReadHeader()
+{
+	if (readHeader != symTerminaux.end())
+	{
+		readHeader++;
+	}
 }
 
 

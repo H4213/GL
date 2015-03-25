@@ -6,6 +6,7 @@ Variable::Variable(string n):Expression(Identifiants::ID_VARIABLE)
 	_symbole_string = "Variable "+n;
 }
 
+
 double Variable::eval(map<string,double> &mapV)
 {
 	double d;
@@ -18,7 +19,7 @@ double Variable::eval(map<string,double> &mapV)
 		// TODO: peut etre avoir un symbole Erreur, creer Erreur.h avec une struct enum + strng (id et description des erreurs)
 		// e = Erreur("Variable inexistante");
 	}
-	
+
 	return d;
 }
 

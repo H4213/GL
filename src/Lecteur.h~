@@ -60,7 +60,6 @@ class Lecteur
         Lecteur(){}
         Lecteur(string s);
 		Symbole* getNext();
-		void moveReadHeader();
 
 
 };

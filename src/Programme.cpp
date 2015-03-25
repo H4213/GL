@@ -8,6 +8,17 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	_symbole_string = "Programme";
 }
 
+<<<<<<< HEAD
+vector<Variable*> Programme::getVariables() {
+
+    return partieDeclarative.getVariables();
+}
+
+vector<Constante*> Programme::getConstantes()
+{
+    return partieDeclarative.getConstantes();
+}
+=======
 void Programme::executer(map<string,double> &mapV)
 {
 	if(partieDeclarative!=NULL)
@@ -34,3 +45,4 @@ void Programme::afficherVariables()
 	}
 	cout<<"-~-~o~-~o~-~o~-~o~-~o~-~o~-~o~-~o~-~-"<<endl;
 }
+>>>>>>> eba44e39f24c62f3d560db3081ec1095d5871ea5
