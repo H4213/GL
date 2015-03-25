@@ -17,8 +17,7 @@ public:
 	virtual ~Programme(){}
 
 	void afficherVariables();
-	//map<string,double> getVariables(){return map_variables;}
-	//map<string,double> getConstantes(){return map_constantes;}
+	map<string,double> getVariables(){return map_variables;}
 	vector<Variable*> getVariables();
 	vector<Constante*> getConstantes();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
@@ -30,8 +29,6 @@ private:
 	PartieDeclarative *partieDeclarative;
 	PartieInstructive *partieInstructive;
 	map<string,double> map_variables;
-	map<string,double> map_constantes;
-
 };
 
 #endif
