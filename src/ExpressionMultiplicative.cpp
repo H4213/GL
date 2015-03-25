@@ -4,7 +4,7 @@ ExpressionMultiplicative::ExpressionMultiplicative(Terme *t, Facteur *f, Operati
 {
 	terme = t;
 	facteur = f;
-	operationMultiplicative = op;
+	operationMultiplicative = opM;
 	_symbole_string = "ExpressionMultiplicative";
 }
 
@@ -23,14 +23,14 @@ double ExpressionMultiplicative::eval(map<string,double> &mapV)
 		
 		case '/':
 			//tester
-			if(valeurExp2 != 0)
+			/*if(valeurExp2 != 0)
 			{
 				d = valeurTerme / valeurFacteur;
 			}
 			else
 			{
 				// TODO: erreur (division par zero)
-			}
+			}*/
 		break;
 	}
 
