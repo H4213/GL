@@ -45,7 +45,7 @@ void Automate::analyseStatique() {
 	else
 	{
 		//nitialisation des maps de variables et constantes déclarés
-		map<basic_string<char>, int> variables;
+		map<string, int> variables;
 		vector<Constante*> constantes;
 
         //Recuperation des variables et verification de l'unicité
@@ -53,7 +53,7 @@ void Automate::analyseStatique() {
         for (int i = 0 ; i<allVariables.size() ; i++ )
         {
             pair<std::map<string,int>::iterator,bool> ret;
-            ret = variables.insert(pair<basic_string<char>,int>(allVariables[i]->getNom(),INT_MAX));
+            ret = variables.insert(pair<string,int>(allVariables[i]->getNom(),INT_MAX));
             if (ret.second == false )
             {
                 cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
