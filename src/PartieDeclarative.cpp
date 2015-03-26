@@ -11,28 +11,29 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 }
 
 
-vector<Variable*> PartieDeclarative::getVariables() {
+vector<Id*> PartieDeclarative::getVariables() {
 
-    // Variable de la déclaration
-    vector<Variable*> result;
-    result.insert(result.end() , declaration->getVariables().begin() , declaration->getVariables().end());
-
+    vector<Id*> result;
     // Variables de la sous partie declarative
-    vector<Variable*> partVariables = sousPartieDeclarative->getVariables();
+    vector<Id*> partVariables = sousPartieDeclarative->getVariables();
     result.insert(result.end() , partVariables.begin() , partVariables.end());
+
+	// Variable de la déclaration
+	vector<Id*> partVariables2=declaration->getVariables();
+    result.insert(result.end() , partVariables2.begin() , partVariables2.end());
 
     return result;
 
 }
-vector<Constante*> PartieDeclarative::getConstantes() {
+vector<Id*> PartieDeclarative::getConstantes() {
 
-    // Variable de la déclaration
-    vector<Constante*> result;
-    result.insert(result.end() , declaration->getConstantes().begin() , declaration->getConstantes().end());
-
+    vector<Id*> result;
     // Variables de la sous partie declarative
-    vector<Constante*> partConstantes= sousPartieDeclarative->getConstantes();
+    vector<Id*> partConstantes= sousPartieDeclarative->getConstantes();
     result.insert(result.end() , partConstantes.begin() , partConstantes.end());
+    // Variable de la déclaration
+	vector<Id*> partConstantes2=declaration->getConstantes();
+    result.insert(result.end() , partConstantes2.begin() , partConstantes2.end());
 
     return result;
 

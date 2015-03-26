@@ -4,7 +4,7 @@
 #include "Declaration.h"
 #include "Variable.h"
 #include "Constante.h"
-
+#include "Id.h"
 #include <vector>
 using namespace std;
 
@@ -19,8 +19,8 @@ public:
 	
 	Declaration* getDeclaration(){return declaration;}
 	PartieDeclarative* getPartieDeclarative(){return sousPartieDeclarative;}
-	vector<Variable*> getVariables();
-	vector<Constante*> getConstantes();
+	vector<Id*> getVariables();
+	vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV);
 	void print();
 

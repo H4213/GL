@@ -28,3 +28,17 @@ void DeclarationConstante::print()
 	}
 }
 
+vector<Id*> DeclarationConstante::getConstantes()
+{
+	vector<Id*> result;
+	if (declarationAutreConstante!=NULL)
+	{
+		vector<Id*> autresConstantes = declarationAutreConstante->getConstantes();
+		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());
+	}
+	result.push_back(id);
+	
+	return result;
+}
+
+

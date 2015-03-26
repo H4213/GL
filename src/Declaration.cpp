@@ -11,10 +11,10 @@ Declaration::Declaration(int id) : Symbole(id)
 {
 
 }
-vector<Variable*> Declaration::getVariables() {
+vector<Id*> Declaration::getVariables() {
 
 }
 
-vector<Constante*> Declaration::getConstantes() {
+vector<Id*> Declaration::getConstantes() {
 
 }

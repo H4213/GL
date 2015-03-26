@@ -11,6 +11,7 @@ class LigneDeclarationConstante : public Declaration
 	public:
 		LigneDeclarationConstante(Id*, DeclarationConstante*, Nombre*);
 		~LigneDeclarationConstante();
+		vector<Id*> getConstantes();
 	protected:
 		Id *id;
 		DeclarationConstante *declarationConstante;

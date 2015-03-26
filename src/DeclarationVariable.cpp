@@ -11,7 +11,17 @@ DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Sym
 	_symbole_string = "Declaration de la variable " /*+ id->getNom()*/;
 	
 }
-
+vector<Id*> DeclarationVariable::getVariables()
+{
+	vector<Id*> result;
+	if (declarationAutreVariable != NULL)
+	{
+	vector<Id*> autresVariables=declarationAutreVariable->getVariables();
+	result.insert(result.end(), autresVariables.begin(), autresVariables.end());
+	}
+	result.push_back(id);
+	return result;
+}
 void DeclarationVariable::executer(map<string,double> &mapV)
 {
 	if (!declarationAutreVariable->estVide())

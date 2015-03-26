@@ -17,9 +17,9 @@ public:
 	virtual ~Programme(){}
 
 	void afficherVariables();
-	map<string,double> getVariables(){return map_variables;}
-	//vector<Variable*> getVariables();
-	vector<Constante*> getConstantes();
+	//map<string,double> getVariables(){return map_variables;}
+	vector<Id*> getVariables();
+	vector<Id*> getConstantes();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
 	void executer(){executer(map_variables);}

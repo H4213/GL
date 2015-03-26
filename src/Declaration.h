@@ -4,7 +4,7 @@
 #include <vector>
 #include "Variable.h"
 #include "Constante.h"
-
+#include "Id.h"
 
 class Declaration : public Symbole {
 
@@ -13,8 +13,8 @@ public:
 	Declaration(int id);
 	virtual ~Declaration(){}
 	
-    vector<Variable*> getVariables();
-    vector<Constante*> getConstantes();
+    virtual vector<Id*> getVariables();
+    virtual vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV){}
 };
 

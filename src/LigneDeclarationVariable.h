@@ -10,6 +10,7 @@ class LigneDeclarationVariable : public Declaration
 	public:
 		LigneDeclarationVariable(Id*, DeclarationVariable*);
 		~LigneDeclarationVariable();
+		vector<Id*> getVariables();
 	protected:
 		Id *id;
 		DeclarationVariable *declarationVariable;

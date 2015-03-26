@@ -8,12 +8,12 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	_symbole_string = "Programme";
 }
 
-/*vector<Variable*> Programme::getVariables() {
+vector<Id*> Programme::getVariables() {
 
     return partieDeclarative->getVariables();
-}*/
+}
 
-vector<Constante*> Programme::getConstantes()
+vector<Id*> Programme::getConstantes()
 {
     return partieDeclarative->getConstantes();
 }

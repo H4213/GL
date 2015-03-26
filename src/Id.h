@@ -10,7 +10,8 @@ public:
 	Id():Facteur(Identifiants::ID_ID){}
 	virtual ~Id(){}
 	virtual void executer(map<string,double> &mapV){}
-
+	bool operator==(const Id &);
+	string getNom() const;
 };
 
 
