@@ -1,9 +1,12 @@
 #include "Nombre.h"
+#include <stdlib.h>
 
-Nombre::Nombre(double v):Facteur(Identifiants::ID_NOMBRE)
+
+
+Nombre::Nombre(string v):Facteur(Identifiants::ID_NOMBRE)
 {
-	valeur = v;
-	_symbole_string = "Nombre";
+	valeur = atof(v.c_str());
+	_symbole_string = v;
 }
 
 double Nombre::eval(map<string,double> &mapV)
@@ -15,3 +18,4 @@ double Nombre::getValeur()
 {
 	return valeur;
 }
+

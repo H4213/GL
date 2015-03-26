@@ -19,6 +19,8 @@
 #include "Soustraction.h"
 #include "Var.h"
 #include "Virgule.h"
+#include "Nombre.h"
+#include "EndOfFile.h"
 
 
 using namespace boost;
@@ -32,6 +34,7 @@ static const regex readSym("read[' ' , \n , \t]");
 static const regex writeSym("write[' ' , \n , \t]");
 static const regex idSym("[a-zA-Z][a-zA-Z0-9]*");
 static const regex valSym("[0-9]+");
+static const regex eofSym("\\$");
 
 class Lecteur
 {

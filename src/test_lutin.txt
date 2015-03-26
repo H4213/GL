@@ -1,3 +1,2 @@
 var x;
-const t = 2;
-EOF
+const t = 2 ;

@@ -3,5 +3,5 @@
 
 EndOfFile::EndOfFile():Symbole(Identifiants::ID_ENDOFFILE)
 {
-	_symbole_string = "EOF";
-}	
+	_symbole_string = "$";
+}

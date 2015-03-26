@@ -3,7 +3,7 @@
 Lecteur::Lecteur (string s)
 {
     vector<string> phrase;
-    phrase.push_back(s);
+    phrase.push_back(s+"$");
 
     sepWords(phrase);
 
@@ -60,7 +60,7 @@ bool Lecteur::isValSym(string s)
 
 bool Lecteur::isEOF(string s)
 {
-    return s == "EOF";
+    return regex_match(s, eofSym);
 }
 
 bool Lecteur::isTerminal(string s)
@@ -260,7 +260,14 @@ Symbole Lecteur::createSymbole(string s)
     {
         newSym = Multiplication();
     }
-    // ajouter le symbole EOF avec EOF
+    else if (isValSym(s))
+    {
+        newSym = Nombre(s);
+    }
+    else if (s=="$")
+    {
+        newSym = EndOfFile();
+    }
     else
     {
         newSym = Id(s);
@@ -271,12 +278,12 @@ Symbole Lecteur::createSymbole(string s)
 
 Symbole* Lecteur::getNext()
 {
-	if ( readHeader < symTerminaux.end() ) 
+	if ( readHeader < symTerminaux.end() )
 	{
 		return &*readHeader;
 
 	}
-	else 
+	else
 	{
 		return NULL;
 	}
