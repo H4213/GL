@@ -6,6 +6,6 @@ Terme::Terme():Expression(Identifiants::ID_TERME)
 	est_vide = true;
 }
 
-vector<Id*> getIds()
+vector<Id*> Terme::getIds()
 {
 }

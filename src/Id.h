@@ -5,7 +5,7 @@
 
 class Id : public Facteur {
 
-public:
+public :
 	Id(string nom);
 	Id():Facteur(Identifiants::ID_ID){}
 	virtual ~Id(){}
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif 
+#endif

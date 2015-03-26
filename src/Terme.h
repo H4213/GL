@@ -1,8 +1,9 @@
 #if !defined ( TERME_H )
 #define TERME_H
 #include "Expression.h"
-#include "Id.h"
-class Terme : public Expression 
+//#include "Id.h"
+class Id;
+class Terme : public Expression
 {
 
 public:
@@ -15,4 +16,4 @@ public:
 };
 
 
-#endif 
+#endif

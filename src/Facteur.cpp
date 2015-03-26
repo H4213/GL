@@ -6,6 +6,6 @@ Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 	est_vide = true;
 }
 
-virtual vector<Id*> getIds()
+vector<Id*> Facteur::getIds()
 {
 }

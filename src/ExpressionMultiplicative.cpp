@@ -11,8 +11,8 @@ vector<Id*> ExpressionMultiplicative::getIds()
 {
 	vector<Id*> result = terme->getIds();
 	vector<Id*> temp =facteur->getIds();
-	resultat.insert(resultat.end(),temp.begin(),temp.end());
-	return resultat;
+	result.insert(result.end(),temp.begin(),temp.end());
+	return result;
 }
 double ExpressionMultiplicative::eval(map<string,double> &mapV)
 {
@@ -26,7 +26,7 @@ double ExpressionMultiplicative::eval(map<string,double> &mapV)
 			//tester
 			d = valeurTerme * valeurFacteur;
 		break;
-		
+
 		case '/':
 			//tester
 			/*if(valeurExp2 != 0)

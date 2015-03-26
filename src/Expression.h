@@ -2,7 +2,8 @@
 #define EXPRESSION_H
 #include <vector>
 #include "Symbole.h"
-#include "Id.h"
+
+class Id;
 class Expression : public Symbole {
 
 public:
@@ -11,8 +12,8 @@ public:
 	virtual ~Expression(){}
 	virtual vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV){}
-	
+
 };
 
 
-#endif 
+#endif

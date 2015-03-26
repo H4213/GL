@@ -2,7 +2,8 @@
 #define FACTEUR_H
 #include "Terme.h"
 #include <vector>
-class Facteur : public Terme 
+
+class Facteur : public Terme
 {
 
 public:

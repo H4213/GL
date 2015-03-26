@@ -12,7 +12,7 @@ public:
 	Declaration();
 	Declaration(int id);
 	virtual ~Declaration(){}
-	
+
     virtual vector<Id*> getVariables();
     virtual vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV){}
