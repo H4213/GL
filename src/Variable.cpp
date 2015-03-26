@@ -1,6 +1,6 @@
 #include "Variable.h"
 
-Variable::Variable(string n):Facteur(Identifiants::ID_VARIABLE)
+Variable::Variable(string n):Symbole(Identifiants::ID_VARIABLE)
 {
 	nom = n;
 	_symbole_string = "Variable "+n;

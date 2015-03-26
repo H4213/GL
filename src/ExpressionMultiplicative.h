@@ -5,11 +5,11 @@
 #include "Terme.h"
 #include "Facteur.h"
 
-class ExpressionMultiplicative : public Expression {
+class ExpressionMultiplicative : public Terme {
 
 public:
 	ExpressionMultiplicative(Terme *t, Facteur *f, OperationMultiplicative *opM);
-	ExpressionMultiplicative():Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){est_vide = true;}
+	ExpressionMultiplicative():Terme(Identifiants::ID_EXPRESSIONMULTIPLICATIVE){est_vide = true;}
 	virtual ~ExpressionMultiplicative(){}
 
 	virtual double eval(map<string,double> &mapV);

@@ -1,6 +1,6 @@
 #include "Constante.h"
 
-Constante::Constante(string n, double v):Facteur(Identifiants::ID_CONSTANTE)
+Constante::Constante(string n, double v):Symbole(Identifiants::ID_CONSTANTE)
 {
 	nom = n;
 	valeur = v;

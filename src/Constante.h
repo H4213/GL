@@ -4,11 +4,11 @@
 
 #include <string>
 
-class Constante : public Facteur {
+class Constante : public Symbole {
 
 public:
 	Constante(string n, double v);
-	Constante():Facteur(Identifiants::ID_CONSTANTE){est_vide = true;}
+	Constante():Symbole(Identifiants::ID_CONSTANTE){est_vide = true;}
 	virtual ~Constante(){}
 
 	string getNom();

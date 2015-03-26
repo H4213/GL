@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConstante *dC) : Declaration(Identifiants::ID_DECLARATIONCONSTANTE)
+DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConstante *dC) : Symbole(Identifiants::ID_DECLARATIONCONSTANTE)
 {
 	id = idO;
 	declarationAutreConstante = dC;

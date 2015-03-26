@@ -8,11 +8,11 @@
 #include <vector>
 using namespace std;
 
-class DeclarationConstante : public Declaration {
+class DeclarationConstante : public Symbole {
 
 public:
 	DeclarationConstante(Id *c, Nombre*n, DeclarationConstante *dC = new DeclarationConstante());
-	DeclarationConstante():Declaration(Identifiants::ID_DECLARATIONCONSTANTE){est_vide = true;}
+	DeclarationConstante():Symbole(Identifiants::ID_DECLARATIONCONSTANTE){est_vide = true;}
 	virtual ~DeclarationConstante(){}
 	
 	Id* getId(){return id;}

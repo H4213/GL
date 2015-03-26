@@ -4,7 +4,7 @@
 using namespace std;
 
 
-DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Declaration(Identifiants::ID_DECLARATIONVARIABLE)
+DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Symbole(Identifiants::ID_DECLARATIONVARIABLE)
 {
 	id = idO;
 	declarationAutreVariable = dV;

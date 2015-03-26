@@ -1,6 +1,6 @@
 #include "ExpressionMultiplicative.h"
 
-ExpressionMultiplicative::ExpressionMultiplicative(Terme *t, Facteur *f, OperationMultiplicative *opM):Expression(Identifiants::ID_EXPRESSIONMULTIPLICATIVE)
+ExpressionMultiplicative::ExpressionMultiplicative(Terme *t, Facteur *f, OperationMultiplicative *opM):Terme(Identifiants::ID_EXPRESSIONMULTIPLICATIVE)
 {
 	terme = t;
 	facteur = f;
