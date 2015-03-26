@@ -5,7 +5,7 @@
 #include "Symbole.h"
 #include "Programme.h"
 #include "Etat.h"
-
+#include "Identifiants.h"
 #include "Lecteur.h"
 using namespace std;
 

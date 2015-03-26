@@ -7,7 +7,13 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 	id = idO;	
 	_symbole_string = "InstructionEcrire";
 }
-
+vector<Id*> InstructionLire::getIds()
+{
+	vector<Id*> result;
+	result.push_back(id);
+	return result;
+	
+}
 void InstructionLire::executer(map<string,double> &mapV)
 {
 	/*double valeur;

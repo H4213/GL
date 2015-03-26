@@ -7,6 +7,15 @@ InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instructi
 	_symbole_string = "InstructionAffectation";
 }
 
+vector<Id*> InstructionAffectation::getIds()
+{
+	vector<Id*> result;
+	result.push_back(id);
+	vector<Id*> temp= expression->getIds();
+	result.insert(result.end(),temp.begin(),temp.end());
+	return result;
+	
+}
 void InstructionAffectation::executer(map<string,double> &mapV)
 {
 	/*string nom_var = variable->getNom();

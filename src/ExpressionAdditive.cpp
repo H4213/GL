@@ -10,6 +10,13 @@ ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditiv
 	_symbole_string = "ExpressionAdditive";
 }
 
+vector<Id*> ExpressionAdditive::getIds()
+{
+	vector<Id*> resultat = expression->getIds();
+	vector<Id*> temp = terme->getIds();
+	resultat.insert(resultat.end(),temp.begin(),temp.end());
+	return resultat;
+}
 double ExpressionAdditive::eval(map<string,double> &mapV)
 {
 	double d;

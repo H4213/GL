@@ -10,7 +10,7 @@ public:
 	ExpressionParenthesee(Expression *exp);
 	ExpressionParenthesee():Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE){est_vide = true;}
 	virtual ~ExpressionParenthesee(){}
-
+	vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV);
 
 private:

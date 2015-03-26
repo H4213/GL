@@ -11,6 +11,7 @@ public:
 	virtual ~Id(){}
 	virtual void executer(map<string,double> &mapV){}
 	bool operator==(const Id &);
+	vector<Id*> getIds();
 	string getNom() const;
 };
 

@@ -11,3 +11,7 @@ double ExpressionParenthesee::eval(map<string,double> &mapV)
 	double d = expression->eval(mapV);
 	return d;
 }
+vector<Id*> ExpressionParenthesee::getIds()
+{
+	return expression->getIds();
+}

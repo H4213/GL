@@ -7,7 +7,13 @@ ExpressionMultiplicative::ExpressionMultiplicative(Terme *t, Facteur *f, Operati
 	operationMultiplicative = opM;
 	_symbole_string = "ExpressionMultiplicative";
 }
-
+vector<Id*> ExpressionMultiplicative::getIds()
+{
+	vector<Id*> result = terme->getIds();
+	vector<Id*> temp =facteur->getIds();
+	resultat.insert(resultat.end(),temp.begin(),temp.end());
+	return resultat;
+}
 double ExpressionMultiplicative::eval(map<string,double> &mapV)
 {
 	double d;
