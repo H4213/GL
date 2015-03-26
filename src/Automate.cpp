@@ -5,13 +5,38 @@ Automate::Automate(string fileContent)
 {
 	lecteur = new Lecteur(fileContent);
 
+		error_state = false;
+		success_state =false;
 }
-
+void Automate::afficherPiles()
+{
+	Symbole *s;
+	cout << endl << " pile symb :";
+	deque<Symbole*>::iterator is = _pileSymboles.begin();
+	/*while(is != _pileSymboles.end())
+	{
+		s = (*is);
+		s->print();
+		cout << ",";
+		is++;
+	}*/
+	cout << endl << " pile etat :";
+	deque<Etat*>::iterator ie = _pileEtats.begin();
+	while(ie != _pileEtats.end())
+	{
+		
+		cout  << (*ie)->nom()<<",";
+		ie++;
+	}
+}
 /* /!\Attention /!\
  * Le lecteur n'est pas reinitialisé à la deuxième analyse
  * */
 Programme*  Automate::analyser()
 {
+	
+		error_state = false;
+		success_state = false;
 	//libération des piles avant leurs utilisations
 	deque<Symbole*>::iterator is = _pileSymboles.begin();
 	while(is != _pileSymboles.end())
@@ -31,14 +56,17 @@ Programme*  Automate::analyser()
 	Symbole *s = NULL;
 	empilerEtat(new E0());
 
-	while((s = courant()) != NULL)
+	while((s = courant()) != NULL && !error_state && !success_state)
 	{
 		cout <<"Symbole: ";
-		 s->print();
+		 courant()->print();
 		 cout << "Etat: " << sommetEtat()->nom() << endl;
+
+		 afficherPiles();
 		sommetEtat()->transition(*this, s);
 	}
-	return (Programme*)_pileSymboles.front();
+	//return (Programme*)_pileSymboles.front();
+	return NULL;
 
 }
 
@@ -82,17 +110,21 @@ void Automate::reduction(Symbole *s)
 {
 	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
 	_pileEtats.front()->transition(*this, s);
-
+	/*cout << "reduction : ";
+	_pileSymboles.front()->print();*/
 }
 
 void Automate::accepter()
 {
 	cout << "BRAVOOO! J'accepte!";
+	success_state = true;;
+
 }
 void Automate::erreur()
 {
-	std::cout << "Erreur : le symbole " << _pileSymboles.front() <<
-					" inattendu à l'etat " << sommetEtat()->nom();
+	std::cout << "Erreur : le symbole ";  courant()->print();
+	cout <<" inattendu à l'etat " << sommetEtat()->nom();
+	error_state = true;
 }
 void Automate::avancerLecteur()
 {

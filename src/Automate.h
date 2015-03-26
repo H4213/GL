@@ -13,6 +13,7 @@ class Etat;
 class Automate
 {
 	public:
+		
 		Automate(string filename);
 		virtual ~Automate(){}
 
@@ -31,10 +32,15 @@ class Automate
 		Symbole* courant();
 		void analyseStatique();
 
+		void afficherPiles();
+
 	private:
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
 		Lecteur *lecteur;
+		bool error_state;
+		bool success_state;
+
 };
 
 #endif
