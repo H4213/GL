@@ -101,9 +101,9 @@ void E2::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_PARTIEINSTRUCTIVE:    
 			automate.decalage(s, new E3(), false);                                                                                                                                                                                                                
 		break;
-		case Identifiants::ID_DECLARATION:    
+		case Identifiants::ID_DECLARATION:
 		case Identifiants::ID_LIGNEDECLARATIONVARIABLE:  
-		case Identifiants::ID_LIGNEDECLARATIONCONSTANTE:  
+		case Identifiants::ID_LIGNEDECLARATIONCONSTANTE:      
 			automate.decalage(s, new E4(), false);                                                                                                                                                                                                                
 		break;
 		default:
@@ -143,9 +143,9 @@ void E3::transition(Automate & automate, Symbole *s)
 
 		//non terminaux 
 		case Identifiants::ID_INSTRUCTION:
-		case Identifiants::ID_INSTRUCTIONAFFECTATION:
-		case Identifiants::ID_INSTRUCTIONECRIRE:
 		case Identifiants::ID_INSTRUCTIONLIRE:
+		case Identifiants::ID_INSTRUCTIONECRIRE:
+		case Identifiants::ID_INSTRUCTIONAFFECTATION:
 			automate.decalage(s, new E7(), false);
 		break;
 
@@ -228,7 +228,7 @@ void E9::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -241,16 +241,13 @@ void E9::transition(Automate & automate, Symbole *s)
 		///non terminaux
 
 		case Identifiants::ID_EXPRESSION:
-		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_EXPRESSIONADDITIVE:
 			automate.decalage(s, new E36(), false);
 		break;
 		case Identifiants::ID_TERME:
-		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
-		case Identifiants::ID_EXPRESSIONPARENTHESEE:
-		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E18(), false);
 		break;
 		default:
@@ -263,7 +260,7 @@ void E10::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -276,16 +273,15 @@ void E10::transition(Automate & automate, Symbole *s)
 		///non terminaux
 
 		case Identifiants::ID_EXPRESSION:
+		case Identifiants::ID_EXPRESSIONADDITIVE:
 			automate.decalage(s, new E16(), false);
 		break;
 
 		case Identifiants::ID_TERME:
-		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_EXPRESSIONMULTIPLICATIVE:
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
-		case Identifiants::ID_EXPRESSIONPARENTHESEE:
-		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -307,6 +303,7 @@ void E11::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_POINTVIRGULE:
 		case Identifiants::ID_LIRE:
 		case Identifiants::ID_ECRIRE:
+		case Identifiants::ID_ID:
 		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 2 PD -> PD D PV
 
@@ -406,7 +403,7 @@ void E15::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -419,15 +416,14 @@ void E15::transition(Automate & automate, Symbole *s)
 		///non terminaux
 
 		case Identifiants::ID_EXPRESSION:
+		case Identifiants::ID_EXPRESSIONADDITIVE:
 			automate.decalage(s, new E37(), false);
 		break;
 		case Identifiants::ID_TERME:
-		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_EXPRESSIONMULTIPLICATIVE:
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
-		case Identifiants::ID_EXPRESSIONPARENTHESEE:
-		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -444,7 +440,10 @@ void E16::transition(Automate & automate, Symbole *s)
 	InstructionLire *il;
 	switch(*s)
 	{
+
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 			automate.decalage(s, new E32(), true);
 		break;
 
@@ -470,19 +469,23 @@ void E16::transition(Automate & automate, Symbole *s)
 }
 void E17::transition(Automate & automate, Symbole *s)
 {
-	Facteur*f;
+	Terme*t;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
-			//reduction regle 18 E -> F
+			//reduction regle 18 E -> T
 			 automate.depilerEtat(1);
-			 f = (Facteur*)automate.depilerSymbole();
-			 f->convertToExpression();
-			 automate.reduction(f);
+			 t = (Terme*)automate.depilerSymbole();
+			 t->convertToExpression();
+			 automate.reduction(t);
 		break;
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 			//decalage vers 34
 			automate.decalage(s, new E34(), true);
 
@@ -499,7 +502,11 @@ void E18::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 16 T->F
@@ -519,7 +526,7 @@ void E19::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -533,15 +540,14 @@ void E19::transition(Automate & automate, Symbole *s)
 		//non-terminaux 
 
 		case Identifiants::ID_EXPRESSION:
+		case Identifiants::ID_EXPRESSIONADDITIVE:
 			automate.decalage(s, new E38(), false);
 		break;
 		case Identifiants::ID_TERME:
-		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_EXPRESSIONMULTIPLICATIVE:
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
-		case Identifiants::ID_EXPRESSIONPARENTHESEE:
-		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -558,7 +564,11 @@ void E20::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 20 F -> Id
@@ -577,15 +587,22 @@ void E20::transition(Automate & automate, Symbole *s)
 
 void E21::transition(Automate & automate, Symbole *s)
 {
+	Nombre*n;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 21 F->val
 			 automate.depilerEtat(1);
-			 automate.reduction((Facteur*)automate.depilerSymbole());
+			 n = (Nombre*)automate.depilerSymbole();
+			 n->convertToFacteur();
+			 automate.reduction(n);
 		
 		break;
 		default:
@@ -809,7 +826,7 @@ void E32::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -823,12 +840,10 @@ void E32::transition(Automate & automate, Symbole *s)
 		//non-terminaux 
 
 		case Identifiants::ID_TERME:
-		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_EXPRESSIONMULTIPLICATIVE:
 			automate.decalage(s, new E33(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
-		case Identifiants::ID_EXPRESSIONPARENTHESEE:
-		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -848,6 +863,8 @@ void E33::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 17 E->E opA F
@@ -861,6 +878,8 @@ void E33::transition(Automate & automate, Symbole *s)
 			 
 		break;
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 			//decalage vers 34
 			automate.decalage(s, new E34(), true);
 
@@ -876,7 +895,7 @@ void E34::transition(Automate & automate, Symbole *s)
 {
 	switch(*s)
 	{
-		case Identifiants::ID_VAR:
+		case Identifiants::ID_NOMBRE:
 			automate.decalage(s, new E21(), true);
 		break;
 		case Identifiants::ID_ID:
@@ -884,6 +903,11 @@ void E34::transition(Automate & automate, Symbole *s)
 		break;
 		case Identifiants::ID_OUVREPARENTHESE:
 			automate.decalage(s, new E19(), true);
+		break;
+
+		//non-terminaux
+		case Identifiants::ID_FACTEUR:
+			automate.decalage(s, new E35(), false);
 		break;
 
 		default:
@@ -901,7 +925,11 @@ void E35::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 15 T -> T opM F
@@ -930,6 +958,8 @@ void E36::transition(Automate & automate, Symbole *s)
 		Expression *e;
 
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 			//decalage vers 34
 			automate.decalage(s, new E32(), true);
 		break;
@@ -957,6 +987,8 @@ void E37::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 			//decalage vers 34
 			automate.decalage(s, new E32(), true);
 		break;
@@ -1002,7 +1034,11 @@ void E39::transition(Automate & automate, Symbole *s)
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
+		case Identifiants::ID_MULTIPLICATION:
+		case Identifiants::ID_DIVISION:
 		case Identifiants::ID_FERMEPARENTHESE:
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 19 F -> '(' E ')'
