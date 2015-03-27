@@ -66,8 +66,7 @@ Programme*  Automate::analyser()
 		 cout << endl;
 		sommetEtat()->transition(*this, s);
 	}
-	//return (Programme*)_pileSymboles.front();
-	return NULL;
+	return (Programme*)_pileSymboles.front();
 
 }
 
