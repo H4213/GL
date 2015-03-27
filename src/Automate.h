@@ -15,7 +15,7 @@ class Automate
 	public:
 		
 		Automate(string filename);
-		virtual ~Automate(){delete lecteur;}
+		virtual ~Automate(){}
 
 		Programme* analyser();
 
