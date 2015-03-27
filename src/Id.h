@@ -11,6 +11,9 @@ public :
 	virtual ~Id(){}
 	virtual void executer(map<string,double> &mapV){}
 	bool operator==(const Id &);
+
+	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;} 
+
 	vector<Id*> getIds();
 	string getNom() const;
 };

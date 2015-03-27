@@ -305,6 +305,9 @@ void E11::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_VAR:
 		case Identifiants::ID_CONST:
 		case Identifiants::ID_POINTVIRGULE:
+		case Identifiants::ID_LIRE:
+		case Identifiants::ID_ECRIRE:
+		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 2 PD -> PD D PV
 
 			//depiler pv
@@ -376,6 +379,7 @@ void E14::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_ECRIRE:
 		case Identifiants::ID_ID:
 		case Identifiants::ID_POINTVIRGULE:
+		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 10
 
 			//depiler 3 etats
@@ -466,6 +470,7 @@ void E16::transition(Automate & automate, Symbole *s)
 }
 void E17::transition(Automate & automate, Symbole *s)
 {
+	Facteur*f;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
@@ -473,7 +478,9 @@ void E17::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 18 E -> F
 			 automate.depilerEtat(1);
-			 automate.reduction((Expression*)automate.depilerSymbole());
+			 f = (Facteur*)automate.depilerSymbole();
+			 f->convertToExpression();
+			 automate.reduction(f);
 		break;
 		case Identifiants::ID_OPERATIONMULTIPLICATIVE:
 			//decalage vers 34
@@ -488,6 +495,7 @@ void E17::transition(Automate & automate, Symbole *s)
 }
 void E18::transition(Automate & automate, Symbole *s)
 {
+	Facteur *f;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
@@ -496,7 +504,9 @@ void E18::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_POINTVIRGULE:
 			//reduction regle 16 T->F
 			automate.depilerEtat(1);
-			 automate.reduction((Terme*)automate.depilerSymbole());
+			f = (Facteur*)automate.depilerSymbole();
+			f->convertToTerme();
+			automate.reduction(f);
 		break;
 		default:
 			automate.erreur();
@@ -544,6 +554,7 @@ void E19::transition(Automate & automate, Symbole *s)
 
 void E20::transition(Automate & automate, Symbole *s)
 {
+	Id *id;
 	switch(*s)
 	{
 		case Identifiants::ID_OPERATIONADDITIVE:
@@ -553,7 +564,9 @@ void E20::transition(Automate & automate, Symbole *s)
 			//reduction regle 20 F -> Id
 			 
 			automate.depilerEtat(1);
-			automate.reduction((Facteur*)automate.depilerSymbole());
+			id = (Id*)automate.depilerSymbole();
+			id->convertToFacteur();
+			automate.reduction(id);
 		break;
 		default:
 			automate.erreur();
@@ -673,7 +686,7 @@ void E26::transition(Automate & automate, Symbole *s)
 
 		case Identifiants::ID_CONST:
 		case Identifiants::ID_DECLARATIONCONSTANTE:
-			automate.decalage(s, new E27, true);
+			automate.decalage(s, new E27, false);
 		break;
 
 		default:
@@ -701,7 +714,9 @@ void E27::transition(Automate & automate, Symbole *s)
 			id = (Id*)automate.depilerSymbole();
 			delete automate.depilerSymbole();
 
+
 			automate.reduction(new LigneDeclarationConstante(id, dc, n));
+		
 		break;
 
 		default:

@@ -13,6 +13,9 @@ public:
 	virtual vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV){}
 
+	void convertToTerme(){_ident=Identifiants::ID_TERME;}
+	void convertToExpression(){_ident=Identifiants::ID_EXPRESSION;}
+
 };
 
 
