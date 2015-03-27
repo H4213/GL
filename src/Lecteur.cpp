@@ -137,14 +137,14 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
     {
         if (!isTerminal(phrase[i]))
         {
-            if(phrase[i].find(";")!=-1)
-            {
-                vector<string> temp = sepWords (sepSym(phrase[i], ";"));
-                result.insert(result.end(), temp.begin() , temp.end());
-            }
-            else if (phrase[i].find(" ")!=-1)
+            if(phrase[i].find(" ")!=-1)
             {
                 vector<string> temp = sepWords(sepSep(phrase[i]," "));
+                result.insert(result.end(), temp.begin() , temp.end());
+            }
+            else if (phrase[i].find(";")!=-1)
+            {
+                vector<string> temp = sepWords (sepSym(phrase[i], ";"));
                 result.insert(result.end(), temp.begin() , temp.end());
             }
             else if (phrase[i].find("\n")!=-1)
@@ -155,6 +155,16 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
             else if(phrase[i].find(",")!=-1)
             {
                 vector<string> temp = sepWords (sepSym(phrase[i], ","));
+                result.insert(result.end(), temp.begin() , temp.end());
+            }
+            else if (phrase[i].find("(")!=-1)
+            {
+                vector<string> temp = sepWords (sepSym(phrase[i], "("));
+                result.insert(result.end(), temp.begin() , temp.end());
+            }
+            else if (phrase[i].find(")")!=-1)
+            {
+                vector<string> temp = sepWords (sepSym(phrase[i], ")"));
                 result.insert(result.end(), temp.begin() , temp.end());
             }
             else if(phrase[i].find("+")!=-1)
@@ -235,6 +245,14 @@ Symbole Lecteur::createSymbole(string s)
     else if (s=="=")
     {
         newSym = Egal();
+    }
+    else if (s=="(")
+    {
+        newSym = OuvreParenthese();// Egal();
+    }
+    else if (s==")")
+    {
+        newSym = FermeParenthese();// Egal();
     }
     else if (s==";")
     {
