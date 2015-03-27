@@ -1,5 +1,5 @@
-var x, k;
-const t = 2, c = 8, p = 88;
+var x,k;
+const t=2, c=8, p=88;
 x:=2+t*4*t*t+55;
 lire k;
 x:=x*k;
