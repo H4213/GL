@@ -40,7 +40,6 @@ void E0::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_ENDOFFILE:
 			//reduction par la regle 3 : PD -> .
 			symbole = new PartieDeclarative();
-			automate.empilerSymbole(symbole);
 			//on depile |b| etats
 			automate.depilerEtat(0);
 			automate.reduction(symbole);
@@ -133,6 +132,7 @@ void E3::transition(Automate & automate, Symbole *s)
 		break;
 
 		case Identifiants::ID_ENDOFFILE:
+
 			//reduction par la regle 1 : Pr -> PD PI
 			pi = (PartieInstructive*)automate.depilerSymbole();
 			pd = (PartieDeclarative*)automate.depilerSymbole();

@@ -144,7 +144,7 @@ Symbole* Automate::courant()
 
 void Automate::analyseStatique() {
 
-	if (this->_pileSymboles.size() != 1  |  (int) *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
+	if (this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
 	{
 		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
 	}
