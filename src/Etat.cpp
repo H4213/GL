@@ -245,9 +245,11 @@ void E9::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E36(), false);
 		break;
 		case Identifiants::ID_TERME:
+		case Identifiants::ID_EXPRESSIONMULTIPLICATIVE:
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E18(), false);
 		break;
 		default:
@@ -282,6 +284,7 @@ void E10::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -425,6 +428,7 @@ void E15::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -549,6 +553,7 @@ void E19::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E17(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -856,6 +861,7 @@ void E32::transition(Automate & automate, Symbole *s)
 			automate.decalage(s, new E33(), false);
 		break;
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E18(), false);
 		break;
 
@@ -1033,6 +1039,12 @@ void E38::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_FERMEPARENTHESE:
 			//decalage vers 34
 			automate.decalage(s, new E39(), true);
+		break;
+		case Identifiants::ID_OPERATIONADDITIVE:
+		case Identifiants::ID_ADDITION:
+		case Identifiants::ID_SOUSTRACTION:
+			//decalage vers 32
+			automate.decalage(s, new E32(), true);
 		break;
 		default:
 			automate.erreur();
