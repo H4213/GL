@@ -11,7 +11,7 @@ class DeclarationVariable : public Symbole {
 
 public:
 	DeclarationVariable(Id *id, DeclarationVariable *dV = new DeclarationVariable());
-	DeclarationVariable():Symbole(Identifiants::ID_DECLARATIONVARIABLE){est_vide = true;}
+	DeclarationVariable():Symbole(Identifiants::ID_DECLARATIONVARIABLE){id=0;declarationAutreVariable=0;est_vide = true;}
 	virtual ~DeclarationVariable(){}
 	
 	Id* getId(){return id;}

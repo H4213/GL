@@ -24,9 +24,10 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 	vector<Id*> result;
 	result.push_back(id);
 	
-	if (declarationConstante != NULL)
+	if (declarationConstante->estVide()==false)
 	{
 	vector<Id*> autresConstantes = declarationConstante->getConstantes();
 	result.insert(result.end(), autresConstantes.begin(), autresConstantes.end());
 	}
+	return result;
 }

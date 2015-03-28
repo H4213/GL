@@ -1,6 +1,6 @@
 #include "Nombre.h"
 #include <stdlib.h>
-
+#include <iostream>
 
 
 Nombre::Nombre(string v):Facteur(Identifiants::ID_NOMBRE)
@@ -18,4 +18,9 @@ double Nombre::getValeur()
 {
 	return valeur;
 }
-
+vector<Id*> Nombre::getIds()
+{
+	cout<<"j'arrive ici"<<endl;
+	vector<Id*> result;
+	return result;
+}

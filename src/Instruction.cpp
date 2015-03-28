@@ -1,5 +1,5 @@
 #include "Instruction.h"
-
+#include <iostream>
 Instruction::Instruction() : Symbole(Identifiants::ID_INSTRUCTION)
 {
 	_symbole_string = "Instruction";
@@ -8,4 +8,5 @@ Instruction::Instruction() : Symbole(Identifiants::ID_INSTRUCTION)
 
 vector<Id*> Instruction::getIds()
 {
+	cout<<"?"<<endl;
 }

@@ -8,10 +8,14 @@ LigneDeclarationVariable::LigneDeclarationVariable(Id* idO, DeclarationVariable*
 }
 vector<Id*> LigneDeclarationVariable::getVariables()
 {
-	vector<Id*> autresVariables = declarationVariable->getVariables();
 	vector<Id*> result;
 	result.push_back(id);
+	if(declarationVariable->estVide()==false)
+	{
+		vector<Id*> autresVariables = declarationVariable->getVariables();
+
 	result.insert(result.end(),autresVariables.begin(), autresVariables.end());
+	}
 	return result;
 }
 vector<Id*> LigneDeclarationVariable::getConstantes	()

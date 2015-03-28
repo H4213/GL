@@ -9,6 +9,8 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 }
 vector<Id*> InstructionLire::getIds()
 {
+		cout<<"ici"<<endl;
+
 	vector<Id*> result;
 	result.push_back(id);
 	return result;

@@ -1,6 +1,7 @@
 #include "Automate.h"
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 Automate::Automate(string fileContent)
 {
 	lecteur = new Lecteur(fileContent);
@@ -185,10 +186,20 @@ void Automate::analyseStatique(Programme* Pr) {
         // Initialisation de vector d'instructions
 
         vector<Instruction*> instructions = Pr->getInstructions();
+			string s;
+
+stringstream out;
+out<<instructions.size();
+cout<< "I1: /I2:"<<endl;
+s=out.str();
+cout<<s<<endl;
 
         for (int i = 0;i<instructions.size(); i++)
-        {
+        {	
+
+
 			vector<Id*> identifiants = instructions[i]->getIds();
+			cout<<"la"<<endl;
 
 			switch ((int) *instructions[i]){
 

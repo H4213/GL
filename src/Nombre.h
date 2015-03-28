@@ -11,7 +11,7 @@ public:
 
 	double getValeur();
 	virtual double eval(map<string,double> &mapV);
-
+	vector<Id*> getIds();
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
 
 private:

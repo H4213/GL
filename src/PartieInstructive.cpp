@@ -12,11 +12,12 @@ PartieInstructive::PartieInstructive(Instruction *i, PartieInstructive *pI) : Sy
 vector<Instruction*> PartieInstructive::getInstructions()
 {
 	vector<Instruction*> result;
-	if (sousPartieInstructive !=NULL)
+	if (sousPartieInstructive->estVide()==false)
 	{
 			vector<Instruction*> autreInstructions = sousPartieInstructive->getInstructions();
 			result.insert(result.end(),autreInstructions.begin(),autreInstructions.end());
 	}
+
 	result.push_back(instruction);
 	return result;
    }

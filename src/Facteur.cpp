@@ -1,4 +1,5 @@
 #include "Facteur.h"
+#include <iostream>
 
 Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 {
@@ -8,4 +9,6 @@ Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 
 vector<Id*> Facteur::getIds()
 {
+		cout<<"j'arrive ici"<<endl;
+
 }

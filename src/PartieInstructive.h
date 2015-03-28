@@ -10,7 +10,7 @@ class PartieInstructive : public Symbole {
 
 public:
 	PartieInstructive(Instruction *i, PartieInstructive *pI = new PartieInstructive());
-	PartieInstructive():Symbole(Identifiants::ID_PARTIEINSTRUCTIVE){est_vide = true;}
+	PartieInstructive():Symbole(Identifiants::ID_PARTIEINSTRUCTIVE){instruction=0;sousPartieInstructive=0;est_vide = true;}
 	virtual ~PartieInstructive(){}
 	vector<Instruction*> getInstructions();
 	Instruction* getInstruction(){return instruction;}

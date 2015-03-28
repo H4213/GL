@@ -9,6 +9,8 @@ InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::I
 }
 vector<Id*> InstructionEcrire::getIds()
 {
+		cout<<"lol"<<endl;
+
 	vector<Id*> resultat= expression->getIds();
 	return resultat;
 }
