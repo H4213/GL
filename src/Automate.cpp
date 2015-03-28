@@ -163,10 +163,10 @@ void Automate::analyseStatique(Programme* Pr) {
         }
 
         // Recuperation des constantes
-		
+
 
         vector<Id*> allConstantes = Pr->getConstantes();
-		
+
         // Verification de l'unicité des conshttp://start.fedoraproject.org/tantes
         vector<string> toTest;
 
@@ -186,18 +186,9 @@ void Automate::analyseStatique(Programme* Pr) {
         // Initialisation de vector d'instructions
 
         vector<Instruction*> instructions = Pr->getInstructions();
-			string s;
-
-stringstream out;
-out<<instructions.size();
-cout<< "I1: /I2:"<<endl;
-s=out.str();
-cout<<s<<endl;
 
         for (int i = 0;i<instructions.size(); i++)
-        {	
-
-
+        {
 			vector<Id*> identifiants = instructions[i]->getIds();
 			cout<<"la"<<endl;
 

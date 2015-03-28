@@ -10,20 +10,15 @@ InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instructi
 
 vector<Id*> InstructionAffectation::getIds()
 {
-	cout<<"Indeed"<<endl;
 	vector<Id*> result;
 	result.push_back(id);
-	if((int) *expression==Identifiants::ID_EXPRESSION)
-	{
-			cout<<"?"<<endl;
-}
 	vector<Id*> temp= expression->getIds();
 	if (temp.size()!=0)
 	{
-	result.insert(result.end(),temp.begin(),temp.end());
-	}	
+        result.insert(result.end(),temp.begin(),temp.end());
+	}
 	return result;
-	
+
 }
 void InstructionAffectation::executer(map<string,double> &mapV)
 {
