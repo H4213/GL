@@ -14,7 +14,7 @@ public:
 
 
 	PartieDeclarative(Declaration *d, PartieDeclarative *pD = new PartieDeclarative());
-	PartieDeclarative():Symbole(Identifiants::ID_PARTIEDECLARATIVE){est_vide = true;}
+	PartieDeclarative():Symbole(Identifiants::ID_PARTIEDECLARATIVE){declaration=0;sousPartieDeclarative=0;est_vide = true;}
 	virtual ~PartieDeclarative(){}
 	
 	Declaration* getDeclaration(){return declaration;}

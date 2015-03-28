@@ -165,7 +165,7 @@ void Automate::analyseStatique(Programme* Pr) {
 		
 
         vector<Id*> allConstantes = Pr->getConstantes();
-
+		
         // Verification de l'unicité des conshttp://start.fedoraproject.org/tantes
         vector<string> toTest;
 
@@ -189,13 +189,14 @@ void Automate::analyseStatique(Programme* Pr) {
         for (int i = 0;i<instructions.size(); i++)
         {
 			vector<Id*> identifiants = instructions[i]->getIds();
+
 			switch ((int) *instructions[i]){
 
 			case Identifiants::ID_INSTRUCTIONAFFECTATION:
 
 			//Cas d'une instruction d'affectation
 
-
+			cout<<"Affectation"<<endl;
 				if (find(constantes.begin(), constantes.end(),identifiants[0])!=constantes.end())
 				{
 					//Affectation de constante
