@@ -4,9 +4,8 @@
 Automate::Automate(string fileContent)
 {
 	lecteur = new Lecteur(fileContent);
-
-		error_state = false;
-		success_state =false;
+    error_state = false;
+	success_state =false;
 }
 void Automate::afficherPiles()
 {
@@ -24,7 +23,6 @@ void Automate::afficherPiles()
 	deque<Etat*>::iterator ie = _pileEtats.begin();
 	while(ie != _pileEtats.end())
 	{
-		
 		cout  << (*ie)->nom()<<",";
 		ie++;
 	}
@@ -34,9 +32,9 @@ void Automate::afficherPiles()
  * */
 Programme*  Automate::analyser()
 {
-	
-		error_state = false;
-		success_state = false;
+
+	error_state = false;
+    success_state = false;
 	//libération des piles avant leurs utilisations
 	deque<Symbole*>::iterator is = _pileSymboles.begin();
 	while(is != _pileSymboles.end())
@@ -58,12 +56,10 @@ Programme*  Automate::analyser()
 
 	while((s = courant()) != NULL && !error_state && !success_state)
 	{
-		cout <<"Symbole: ";
+        cout <<"Symbole: ";
 		 courant()->print();
 		 cout << "Etat: " << sommetEtat()->nom() << endl;
-
 		 afficherPiles();
-		 cout << endl;
 		sommetEtat()->transition(*this, s);
 	}
 	return (Programme*)_pileSymboles.front();
@@ -82,7 +78,6 @@ Symbole* Automate::depilerSymbole()
 {
 	Symbole *s = _pileSymboles.front();
 	_pileSymboles.pop_front();
-
 	return s;
 }
 void Automate::empilerEtat(Etat*e)
@@ -142,9 +137,9 @@ Symbole* Automate::courant()
 	return lecteur->getNext();
 }
 
-void Automate::analyseStatique() {
+void Automate::analyseStatique(Programme* Pr) {
 
-	if (this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
+	if (1==0) //(this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
 	{
 		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
 	}
@@ -153,9 +148,10 @@ void Automate::analyseStatique() {
 		//nitialisation des maps de variables et constantes déclarés
 		map<Id*, int> variables;
 		vector<Id*> constantes;
-		Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
+		//Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
        //Recuperation des variables et verification de l'unicité
         vector<Id*> allVariables =  Pr->getVariables();
+
         for (int i = 0 ; i<allVariables.size() ; i++ )
         {
            if (variables.find(allVariables[i]) != variables.end() )
@@ -182,22 +178,22 @@ void Automate::analyseStatique() {
                 cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
             }
         }*/
-        
+
          //Verification des instructions.
         // Initialisation de vector d'instructions
-        
+
         vector<Instruction*> instructions = Pr->getInstructions();
-        
+
         for (int i = 0;i<instructions.size(); i++)
         {
 			vector<Id*> identifiants = instructions[i]->getIds();
 			switch ((int) *instructions[i]){
-			
+
 			case Identifiants::ID_INSTRUCTIONAFFECTATION:
-			
+
 			//Cas d'une instruction d'affectation
-			
-				
+
+
 				if (find(constantes.begin(), constantes.end(),identifiants[0])!=constantes.end())
 				{
 					//Affectation de constante
@@ -212,8 +208,8 @@ void Automate::analyseStatique() {
 				{
 					for( int j =1;j<identifiants.size();j++)
 					{
-						
-						if (variables.find(identifiants[j])!=variables.end()) 
+
+						if (variables.find(identifiants[j])!=variables.end())
 						{
 							if (variables.find(identifiants[j])->second==NULL)
 							{
@@ -226,13 +222,13 @@ void Automate::analyseStatique() {
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 						}
 					}
-					
-					
+
+
 				}
 				break;
-			
+
 			case Identifiants::ID_INSTRUCTIONLIRE:
-			
+
 					if(find(constantes.begin(),constantes.end(),identifiants[0])!=constantes.end())
 					{
 						cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
@@ -241,36 +237,36 @@ void Automate::analyseStatique() {
 					if(variables.find(identifiants[0])==variables.end())
 					{
 						cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
-					} 
+					}
 			break;
-			
-			case Identifiants::ID_INSTRUCTIONECRIRE:					
-				
-						
-					
+
+			case Identifiants::ID_INSTRUCTIONECRIRE:
+
+
+
 					for( int j =0;j<identifiants.size();j++)
 					{
-						
-						if ((variables.find(identifiants[j])!=variables.end())) 
+
+						if ((variables.find(identifiants[j])!=variables.end()))
 						{
 							if (variables.find(identifiants[j])->second==NULL)
 							{
 								//variable non affecté
 								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 							}
-							
+
 						}
 						else if (find(constantes.begin(),constantes.end(),identifiants[j])==constantes.end())
 						{
 						//variable non affecté
 								cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
 						}
-						
+
 					}
-					
+
 				}
 			}
-		
+
 
 	}
 }

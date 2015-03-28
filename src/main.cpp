@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
 
      Automate automate(contents);
      Programme *p = automate.analyser();
+     automate.analyseStatique(p);
 
      //p->print();
 

@@ -13,7 +13,7 @@ class Etat;
 class Automate
 {
 	public:
-		
+
 		Automate(string filename);
 		virtual ~Automate(){}
 
@@ -30,7 +30,7 @@ class Automate
 		Etat *sommetEtat();
 		void avancerLecteur();
 		Symbole* courant();
-		void analyseStatique();
+		void analyseStatique(Programme *Pr);
 
 		void afficherPiles();
 

@@ -14,10 +14,14 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 vector<Id*> PartieDeclarative::getVariables() {
 
     vector<Id*> result;
-    // Variables de la sous partie declarative
-    vector<Id*> partVariables = sousPartieDeclarative->getVariables();
-    result.insert(result.end() , partVariables.begin() , partVariables.end());
-
+    /*if (sousPartieDeclarative != 0)
+    {
+        // Variables de la sous partie declarative
+        vector<Id*> partVariables = sousPartieDeclarative->getVariables();
+        result.insert(result.end() , partVariables.begin() , partVariables.end());
+        cout << "here" << endl;
+    }
+    */
 	// Variable de la déclaration
 	vector<Id*> partVariables2=declaration->getVariables();
     result.insert(result.end() , partVariables2.begin() , partVariables2.end());

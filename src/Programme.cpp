@@ -14,7 +14,6 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	}
 
 vector<Id*> Programme::getVariables() {
-
     return partieDeclarative->getVariables();
 }
 
