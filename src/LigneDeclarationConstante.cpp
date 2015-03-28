@@ -14,6 +14,11 @@ LigneDeclarationConstante::~LigneDeclarationConstante()
 	delete declarationConstante;
 	delete val;
 }
+vector<Id*> LigneDeclarationConstante::getVariables()
+{
+	vector<Id*> result;
+	return result;
+}
 vector<Id*> LigneDeclarationConstante::getConstantes()
 {
 	vector<Id*> result;

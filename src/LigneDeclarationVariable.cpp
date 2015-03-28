@@ -14,6 +14,11 @@ vector<Id*> LigneDeclarationVariable::getVariables()
 	result.insert(result.end(),autresVariables.begin(), autresVariables.end());
 	return result;
 }
+vector<Id*> LigneDeclarationVariable::getConstantes	()
+{
+	vector<Id*> result;
+	return result;
+}
 LigneDeclarationVariable::~LigneDeclarationVariable()
 {
 	delete id;

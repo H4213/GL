@@ -162,6 +162,8 @@ void Automate::analyseStatique(Programme* Pr) {
         }
 
         // Recuperation des constantes
+		
+
         vector<Id*> allConstantes = Pr->getConstantes();
 
         // Verification de l'unicité des conshttp://start.fedoraproject.org/tantes
