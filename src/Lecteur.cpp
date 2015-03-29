@@ -94,7 +94,11 @@ vector<string> Lecteur::sepSep(string s,string sep)
         if (j== -1 )
         {
             word = s.substr(i , s.size());
-            words.push_back(word);
+            if (word!= "")
+            {
+                words.push_back(word);
+            }
+
         }
     }
 
@@ -140,7 +144,7 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
     int i;
     for (i = 0 ; i<phrase.size() ; i++ )
     {
-		//cout<<"|"+phrase[i]+"|"<<endl;
+		cout<<"|"+phrase[i]+"|"<<endl;
         if (!isTerminal(phrase[i]))
         {
             if (phrase[i].find("\n")!=-1)
