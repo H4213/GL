@@ -71,7 +71,6 @@ void Lutin::OptionA()
 
 	if (_programme != NULL )
 	{
-	    cout << "here" << endl;
 	    analyseStatique(_programme);
 	}
 }
@@ -103,8 +102,7 @@ void Lutin::OptionDefault()
     }
     else
     {
-    	cerr << "Erreur a l'ouverture du fichier "
-    	+_command.getArgument("s0") << endl;
+    	cerr << "Erreur a l'ouverture du fichier "+_command.getArgument("s0") << endl;
     	_programme = NULL;
     }
 
@@ -225,13 +223,12 @@ bool Lutin::analyseStatique(Programme* Pr)
                         else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
                         {
                             //variable non affecté
-                            cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
+                            cerr << "une valeur dans l'expression "<< identifiants[j]->getNom() << " n'est pas connue."<<endl;
                             return 1;
                         }
                     }
                 }
             }
-        cout<<"Succes de la verfification statique"<<endl;
 }
 
 Lutin::~Lutin ( )
