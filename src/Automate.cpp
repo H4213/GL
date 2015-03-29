@@ -288,6 +288,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 							{
 								//variable non affecté
 								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+								return 1;
 							}
 							
 						}
@@ -295,6 +296,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 						{
 						//variable non affecté
 								cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
+								return 1;
 						}
 						
 
@@ -304,6 +306,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 
 
 	}
-	cout<<"Succes de la verfification statique"<<endl;
+	cout<<"Succes de la verification statique"<<endl;
+	return 0;
 }
 
