@@ -230,7 +230,7 @@ Symbole* Lecteur::createSymbole(string s)
     if (s=="var")
     {
         Var *result = new Var();
-           newSym=result;
+        newSym=result;
     }
     else if (s=="const")
     {

@@ -171,7 +171,7 @@ bool Automate::analyseStatique(Programme* Pr) {
             {
 				               
 
-				  variables.insert(pair<string,int> (allVariables[i]->getNom(),-1000));
+				  variables.insert(pair<string,int> (allVariables[i]->getNom(),1));
 				  				               
 
 			}
@@ -236,7 +236,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 
 						if (variables.find(identifiants[j]->getNom())!=variables.end())
 						{
-							if (variables.find(identifiants[j]->getNom())->second==-1000)
+							if (variables.find(identifiants[j]->getNom())->second==1)
 							{
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 							return 1;
@@ -267,11 +267,17 @@ bool Automate::analyseStatique(Programme* Pr) {
 					if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
 					{
 						cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
+						return 1;
 					}
 					else
 					if(variables.find(identifiants[0]->getNom())==variables.end())
 					{
 						cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
+						return 1;
+					}
+					else
+					{
+						variables.find(identifiants[0]->getNom())->second=0;
 					}
 			break;
 
@@ -284,7 +290,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 
 						if ((variables.find(identifiants[j]->getNom())!=variables.end()))
 						{
-							if (variables.find(identifiants[j]->getNom())->second==-1000)
+							if (variables.find(identifiants[j]->getNom())->second==1)
 							{
 								//variable non affecté
 								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
@@ -306,7 +312,6 @@ bool Automate::analyseStatique(Programme* Pr) {
 
 
 	}
-	cout<<"Succes de la verification statique"<<endl;
-	return 0;
+	cout<<"Succes de la verfification statique"<<endl;
 }
 
