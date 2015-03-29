@@ -11,9 +11,8 @@ public:
 	Terme(int id):Expression(id){}
 	virtual ~Terme(){}
 	vector<Id*> getIds();
-	virtual double eval(map<string,double> &mapV){}	
+	virtual double eval(map<string,double> &mapV){}
 	void convertToExpression(){_ident=Identifiants::ID_EXPRESSION;}
-
 
 };
 

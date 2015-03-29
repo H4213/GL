@@ -12,12 +12,11 @@ DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConst
 
 void DeclarationConstante::executer(map<string,double> &mapV)
 {
-    cout << "cst" << endl;
 	if(!declarationAutreConstante->estVide())
 	{
 		declarationAutreConstante->executer(mapV);
 	}
-	//mapV[constante->getNom()] = constante->getValeur();
+	mapV[id->getNom()] = val->getValeur();
 }
 
 void DeclarationConstante::print()

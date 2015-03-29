@@ -1,2 +1,4 @@
-var x;
-lire x;
+const x = 2;
+var y;
+lire y;
+ecrire y;

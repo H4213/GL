@@ -28,11 +28,13 @@ void Programme::executer(map<string,double> &mapV)
 	{
 		partieDeclarative->executer(mapV);
 	}
+	afficherVariables();
 
 	if(!partieInstructive->estVide())
 	{
 		partieInstructive->executer(mapV);
 	}
+	afficherVariables();
 }
 
 void Programme::afficherVariables()
