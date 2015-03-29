@@ -24,11 +24,11 @@ vector<Instruction*> PartieInstructive::getInstructions()
 
 void PartieInstructive::executer(map<string,double> &mapV)
 {
-	vector<Instruction*> toExecute = getInstructions();
-	for (int i = 0 ; i<toExecute.size() ; i++)
+	if(!sousPartieInstructive->estVide())
 	{
-	    toExecute[i]->executer(mapV);
+		sousPartieInstructive->executer(mapV);
 	}
+	instruction->executer(mapV);
 
 
 }
