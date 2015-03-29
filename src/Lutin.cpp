@@ -6,10 +6,10 @@ using namespace std;
 Lutin::Lutin ( int argc, char **argv ) :
 		_command(argc, argv)
 {
-
 	bool commandOK = true;
 	bool showHelp = false;
 
+	_programme = NULL;
 
 	//on récupère le nom de fichier comme un argument sans option
 	string inputfile = _command.getArgument("s0");
