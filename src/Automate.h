@@ -15,7 +15,7 @@ class Automate
 	public:
 
 		Automate(string filename);
-		virtual ~Automate(){}
+		virtual ~Automate();
 
 		Programme* analyser();
 

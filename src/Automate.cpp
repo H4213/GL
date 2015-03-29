@@ -9,18 +9,37 @@ Automate::Automate(string fileContent)
     error_state = false;
 	success_state =false;
 }
+Automate::~Automate()
+{
+	delete lecteur;
+	deque<Symbole*>::iterator is = _pileSymboles.begin();
+	while(is != _pileSymboles.end())
+	{
+		//on suprimme tout sauf le programme construit
+		if(*(*is) != Identifiants::ID_PROGRAMME)
+		delete *is;
+		is++;
+	}/**/
+
+	deque<Etat*>::iterator ie = _pileEtats.begin();
+	while(ie != _pileEtats.end())
+	{
+		delete *ie++;
+	}
+}
+
 void Automate::afficherPiles()
 {
 	Symbole *s;
 	cout << endl << " pile symb :";
 	deque<Symbole*>::iterator is = _pileSymboles.begin();
-	/*while(is != _pileSymboles.end())
+	while(is != _pileSymboles.end())
 	{
 		s = (*is);
 		s->print();
 		cout << ",";
 		is++;
-	}*/
+	}
 	cout << endl << " pile etat :";
 	deque<Etat*>::iterator ie = _pileEtats.begin();
 	while(ie != _pileEtats.end())
@@ -58,10 +77,6 @@ Programme*  Automate::analyser()
 
 	while((s = courant()) != NULL && !error_state && !success_state)
 	{
-        cout <<"Symbole: ";
-		 courant()->print();
-		 cout << "Etat: " << sommetEtat()->nom() << endl;
-		 afficherPiles();
 		sommetEtat()->transition(*this, s);
 	}
 	return (Programme*)_pileSymboles.front();
@@ -119,14 +134,14 @@ void Automate::reduction(Symbole *s)
 void Automate::accepter()
 {
 
-	cout <<endl << "BRAVOOO! J'accepte! " << endl;
+	cout <<endl << "L'analyse syntaxique a réussi! " << endl;
 	success_state = true;;
 
 }
 void Automate::erreur()
 {
-	std::cout << "Erreur : le symbole ";  courant()->print();
-	cout <<" inattendu à l'etat " << sommetEtat()->nom();
+	std::cerr << "Erreur : le symbole ";  courant()->print();
+	cerr <<" inattendu à l'etat " << sommetEtat()->nom();
 	error_state = true;
 }
 void Automate::avancerLecteur()
