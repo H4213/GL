@@ -118,23 +118,18 @@ void Automate::depilerEtat(int n)
 
 void Automate::decalage(Symbole *s, Etat*e, bool avancerSymbole)
 {
-	cout << "decalage ";
 	empilerEtat(e);
 	empilerSymbole(s);
 	if(avancerSymbole)
 	{
 	avancerLecteur();
-	cout <<"avec consommation";
 	}
-	cout << endl;
 }
 
 void Automate::reduction(Symbole *s)
 {
 	//on empilera l'etat de Aller-A(sommetEtat, sommetSymbole)
-	cout << "reduction \n ";
 	_pileEtats.front()->transition(*this, s);
-	/*_pileSymboles.front()->print();*/
 }
 
 void Automate::accepter()
