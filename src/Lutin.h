@@ -22,7 +22,7 @@ public:
 	void OptionA();
 	void OptionE();
 	void OptionO();
-	void OptionDefault();
+	Programme* OptionDefault();
 
 private:
 	Command _command;

@@ -16,6 +16,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 	//s'il n'y pas d'option ou qu'il n'y a pas d'argument
 	if (inputfile == "")
 	{
+		cerr << "Erreur, veuillez specifier des arguments" << endl;
 		ShowHelp();
 		showHelp = true;
 	}
@@ -33,7 +34,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 
 	bool option_default = (_command.OptionCount()==0);
 
-	if (!showHelp && commandOK) //si l'aide ne doit pas s'afficher
+	if (!showHelp && commandOK) 
 	{
 		if     (option_p)OptionP();
 		else if(option_a)OptionA();
@@ -50,28 +51,55 @@ Lutin::Lutin ( int argc, char **argv ) :
 }
 void Lutin::ShowHelp()
 {
-	cerr << "help" << endl;
+	cerr << "Utilisation :" << endl;
+	cerr << "../lut [-p] [-a] [-e] [-o] source.lt" << endl;
+	cerr << "[-p] affiche le code source reconnu" << endl;
+	cerr << "[-a] analyse le programme de maniere statique" << endl;
+	cerr << "[-e] execute interactivement le programme" << endl;
+	cerr << "[-o] optimise les expressions et instructions" << endl;
 }
 void Lutin::OptionP()
 {
+	//rappeler OptionDefault pour recuperer Programme*
 	cout << "OptionP" << endl;
 }
 void Lutin::OptionA()
 {
-	
+	//rappeler OptionDefault pour recuperer Programme*
 	cout << "OptionA" << endl;
 }
 void Lutin::OptionE()
 {
+	//rappeler OptionDefault pour recuperer Programme*
 	cout << "OptionE" << endl;
 }
 void Lutin::OptionO()
 {
+	//rappeler OptionDefault pour recuperer Programme*
 	cout << "OptionO" << endl;
 }
-void Lutin::OptionDefault()
+
+Programme* Lutin::OptionDefault()
 {
-	cout << "OptionDefault" << endl;
+	FILE *fichier = NULL;
+	string contents;
+	fichier = fopen (_command.getArgument("s0").c_str(), "r");
+	if (fichier != NULL)
+    {
+			fseek(fichier, 0, SEEK_END);
+			contents.resize(ftell(fichier));
+			rewind(fichier);
+			fread(&contents[0], 1, contents.size(), fichier);
+			fclose(fichier);
+    }
+    else
+    {
+    	cerr << "Erreur a l'ouverture du fichier "
+    	+_command.getArgument("s0") << endl;
+    	return NULL;
+    }
+
+    return _automate.analyser(contents);
 }
 Lutin::~Lutin ( )
 {
