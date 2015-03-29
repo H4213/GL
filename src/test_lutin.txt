@@ -1,5 +1,9 @@
-const x = 2;
-var y;
-lire y;
-ecrire y;
-
+var a,b; 
+const c = 4;
+const d = 6;
+var e;
+a := (c+d)*3-5;
+ecrire a*b;
+b := 5;
+e := b+d;
+ecrire e;

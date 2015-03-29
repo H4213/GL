@@ -13,7 +13,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 
 	//on récupère le nom de fichier comme un argument sans option
 	string inputfile = _command.getArgument("s0");
-	//s'il n'y pas d'option ou qu'il n'y a pas d'argument
+	//s'il n'y a pas d'argument
 	if (inputfile == "")
 	{
 		cerr << "Erreur, veuillez specifier des arguments" << endl;
@@ -44,12 +44,11 @@ Lutin::Lutin ( int argc, char **argv ) :
 
 	if (!showHelp && commandOK)
 	{
-		if (option_default)OptionDefault();
+		OptionDefault();
 		if (option_o)OptionO();
 		if (option_a)OptionA();
 		if (option_e)OptionE();
 		if (option_p)OptionP();
-
 	}
 
 }
@@ -64,21 +63,20 @@ void Lutin::ShowHelp()
 }
 void Lutin::OptionP()
 {
-	//rappeler OptionDefault puis tester si _programme n'est pas NULL
+
 	cout << "OptionP" << endl;
 }
 void Lutin::OptionA()
 {
-	OptionDefault();
+
 	if (_programme != NULL )
 	{
+	    cout << "here" << endl;
 	    analyseStatique(_programme);
 	}
 }
 void Lutin::OptionE()
 {
-	//rappeler OptionDefault puis tester si _programme n'est pas NULL
-	OptionDefault();
 	if (_programme != NULL )
 	{
 	    _programme->executer();
@@ -86,7 +84,7 @@ void Lutin::OptionE()
 }
 void Lutin::OptionO()
 {
-	//rappeler OptionDefault puis tester si _programme n'est pas NULL
+
 	cout << "OptionO" << endl;
 }
 
@@ -124,7 +122,7 @@ bool Lutin::analyseStatique(Programme* Pr)
     {
         if (variables.find(allVariables[i]->getNom()) != variables.end() )
            {
-                cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
+                cerr<< "la variable " + allVariables[i]->getNom() + " est deja declaree" << endl;
 				return 1;
                 break;
             }
@@ -158,10 +156,7 @@ bool Lutin::analyseStatique(Programme* Pr)
         vector<Id*> identifiants = instructions[i]->getIds();
         switch ((int) *instructions[i]){
             case Identifiants::ID_INSTRUCTIONAFFECTATION:
-
                 //Cas d'une instruction d'affectation
-
-
                 if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
                 {
                     //Affectation de constante
@@ -201,13 +196,13 @@ bool Lutin::analyseStatique(Programme* Pr)
 
                         if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
                         {
-                            cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
+                            cerr <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
                             return 1;
                         }
                         else
                         if(variables.find(identifiants[0]->getNom())==variables.end())
                         {
-                            cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
+                            cerr <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
                             return 1;
                         }
                         else
