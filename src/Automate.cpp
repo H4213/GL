@@ -176,7 +176,7 @@ void Automate::analyseStatique(Programme* Pr) {
         }
 
         // Recuperation des constantes
-		
+
 
         vector<Id*> allConstantes = Pr->getConstantes();
 
@@ -203,9 +203,6 @@ void Automate::analyseStatique(Programme* Pr) {
 
         for (int i = 0;i<instructions.size(); i++)
         {	
-
-					
-
 			vector<Id*> identifiants = instructions[i]->getIds();
 		
 
@@ -223,7 +220,6 @@ void Automate::analyseStatique(Programme* Pr) {
 				}
 				else if(variables.find(identifiants[0]->getNom())==variables.end())
 				{
-					variables[0];
 					//La variable affecté n'est pas déclaré
 					cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
 				}
