@@ -44,7 +44,7 @@ vector<pair<Id*,Nombre*> > LigneDeclarationConstante::getConstantesValeurs()
 		result.insert(result.end(),vecTemp.begin(), vecTemp.end());
 	}
 	return result;
-
+}
 void LigneDeclarationConstante::executer(map<string,double> &mapV)
 {
      if(declarationConstante->estVide()==false)

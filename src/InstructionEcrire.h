@@ -12,6 +12,7 @@ public:
 	virtual ~InstructionEcrire(){}
 	vector<Id*> getIds();
 	Expression* getExpression(){return expression;}
+	void setExpression();
 	virtual void executer(map<string,double> &mapV);
 	void transformation(vector<pair<Id*,Nombre*> > constantes);
 

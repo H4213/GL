@@ -13,7 +13,7 @@ public:
 	vector<Id*> getIds();
 	Id* getIdentifiant(){return id;}
 	virtual void executer(map<string,double> &mapV);
-	Instruction* transformation(vector<pair<Id*,Nombre*> > constantes);
+	void transformation(vector<pair<Id*,Nombre*> > constantes);
 
 private:
 	Id *id;

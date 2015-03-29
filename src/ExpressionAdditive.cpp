@@ -10,11 +10,12 @@ ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditiv
 	_symbole_string = "ExpressionAdditive";
 }
 
-Expression* ExpressionAdditive::transformation(map<Id*,Nombre*> > constantes)
+Expression* ExpressionAdditive::transformation(vector<pair<Id*,Nombre*> > constantes)
 {
-	expression=expression->transformation(vector<pair<Id*,Nombre*> > constantes);
-	terme=terme->transformation(map<Id*,Nombre*> > constantes);
-	double valeur1;
+	expression=expression->transformation(constantes);
+	terme=terme->transformation(constantes);
+	
+	/*double valeur1;
 	double valeur2;
 	if ((int) terme ==identifiants::ID_NOMBRE)
 	{
@@ -37,7 +38,7 @@ Expression* ExpressionAdditive::transformation(map<Id*,Nombre*> > constantes)
 	{
 		terme
 		Nombre* nb = 
-	}
+	}*/
 	
 }
 vector<Id*> ExpressionAdditive::getIds()

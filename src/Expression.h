@@ -2,7 +2,7 @@
 #define EXPRESSION_H
 #include <vector>
 #include "Symbole.h"
-#include "Nombre.h"
+class Nombre;
 class Id;
 class Expression : public Symbole {
 
