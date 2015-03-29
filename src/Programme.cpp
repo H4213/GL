@@ -28,6 +28,7 @@ void Programme::executer(map<string,double> &mapV)
 	{
 		partieDeclarative->executer(mapV);
 	}
+
 	if(!partieInstructive->estVide())
 	{
 		partieInstructive->executer(mapV);

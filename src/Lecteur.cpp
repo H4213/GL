@@ -309,7 +309,7 @@ Symbole* Lecteur::createSymbole(string s)
     }
     else
     {
-       Id * result=new  Id(s);   
+       Id * result=new  Id(s);
        newSym=result;
     }
 	return newSym;

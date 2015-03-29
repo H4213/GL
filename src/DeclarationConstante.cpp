@@ -12,6 +12,7 @@ DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConst
 
 void DeclarationConstante::executer(map<string,double> &mapV)
 {
+    cout << "cst" << endl;
 	if(!declarationAutreConstante->estVide())
 	{
 		declarationAutreConstante->executer(mapV);
@@ -37,7 +38,7 @@ vector<Id*> DeclarationConstante::getConstantes()
 		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());
 	}
 	result.push_back(id);
-	
+
 	return result;
 }
 

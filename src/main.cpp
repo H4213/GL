@@ -18,6 +18,7 @@
 #include "Division.h"
 #include "Instruction.h"
 #include "InstructionLire.h"
+#include "Id.h"
 
 #include <string>
 #include <map>
@@ -33,12 +34,12 @@ int main(int argc, char *argv[])
 	/*
 	Test de l'execut de l'instruction Lire
 	*/
-	// map<string,double> m;
-	// Variable *variable = new Variable("gab");
-	// m["gab"];
-	// Instruction *i = new InstructionLire(variable);
-	// i->executer(m);
-	// cout << m["gab"] << endl;
+//	 map<string,double> m;
+//	 Id *variable = new Id("gab");
+//	 m["gab"];
+//	 Instruction *i = new InstructionLire(variable);
+//	 i->executer(m);
+//	 cout << m["gab"] << endl;
 	/*
 	Fin du test
 	*/
@@ -158,8 +159,8 @@ int main(int argc, char *argv[])
      Automate automate(contents);
      Programme *p = automate.analyser();
      automate.analyseStatique(p);
-
-     //p->print();
+     p->executer();
+     p->print();
 
     return 0;
 

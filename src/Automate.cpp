@@ -139,179 +139,131 @@ Symbole* Automate::courant()
 	return lecteur->getNext();
 }
 
-bool Automate::analyseStatique(Programme* Pr) {
-
-	if (1==0) //(this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
-	{
-		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
-		return 1;
-
-	}
-	else
-	{
-		//nitialisation des maps de variables et constantes déclarés
-		map<string, int> variables;
-		vector<string> constantes;
-			
-
-		//Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
-       //Recuperation des variables et verification de l'unicité
-        vector<Id*> allVariables =  Pr->getVariables();
-
-        for (int i = 0 ; i<allVariables.size() ; i++ )
-        {
-           if (variables.find(allVariables[i]->getNom()) != variables.end() )
+bool Automate::analyseStatique(Programme* Pr)
+{
+    //nitialisation des maps de variables et constantes déclarés
+    map<string, int> variables;
+    vector<string> constantes;
+    //Recuperation des variables et verification de l'unicité
+    vector<Id*> allVariables =  Pr->getVariables();
+    for (int i = 0 ; i<allVariables.size() ; i++ )
+    {
+        if (variables.find(allVariables[i]->getNom()) != variables.end() )
            {
                 cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
-        
 				return 1;
                 break;
             }
-            else
-            {
-				               
-
-				  variables.insert(pair<string,int> (allVariables[i]->getNom(),1));
-				  				               
-
-			}
+        else
+        {
+            variables.insert(pair<string,int> (allVariables[i]->getNom(),1));
         }
-
-        // Recuperation des constantes
-
-
-        vector<Id*> allConstantes = Pr->getConstantes();
-
-        // Verification de l'unicité des constantes
-        vector<string> toTest;
-
-        for (int i = 0 ; i<allConstantes.size() ; i++)
-       {
-            if ( find(constantes.begin(), constantes.end(), allConstantes[i]->getNom()) == constantes.end() )
-            {
-              constantes.push_back(allConstantes[i]->getNom());
-            }
-            else
-            {
-                cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
-				return 1;
-
-            }
+    }
+    // Recuperation des constantes
+    vector<Id*> allConstantes = Pr->getConstantes();
+    // Verification de l'unicité des constantes
+    vector<string> toTest;
+    for (int i = 0 ; i<allConstantes.size() ; i++)
+    {
+        if ( find(constantes.begin(), constantes.end(), allConstantes[i]->getNom()) == constantes.end() )
+        {
+            constantes.push_back(allConstantes[i]->getNom());
         }
+        else
+        {
+            cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
+            return 1;
+        }
+    }
 
-         //Verification des instructions.
-        // Initialisation de vector d'instructions
+    //Verification des instructions.
+    // Initialisation de vector d'instructions
+    vector<Instruction*> instructions = Pr->getInstructions();
+    for (int i = 0;i<instructions.size(); i++)
+        {
+        vector<Id*> identifiants = instructions[i]->getIds();
+        switch ((int) *instructions[i]){
+            case Identifiants::ID_INSTRUCTIONAFFECTATION:
 
-        vector<Instruction*> instructions = Pr->getInstructions();
-
-
-        for (int i = 0;i<instructions.size(); i++)
-        {	
-			vector<Id*> identifiants = instructions[i]->getIds();
-		
-
-			switch ((int) *instructions[i]){
-
-			case Identifiants::ID_INSTRUCTIONAFFECTATION:
-
-			//Cas d'une instruction d'affectation
-
-		
-				if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
-				{
-					//Affectation de constante
-					cout <<"On n'affecte pas une constante !!!!"<<endl;
-					return 1;
-				}
-				else if(variables.find(identifiants[0]->getNom())==variables.end())
-				{
-					//La variable affecté n'est pas déclaré
-					cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
-					return 1;
-				}
-				else
-				{
-					for( int j =1;j<identifiants.size();j++)
-					{
-
-						if (variables.find(identifiants[j]->getNom())!=variables.end())
-						{
-							if (variables.find(identifiants[j]->getNom())->second==1)
-							{
-							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
-							return 1;
-
-							}
-							
-
-						}
-						else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
-						{
-						//variable non affecté
-							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
-							return 1;
-						
-						}
-					}
-					
-							
-							variables.find(identifiants[0]->getNom())->second=0;
-							
-						
-
-				}
-				break;
-
-			case Identifiants::ID_INSTRUCTIONLIRE:
-
-					if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
-					{
-						cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
-						return 1;
-					}
-					else
-					if(variables.find(identifiants[0]->getNom())==variables.end())
-					{
-						cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
-						return 1;
-					}
-					else
-					{
-						variables.find(identifiants[0]->getNom())->second=0;
-					}
-			break;
-
-			case Identifiants::ID_INSTRUCTIONECRIRE:
+                //Cas d'une instruction d'affectation
 
 
+                if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
+                {
+                    //Affectation de constante
+                    cout <<"On n'affecte pas une constante !!!!"<<endl;
+                    return 1;
+                }
+                else if(variables.find(identifiants[0]->getNom())==variables.end())
+                {
+                    //La variable affecté n'est pas déclaré
+                    cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
+                    return 1;
+                }
+                else
+                {
+                    for( int j =1;j<identifiants.size();j++)
+                    {
+                        if (variables.find(identifiants[j]->getNom())!=variables.end())
+                        {
+                            if (variables.find(identifiants[j]->getNom())->second==1)
+                            {
+                                cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                                return 1;
+                            }
+                        }
+                        else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
+                        {
+                            //variable non affecté
+                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
+                            return 1;
+                        }
+                    }
+                    variables.find(identifiants[0]->getNom())->second=0;
+                    }
+                    break;
 
-					for( int j =0;j<identifiants.size();j++)
-					{
+                case Identifiants::ID_INSTRUCTIONLIRE:
 
-						if ((variables.find(identifiants[j]->getNom())!=variables.end()))
-						{
-							if (variables.find(identifiants[j]->getNom())->second==1)
-							{
-								//variable non affecté
-								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
-								return 1;
-							}
-							
-						}
-						else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
-						{
-						//variable non affecté
-								cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
-								return 1;
-						}
-						
-
-					}
-				}
-			}
-
-
-	}
-	cout<<"Succes de la verfification statique"<<endl;
+                        if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
+                        {
+                            cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
+                            return 1;
+                        }
+                        else
+                        if(variables.find(identifiants[0]->getNom())==variables.end())
+                        {
+                            cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
+                            return 1;
+                        }
+                        else
+                        {
+                            variables.find(identifiants[0]->getNom())->second=0;
+                    }
+                break;
+                case Identifiants::ID_INSTRUCTIONECRIRE:
+                    for( int j =0;j<identifiants.size();j++)
+                    {
+                        if ((variables.find(identifiants[j]->getNom())!=variables.end()))
+                        {
+                            if (variables.find(identifiants[j]->getNom())->second==1)
+                            {
+                            //variable non affecté
+                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                            return 1;
+                            }
+                        }
+                        else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
+                        {
+                            //variable non affecté
+                            cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
+                            return 1;
+                        }
+                    }
+                }
+            }
+        cout<<"Succes de la verfification statique"<<endl;
 }
+
+
 
