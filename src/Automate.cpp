@@ -140,7 +140,7 @@ Symbole* Automate::courant()
 }
 
 bool Automate::analyseStatique(Programme* Pr) {
-
+	Pr=transformation(Pr);
 	if (1==0) //(this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
 	{
 		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
@@ -152,11 +152,14 @@ bool Automate::analyseStatique(Programme* Pr) {
 		//nitialisation des maps de variables et constantes déclarés
 		map<string, int> variables;
 		vector<string> constantes;
-			
+
 
 		//Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
        //Recuperation des variables et verification de l'unicité
+       		cout<<"Avant le getVariables"<<endl;
+
         vector<Id*> allVariables =  Pr->getVariables();
+		cout<<"après"<<endl;
 
         for (int i = 0 ; i<allVariables.size() ; i++ )
         {
@@ -181,7 +184,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 
 
         vector<Id*> allConstantes = Pr->getConstantes();
-
+		
         // Verification de l'unicité des constantes
         vector<string> toTest;
 
@@ -201,9 +204,8 @@ bool Automate::analyseStatique(Programme* Pr) {
 
          //Verification des instructions.
         // Initialisation de vector d'instructions
-
         vector<Instruction*> instructions = Pr->getInstructions();
-
+			cout<<instructions.size()<<endl;
 
         for (int i = 0;i<instructions.size(); i++)
         {	
@@ -314,4 +316,73 @@ bool Automate::analyseStatique(Programme* Pr) {
 	}
 	cout<<"Succes de la verfification statique"<<endl;
 }
+
+Programme* Automate::transformation(Programme* Pr)
+{
+	PartieDeclarative* PartieDeclarativeVariable;
+	PartieDeclarative* PartieDeclarativeConstante;
+	
+	//Transformation de la partieDeclarative
+	vector<Id*> variables  = Pr->getVariables();
+	vector<pair<Id*,Nombre*> > constantes = Pr->getConstantesValeurs();
+	
+	DeclarationVariable* finVariable= new DeclarationVariable();
+	DeclarationConstante* finConstante= new DeclarationConstante();
+	PartieDeclarative* finPartieDeclarative= new PartieDeclarative();
+
+	vector<DeclarationVariable*> declarationsVariables;
+	vector<DeclarationConstante*> declarationsConstantes;
+	vector<PartieDeclarative*> partiesDeclaratives;
+	
+	partiesDeclaratives.push_back(finPartieDeclarative);
+	declarationsVariables.push_back(finVariable);
+	declarationsConstantes.push_back(finConstante);
+	if(variables.size()!=0)
+	{
+		
+		for (int i=0;i<variables.size()-1;i++)
+		{
+			DeclarationVariable* decl=new DeclarationVariable(new Id(variables[i]->getNom()), declarationsVariables[i]);
+			declarationsVariables.push_back(decl);
+		}
+		LigneDeclarationVariable* lDV = new LigneDeclarationVariable(new Id(variables[variables.size()-1]->getNom()),declarationsVariables[declarationsVariables.size()-1]);
+		
+		PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDV,partiesDeclaratives[partiesDeclaratives.size()-1]);
+		partiesDeclaratives.push_back(partieDeclarativeTemp);
+	}
+	if(constantes.size()!=0)
+	{
+		
+		for (int i=0;i<constantes.size()-1;i++)
+		{
+
+			DeclarationConstante* declC = new DeclarationConstante(new Id(constantes[i].first->getNom()), new Nombre(constantes[i].second->getStrValeur()), declarationsConstantes[i]);
+			declarationsConstantes.push_back(declC);
+		}
+		
+		
+		
+	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), declarationsConstantes[declarationsConstantes.size()-1],new Nombre(constantes[constantes.size()-1].second->getStrValeur()));
+	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
+	partiesDeclaratives.push_back(partieDeclarativeTemp);
+	}
+	
+	
+	
+	
+	//Partie Declarative transformé
+	// Transformation de la partie Instructive
+    vector<Instruction*> instructions = Pr->getInstructions();
+
+	for (int i=0;i<instructions.size();i++)
+	{
+		instructions[i]=instructions[i]->transformation(constantes);
+	}
+	
+	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],Pr->getPartieInstructive());
+	return PrResult;
+}
+
+
+
 

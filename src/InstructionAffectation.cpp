@@ -21,6 +21,11 @@ vector<Id*> InstructionAffectation::getIds()
 	return result;
 
 }
+
+Instruction* InstructionAffectation::transformation(vector<pair<Id*,Nombre*> > constantes)
+{
+	expression=expression->transformation(constantes);
+}
 void InstructionAffectation::executer(map<string,double> &mapV)
 {
 	/*string nom_var = variable->getNom();

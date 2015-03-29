@@ -14,7 +14,7 @@ public:
 	virtual ~ExpressionAdditive(){}
 	vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV);
-
+	Expression* transformation(vector<pair<Id*,Nombre*> > constantes);
 private:
 	Expression *expression;
 	Expression *terme;

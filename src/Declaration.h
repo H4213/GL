@@ -5,6 +5,8 @@
 #include "Variable.h"
 #include "Constante.h"
 #include "Id.h"
+#include "Nombre.h"
+
 
 class Declaration : public Symbole {
 
@@ -15,6 +17,7 @@ public:
 
     virtual vector<Id*> getVariables();
     virtual vector<Id*> getConstantes();
+    virtual vector<pair<Id*,Nombre*> > getConstantesValeurs();
 	virtual void executer(map<string,double> &mapV){}
 };
 

@@ -7,6 +7,11 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 	id = idO;	
 	_symbole_string = "InstructionEcrire";
 }
+Instruction* InstructionLire::transformation(vector<pair<Id*,Nombre*> > constantes){
+	Instruction* i;
+	return i;
+}
+
 vector<Id*> InstructionLire::getIds()
 {
 		cout<<"ici"<<endl;

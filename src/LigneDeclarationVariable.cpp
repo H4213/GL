@@ -29,3 +29,9 @@ LigneDeclarationVariable::~LigneDeclarationVariable()
 	delete id;
 	delete declarationVariable;
 }
+
+vector<pair<Id*,Nombre*> > LigneDeclarationVariable::getConstantesValeurs(){
+	vector<pair<Id*,Nombre*> > result;
+	return result;
+}
+

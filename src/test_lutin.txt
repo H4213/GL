@@ -1,2 +1,2 @@
-var x;
-lire x;
+var x,y ;
+var z;

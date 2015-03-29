@@ -31,7 +31,7 @@ void DeclarationConstante::print()
 vector<Id*> DeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
-	if (declarationAutreConstante!=NULL)
+	if (declarationAutreConstante->estVide()==false)
 	{
 		vector<Id*> autresConstantes = declarationAutreConstante->getConstantes();
 		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());
@@ -40,5 +40,19 @@ vector<Id*> DeclarationConstante::getConstantes()
 	
 	return result;
 }
+
+vector<pair<Id*,Nombre*> > DeclarationConstante::getConstantesValeurs()
+{
+	vector<pair<Id*,Nombre*> > result;
+	if (declarationAutreConstante->estVide()==false)
+	{
+		vector<pair<Id*,Nombre*> > vecTemp = declarationAutreConstante->getConstantesValeurs();
+		result.insert(result.end(),vecTemp.begin(),vecTemp.end());
+	}
+	pair<Id*, Nombre*> temp(id,val);
+	result.push_back(temp);
+	return result;
+}
+
 
 

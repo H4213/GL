@@ -4,6 +4,8 @@
 #include "Declaration.h"
 #include "DeclarationVariable.h"
 #include "Id.h"
+#include "Nombre.h"
+
 
 class LigneDeclarationVariable : public Declaration
 {
@@ -12,6 +14,7 @@ class LigneDeclarationVariable : public Declaration
 		~LigneDeclarationVariable();
 		vector<Id*> getVariables();
 		vector<Id*> getConstantes();
+		vector<pair<Id*,Nombre*> > getConstantesValeurs();
 	protected:
 		Id *id;
 		DeclarationVariable *declarationVariable;

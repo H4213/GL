@@ -2,7 +2,8 @@
 #define NOMBRE_H
 #include "Facteur.h"
 
-class Nombre : public Facteur {
+class Nombre : public Facteur 
+{
 
 public:
 	Nombre(string v);
@@ -10,8 +11,10 @@ public:
 	virtual ~Nombre(){}
 
 	double getValeur();
+	string getStrValeur();
 	virtual double eval(map<string,double> &mapV);
 	vector<Id*> getIds();
+	
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
 
 private:

@@ -5,6 +5,9 @@ Instruction::Instruction() : Symbole(Identifiants::ID_INSTRUCTION)
 	_symbole_string = "Instruction";
 	est_vide = true;
 }
+Instruction* Instruction::transformation(vector<pair<Id*,Nombre*> > constantes)
+{
+}
 
 vector<Id*> Instruction::getIds()
 {

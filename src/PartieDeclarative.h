@@ -2,10 +2,16 @@
 #define PARTIEDECLARATIVE_H
 #include "Symbole.h"
 #include "Declaration.h"
+#include "DeclarationVariable.h"
+#include "DeclarationConstante.h"
 #include "Variable.h"
 #include "Constante.h"
 #include "Id.h"
 #include <vector>
+#include "Nombre.h"
+#include "LigneDeclarationVariable.h"
+#include "LigneDeclarationConstante.h"
+
 using namespace std;
 
 class PartieDeclarative : public Symbole {
@@ -23,6 +29,7 @@ public:
 	vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV);
 	void print();
+	vector<pair<Id*,Nombre*> > getConstantesValeurs();
 
 
 private:

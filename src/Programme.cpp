@@ -10,16 +10,49 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 
 	vector<Instruction*> Programme::getInstructions()
 	{
-		return partieInstructive->getInstructions();
+	vector<Instruction*> result;
+
+		if (partieInstructive->estVide()==false)
+		{
+
+		result = partieInstructive->getInstructions();
+		}
+		return result;
 	}
 
 vector<Id*> Programme::getVariables() {
-    return partieDeclarative->getVariables();
+	vector<Id*> result;
+			cout<<" Programme1"<<endl;
+
+	if (partieDeclarative->estVide()==false)
+	{
+		cout<<" ?"<<endl;
+
+    result= partieDeclarative->getVariables();
+
+	}
+	for (int i=0; i<result.size();i++)
+	{
+				cout<<" ?"<<endl;
+
+		cout<<result[i]->getNom()<<endl;
+	}
+		cout<<" Programme2"<<endl;
+
+	return result;
+	
 }
 
 vector<Id*> Programme::getConstantes()
 {
-    return partieDeclarative->getConstantes();
+	vector<Id*> result;
+	if (partieDeclarative->estVide()==false)
+	{
+	
+    result = partieDeclarative->getConstantes();
+
+	}
+	return  result;
 }
 
 void Programme::executer(map<string,double> &mapV)
@@ -47,4 +80,16 @@ void Programme::afficherVariables()
 		}
 	}
 }
+
+vector<pair<Id*,Nombre*> > Programme::getConstantesValeurs()
+	{
+		vector<pair<Id*,Nombre*> > result;
+		if (partieDeclarative->estVide()==false)
+		{
+			result=partieDeclarative->getConstantesValeurs();
+		}
+		return result;
+	}
+
+	
 

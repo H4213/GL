@@ -23,3 +23,8 @@ vector<Id*> Nombre::getIds()
 	vector<Id*> result;
 	return result;
 }
+
+string Nombre::getStrValeur()
+{
+	return _symbole_string;
+}

@@ -15,6 +15,7 @@ public:
 	Expression* getExpression(){return expression;}
 	virtual void executer(map<string,double> &mapV);
 	vector<Id*> getIds();
+	Instruction* transformation(vector<pair<Id*,Nombre*> > constantes);
 private:
 	Id *id;
 	Expression *expression;

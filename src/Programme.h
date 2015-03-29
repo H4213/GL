@@ -21,10 +21,12 @@ public:
 	vector<Instruction*> getInstructions();
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();
+	vector<pair<Id*,Nombre*> > getConstantesValeurs();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
 	void executer(){executer(map_variables);}
 	virtual void executer(map<string,double> &mapV);
+
 
 private:
 	PartieDeclarative *partieDeclarative;

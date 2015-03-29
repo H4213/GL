@@ -31,6 +31,7 @@ class Automate
 		void avancerLecteur();
 		Symbole* courant();
 		bool analyseStatique(Programme *Pr);
+		Programme* transformation(Programme *Pr);
 
 		void afficherPiles();
 
