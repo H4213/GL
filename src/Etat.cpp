@@ -920,6 +920,7 @@ void E34::transition(Automate & automate, Symbole *s)
 
 		//non-terminaux
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E35(), false);
 		break;
 
