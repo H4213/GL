@@ -11,7 +11,7 @@ InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instructi
 
 vector<Id*> InstructionAffectation::getIds()
 {
-	cout<<"Indeed"<<endl;
+	
 	vector<Id*> result;
 	result.push_back(id);
 	vector<Id*> temp= expression->getIds();

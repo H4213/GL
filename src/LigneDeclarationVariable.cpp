@@ -1,5 +1,5 @@
 #include "LigneDeclarationVariable.h"
-
+#include <iostream>
 LigneDeclarationVariable::LigneDeclarationVariable(Id* idO, DeclarationVariable* dv)
 : Declaration(Identifiants::ID_LIGNEDECLARATIONVARIABLE)
 {
@@ -16,6 +16,7 @@ vector<Id*> LigneDeclarationVariable::getVariables()
 
 	result.insert(result.end(),autresVariables.begin(), autresVariables.end());
 	}
+
 	return result;
 }
 vector<Id*> LigneDeclarationVariable::getConstantes	()

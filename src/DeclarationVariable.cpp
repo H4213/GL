@@ -14,7 +14,7 @@ DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Sym
 vector<Id*> DeclarationVariable::getVariables()
 {
 	vector<Id*> result;
-	if (declarationAutreVariable != NULL)
+	if (declarationAutreVariable->estVide() == false)
 	{
 	vector<Id*> autresVariables=declarationAutreVariable->getVariables();
 	result.insert(result.end(), autresVariables.begin(), autresVariables.end());

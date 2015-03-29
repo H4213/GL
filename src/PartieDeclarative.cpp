@@ -16,36 +16,32 @@ vector<Id*> PartieDeclarative::getVariables() {
     vector<Id*> result;
     //Le problème de segmentation vient de là! boucle sur les sousPartieDeclarative
 
-    if (declaration == 0)
+    if (sousPartieDeclarative->estVide()==false)
     {
-        return result;
-    }
-    else
-    {
+        
     // Variables de la sous partie declarative
         vector<Id*> partVariables = sousPartieDeclarative->getVariables();
         result.insert(result.end() , partVariables.begin() , partVariables.end());
-	// Variable de la déclaration
+	
 
+	}
+// Variable de la déclaration
 	vector<Id*> partVariables2=declaration->getVariables();
 
     result.insert(result.end() , partVariables2.begin() , partVariables2.end());
     return result;
-	}
+	
 }
 vector<Id*> PartieDeclarative::getConstantes() {
 	vector<Id*> result;
-	if(declaration==0)
+	if(sousPartieDeclarative->estVide()==false)
 	{
-	return result;
-	
-	}
-	else
-	{
-	
-
 	vector<Id*> partConstantes= sousPartieDeclarative->getConstantes();
-    result.insert(result.end() , partConstantes.begin() , partConstantes.end());
+    result.insert(result.end() , partConstantes.begin() , partConstantes.end());	
+	}
+	
+	
+	
     // Variable de la déclaration
     			
 
@@ -53,7 +49,7 @@ vector<Id*> PartieDeclarative::getConstantes() {
     result.insert(result.end() , partConstantes2.begin() , partConstantes2.end());	     
 
     return result;
-	}
+
    
 
 

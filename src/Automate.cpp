@@ -1,3 +1,4 @@
+#include <deque>
 #include "Automate.h"
 #include <iostream>
 #include <algorithm>
@@ -149,7 +150,8 @@ void Automate::analyseStatique(Programme* Pr) {
 		//nitialisation des maps de variables et constantes déclarés
 		map<string, int> variables;
 		vector<string> constantes;
-		
+			
+
 		//Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
        //Recuperation des variables et verification de l'unicité
         vector<Id*> allVariables =  Pr->getVariables();
@@ -165,8 +167,11 @@ void Automate::analyseStatique(Programme* Pr) {
             }
             else
             {
-				
+				               
+
 				  variables.insert(pair<string,int> (allVariables[i]->getNom(),-1000));
+				  				               
+
 			}
         }
 
@@ -174,7 +179,7 @@ void Automate::analyseStatique(Programme* Pr) {
 		
 
         vector<Id*> allConstantes = Pr->getConstantes();
-		
+
         // Verification de l'unicité des conshttp://start.fedoraproject.org/tantes
         vector<string> toTest;
 
@@ -199,11 +204,10 @@ void Automate::analyseStatique(Programme* Pr) {
         for (int i = 0;i<instructions.size(); i++)
         {	
 
-						cout<<"la"<<endl;
+					
 
 			vector<Id*> identifiants = instructions[i]->getIds();
 		
-			cout<<"la"<<endl;
 
 			switch ((int) *instructions[i]){
 
@@ -211,8 +215,8 @@ void Automate::analyseStatique(Programme* Pr) {
 
 			//Cas d'une instruction d'affectation
 
-			cout<<"Affectation"<<endl;
-				if (find(constantes.begin(), constantes.end(),identifiants[0])!=constantes.end())
+		
+				if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
 				{
 					//Affectation de constante
 					cout <<"On n'affecte pas une constante !!!!"<<endl;
@@ -248,7 +252,7 @@ void Automate::analyseStatique(Programme* Pr) {
 
 			case Identifiants::ID_INSTRUCTIONLIRE:
 
-					if(find(constantes.begin(),constantes.end(),identifiants[0])!=constantes.end())
+					if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
 					{
 						cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
 					}
@@ -287,5 +291,6 @@ void Automate::analyseStatique(Programme* Pr) {
 
 
 	}
+	cout<<"Succes de la verfification statique"<<endl;
 }
 
