@@ -23,6 +23,7 @@ public:
 	void OptionE();
 	void OptionO();
 	void OptionDefault();
+	bool analyseStatique(Programme* Pr);
 
 private:
 	Command _command;
@@ -31,4 +32,4 @@ private:
 
 };
 
-#endif 
+#endif

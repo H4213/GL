@@ -108,7 +108,18 @@ int Command::getArgumentAsNumber ( string option )
 
 	return number;
 }
+
+map<string,string>::iterator Command::getOptionsBegin ()
+{
+    return params.begin();
+}
+map<string,string>::iterator Command::getOptionsEnd ()
+{
+    return params.end();
+}
+
+
 Command::~Command ( )
 {
-} 
+}
 

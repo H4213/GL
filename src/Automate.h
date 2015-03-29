@@ -31,12 +31,11 @@ class Automate
 		Etat *sommetEtat();
 		void avancerLecteur();
 		Symbole* courant();
-		bool analyseStatique(Programme *Pr);
 
 		void afficherPiles();
 
 	private:
-		Lecteur *lecteur; 
+		Lecteur *lecteur;
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
 		bool error_state;

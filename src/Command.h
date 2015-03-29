@@ -76,6 +76,8 @@ public:
 	 */
 	Command ( int, char** );
 
+	map<string,string>::iterator getOptionsBegin();
+    map<string,string>::iterator getOptionsEnd();
 	virtual ~Command ( );
 
 
