@@ -15,3 +15,27 @@ Symbole::Symbole()
 void Symbole::print(){
 	cout << _symbole_string << " | ";
 }
+
+bool Symbole::estConstante(string nom, map<string,double> &mapC)
+{
+	if (mapV.find(nom) == mapC.end())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool Symbole::estVariable(string nom, map<string,double> &mapV)
+{
+	if (mapV.find(nom) == mapV.end())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}

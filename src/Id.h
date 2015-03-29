@@ -5,15 +5,14 @@
 
 class Id : public Facteur {
 
-public :
+public:
 	Id(string nom);
 	Id():Facteur(Identifiants::ID_ID){}
 	virtual ~Id(){}
-	virtual void executer(map<string,double> &mapV){}
+
+	virtual void eval(map<string,double> &mapV , map<string,double> &mapC){}
 	bool operator==(const Id &);
-
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;} 
-
 	vector<Id*> getIds();
 	string getNom() const;
 };

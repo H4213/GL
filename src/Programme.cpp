@@ -8,10 +8,10 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	_symbole_string = "Programme";
 }
 
-	vector<Instruction*> Programme::getInstructions()
-	{
-		return partieInstructive->getInstructions();
-	}
+vector<Instruction*> Programme::getInstructions()
+{
+	return partieInstructive->getInstructions();
+}
 
 vector<Id*> Programme::getVariables() {
     return partieDeclarative->getVariables();
@@ -22,19 +22,33 @@ vector<Id*> Programme::getConstantes()
     return partieDeclarative->getConstantes();
 }
 
-void Programme::executer(map<string,double> &mapV)
+void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!partieDeclarative->estVide())
 	{
-		partieDeclarative->executer(mapV);
+		partieDeclarative->executer(map_variables , mapC);
 	}
+	//TODO: penser a enlever
 	afficherVariables();
 
 	if(!partieInstructive->estVide())
 	{
-		partieInstructive->executer(mapV);
+		partieInstructive->executer(mapV , mapC);
 	}
+	//TODO: penser a enlever
 	afficherVariables();
+}
+
+void Programme::print()
+{
+	if(!partieDeclarative->estVide())
+	{
+		partieDeclarative->print();
+	}
+	if(!partieInstructive->estVide())
+	{
+		partieInstructive->print();
+	}
 }
 
 void Programme::afficherVariables()

@@ -14,11 +14,13 @@ LigneDeclarationConstante::~LigneDeclarationConstante()
 	delete declarationConstante;
 	delete val;
 }
+
 vector<Id*> LigneDeclarationConstante::getVariables()
 {
 	vector<Id*> result;
 	return result;
 }
+
 vector<Id*> LigneDeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
@@ -32,11 +34,11 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 	return result;
 }
 
-void LigneDeclarationConstante::executer(map<string,double> &mapV)
+void LigneDeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
      if(declarationConstante->estVide()==false)
 	{
-		declarationConstante->executer(mapV);
+		declarationConstante->executer(mapV , mapC);
 	}
-	mapV[id->getNom()]= val->getValeur();
+	mapC[id->getNom()]= val->getValeur();
 }

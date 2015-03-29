@@ -16,7 +16,7 @@ vector<Id*> InstructionLire::getIds()
 	return result;
 
 }
-void InstructionLire::executer(map<string,double> &mapV)
+void InstructionLire::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double valeur;
 	if(not(cin >> valeur))
@@ -27,7 +27,7 @@ void InstructionLire::executer(map<string,double> &mapV)
 	else
 	{
 		string nom_var = id->getNom();
-		if (mapV.find(nom_var) != mapV.end())
+		if (estVariable(nom_var, mapV) && !estConstante(nom_var, mapC))
 		{
 			mapV[nom_var] = valeur;
 		}

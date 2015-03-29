@@ -21,16 +21,17 @@ vector<Id*> InstructionAffectation::getIds()
 	return result;
 
 }
-void InstructionAffectation::executer(map<string,double> &mapV)
+void InstructionAffectation::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
-	/*string nom_var = variable->getNom();
-	double valeur = expression->eval(mapV);
-	if (mapV.find(nom_var) != mapV.end())
+	string nom_var = id->getNom();
+	double valeur = expression->eval(mapV,mapC);
+	
+	if (estVariable(nom_var, mapV) && !estConstante(nom_var, mapC))
 	{
 		mapV[nom_var] = valeur;
 	}
 	else
 	{
 		//Erreur
-	}*/
+	}
 }

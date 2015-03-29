@@ -16,7 +16,7 @@ public:
 	
 	Id* getId(){return id;}
 	DeclarationVariable* getDeclarationVariable(){return declarationAutreVariable;}
-	virtual void executer(map<string,double> &mapV);
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	vector<Id*> getVariables();
 	void print();
 

@@ -20,12 +20,13 @@ vector<Id*> PartieDeclarative::getVariables() {
         vector<Id*> partVariables = sousPartieDeclarative->getVariables();
         result.insert(result.end() , partVariables.begin() , partVariables.end());
 	}
-// Variable de la déclaration
+	// Variable de la déclaration
 	vector<Id*> partVariables2=declaration->getVariables();
     result.insert(result.end() , partVariables2.begin() , partVariables2.end());
     return result;
 
 }
+
 vector<Id*> PartieDeclarative::getConstantes() {
 	vector<Id*> result;
 	if(sousPartieDeclarative->estVide()==false)
@@ -41,14 +42,14 @@ vector<Id*> PartieDeclarative::getConstantes() {
 }
 
 
-void PartieDeclarative::executer(map<string,double> &mapV)
+void PartieDeclarative::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!sousPartieDeclarative->estVide())
 	{
-		sousPartieDeclarative->executer(mapV);
+		sousPartieDeclarative->executer(mapV , mapC);
 
 	}
-	declaration->executer(mapV);
+	declaration->executer(mapV , mapC);
 
 }
 

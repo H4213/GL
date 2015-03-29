@@ -8,7 +8,7 @@ Constante::Constante(string n, double v):Symbole(Identifiants::ID_CONSTANTE)
 }
 
 
-double Constante::eval(map<string,double> &mapV)
+double Constante::eval(map<string,double> &mapV , map<string,double> &mapC)
 {
 	//TODO: Peut etre, plutot chercher dans la map la valeur de la constante?
 	return valeur;

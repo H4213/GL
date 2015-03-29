@@ -21,7 +21,7 @@ public:
 	PartieDeclarative* getPartieDeclarative(){return sousPartieDeclarative;}
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();
-	virtual void executer(map<string,double> &mapV);
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	void print();
 
 

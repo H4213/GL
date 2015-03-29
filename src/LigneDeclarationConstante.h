@@ -10,10 +10,12 @@ class LigneDeclarationConstante : public Declaration
 {
 	public:
 		LigneDeclarationConstante(Id*, DeclarationConstante*, Nombre*);
+		LigneDeclarationConstante():Declaration(Identifiants::ID_LIGNEDECLARATIONCONSTANTE){est_vide = true;}
 		~LigneDeclarationConstante();
+		
 		vector<Id*> getConstantes();
 		vector<Id*> getVariables();
-		void executer(map<string,double> &mapV);
+		void executer(map<string,double> &mapV , map<string,double> &mapC);
 
 	protected:
 		Id *id;

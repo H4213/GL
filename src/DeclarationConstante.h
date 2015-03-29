@@ -17,7 +17,7 @@ public:
 	
 	Id* getId(){return id;}
 	DeclarationConstante* getDeclarationConstante(){return declarationAutreConstante;}
-	virtual void executer(map<string,double> &mapV);
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	vector<Id*> getConstantes();
 	void print();
 

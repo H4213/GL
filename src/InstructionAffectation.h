@@ -13,8 +13,9 @@ public:
 	
 	Id* getId(){return id;}
 	Expression* getExpression(){return expression;}
-	virtual void executer(map<string,double> &mapV);
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	vector<Id*> getIds();
+	
 private:
 	Id *id;
 	Expression *expression;

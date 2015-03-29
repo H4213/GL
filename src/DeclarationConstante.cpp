@@ -10,13 +10,13 @@ DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConst
 	_symbole_string = "Declaration de la constante " /*+ constante->getNom()*/;
 }
 
-void DeclarationConstante::executer(map<string,double> &mapV)
+void DeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!declarationAutreConstante->estVide())
 	{
-		declarationAutreConstante->executer(mapV);
+		declarationAutreConstante->executer(mapV , mapC);
 	}
-	mapV[id->getNom()] = val->getValeur();
+	mapC[id->getNom()] = val->getValeur();
 }
 
 void DeclarationConstante::print()
@@ -31,7 +31,7 @@ void DeclarationConstante::print()
 vector<Id*> DeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
-	if (declarationAutreConstante!=NULL)
+	if (!declarationAutreConstante->estVide())
 	{
 		vector<Id*> autresConstantes = declarationAutreConstante->getConstantes();
 		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());

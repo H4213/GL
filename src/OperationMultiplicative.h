@@ -12,7 +12,7 @@ public:
 
 	operator char() const {return _operation;}
 	
-	virtual void executer(map<string,double> &mapV){}
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC){}
 
 protected:
 	char _operation;

@@ -9,7 +9,7 @@ public:
 	Variable():Symbole(Identifiants::ID_VARIABLE){est_vide = true;}
 	virtual ~Variable(){}
 	string getNom();
-	virtual double eval(map<string,double> &mapV);
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
 
 private:
 	string nom;

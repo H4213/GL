@@ -13,7 +13,7 @@ public:
 
 	string getNom();
 	double getValeur();
-	virtual double eval(map<string,double> &mapV);
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
 
 
 private:

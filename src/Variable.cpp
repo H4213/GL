@@ -7,7 +7,7 @@ Variable::Variable(string n):Symbole(Identifiants::ID_VARIABLE)
 }
 
 
-double Variable::eval(map<string,double> &mapV)
+double Variable::eval(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double valeur;
 	//Verification si la variable est declaree

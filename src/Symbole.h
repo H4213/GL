@@ -12,6 +12,9 @@ class Symbole
 		int _ident;
 		string _symbole_string;
 		bool est_vide;
+
+		bool estConstante(string nom, map<string,double> &mapC);
+		bool estVariable(string nom, map<string,double> &mapV);
 		
 	public: 
 		Symbole();
@@ -21,7 +24,7 @@ class Symbole
 		operator int() const {return _ident;}
 		bool estVide(){return est_vide;}
 		virtual void print();
-		virtual void executer(map<string,double> &mapV){}
+		virtual void executer(map<string,double> &mapV , map<string,double> &mapC){}
 };
 
 #endif
