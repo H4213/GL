@@ -141,8 +141,9 @@ void Automate::accepter()
 }
 void Automate::erreur()
 {
-	std::cerr << "Erreur : le symbole ";  courant()->print();
-	cerr <<" inattendu à l'etat " << sommetEtat()->nom();
+	cerr << "L'analyse syntaxique a échouée pres du Symbole '";
+	courant()->print();
+	cerr << "'";
 	error_state = true;
 }
 void Automate::avancerLecteur()
