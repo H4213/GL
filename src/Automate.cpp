@@ -3,15 +3,16 @@
 #include <iostream>
 #include <algorithm>
 #include <sstream>
-Automate::Automate(string fileContent)
+
+
+Automate::Automate()
 {
-	lecteur = new Lecteur(fileContent);
     error_state = false;
 	success_state =false;
 }
+
 Automate::~Automate()
 {
-	delete lecteur;
 	deque<Symbole*>::iterator is = _pileSymboles.begin();
 	while(is != _pileSymboles.end())
 	{
@@ -48,11 +49,10 @@ void Automate::afficherPiles()
 		ie++;
 	}
 }
-/* /!\Attention /!\
- * Le lecteur n'est pas reinitialisé à la deuxième analyse
- * */
-Programme*  Automate::analyser()
+
+Programme*  Automate::analyser(string fileContent)
 {
+	lecteur = new Lecteur(fileContent);
 
 	error_state = false;
     success_state = false;
@@ -79,6 +79,8 @@ Programme*  Automate::analyser()
 	{
 		sommetEtat()->transition(*this, s);
 	}
+	delete lecteur;
+
 	return (Programme*)_pileSymboles.front();
 
 }
@@ -87,20 +89,24 @@ Etat *Automate::sommetEtat()
 {
 	return _pileEtats.front();
 }
+
 void Automate::empilerSymbole(Symbole*s)
 {
 	this->_pileSymboles.push_front(s);
 }
+
 Symbole* Automate::depilerSymbole()
 {
 	Symbole *s = _pileSymboles.front();
 	_pileSymboles.pop_front();
 	return s;
 }
+
 void Automate::empilerEtat(Etat*e)
 {
 	this->_pileEtats.push_front(e);
 }
+
 void Automate::depilerEtat(int n)
 {
 	for(int i = 0; i < n;i++)

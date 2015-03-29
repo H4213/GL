@@ -1,25 +1,6 @@
-#include "Automate.h"
+#include "Lutin.h"
 
-#include "Symbole.h"
-#include "DeclarationConstante.h"
-#include "DeclarationVariable.h"
-#include "Programme.h"
-#include "PartieDeclarative.h"
-#include "PartieInstructive.h"
-#include "Expression.h"
-#include "Constante.h"
-#include "Variable.h"
-#include "Nombre.h"
-#include "ExpressionAdditive.h"
-#include "ExpressionMultiplicative.h"
-#include "ExpressionParenthesee.h"
-#include "Addition.h"
-#include "Multiplication.h"
-#include "Division.h"
-#include "Instruction.h"
-#include "InstructionLire.h"
-#include "Id.h"
-
+#include "Command.h"
 #include <string>
 #include <map>
 #include <vector>
@@ -118,9 +99,11 @@ int main(int argc, char *argv[])
 	*/
 
 // --------------------------------------------------------------------
+	Lutin monLutin(argc, argv);
 
+	
 
-	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
+	/*// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 
 	FILE *fichier = NULL;
 	string contents;
@@ -156,11 +139,11 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-     Automate automate(contents);
-     Programme *p = automate.analyser();
+     Automate automate;
+     Programme *p = automate.analyser(contents);
      automate.analyseStatique(p);
      p->executer();
-     p->print();
+     p->print();*/
 
     return 0;
 

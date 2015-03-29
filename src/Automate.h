@@ -7,6 +7,7 @@
 #include "Etat.h"
 #include "Identifiants.h"
 #include "Lecteur.h"
+
 using namespace std;
 
 class Etat;
@@ -14,10 +15,10 @@ class Automate
 {
 	public:
 
-		Automate(string filename);
+		Automate();
 		virtual ~Automate();
 
-		Programme* analyser();
+		Programme* analyser(string);
 
 		void decalage(Symbole *s, Etat*, bool);
 		void reduction(Symbole*);
@@ -35,9 +36,9 @@ class Automate
 		void afficherPiles();
 
 	private:
+		Lecteur *lecteur; 
 		deque<Symbole*> _pileSymboles;
 		deque<Etat*> _pileEtats;
-		Lecteur *lecteur;
 		bool error_state;
 		bool success_state;
 
