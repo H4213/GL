@@ -60,26 +60,26 @@ void Lutin::ShowHelp()
 }
 void Lutin::OptionP()
 {
-	//rappeler OptionDefault pour recuperer Programme*
+	//rappeler OptionDefault puis tester si _programme n'est pas NULL
 	cout << "OptionP" << endl;
 }
 void Lutin::OptionA()
 {
-	//rappeler OptionDefault pour recuperer Programme*
+	//rappeler OptionDefault puis tester si _programme n'est pas NULL
 	cout << "OptionA" << endl;
 }
 void Lutin::OptionE()
 {
-	//rappeler OptionDefault pour recuperer Programme*
+	//rappeler OptionDefault puis tester si _programme n'est pas NULL
 	cout << "OptionE" << endl;
 }
 void Lutin::OptionO()
 {
-	//rappeler OptionDefault pour recuperer Programme*
+	//rappeler OptionDefault puis tester si _programme n'est pas NULL
 	cout << "OptionO" << endl;
 }
 
-Programme* Lutin::OptionDefault()
+void Lutin::OptionDefault()
 {
 	FILE *fichier = NULL;
 	string contents;
@@ -96,12 +96,13 @@ Programme* Lutin::OptionDefault()
     {
     	cerr << "Erreur a l'ouverture du fichier "
     	+_command.getArgument("s0") << endl;
-    	return NULL;
+    	_programme = NULL;
     }
 
-    return _automate.analyser(contents);
+    _programme =  _automate.analyser(contents);
 }
 Lutin::~Lutin ( )
 {
-
+	if(_programme != NULL)
+		delete _programme;
 }

@@ -22,11 +22,12 @@ public:
 	void OptionA();
 	void OptionE();
 	void OptionO();
-	Programme* OptionDefault();
+	void OptionDefault();
 
 private:
 	Command _command;
 	Automate _automate;
+	Programme *_programme;
 
 };
 
