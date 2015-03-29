@@ -139,11 +139,13 @@ Symbole* Automate::courant()
 	return lecteur->getNext();
 }
 
-void Automate::analyseStatique(Programme* Pr) {
+bool Automate::analyseStatique(Programme* Pr) {
 
 	if (1==0) //(this->_pileSymboles.size() != 1  ||  *_pileSymboles.front() != Identifiants::ID_PROGRAMME)
 	{
 		cout<<"Veuillez proceder à l'analyse syntaxique"<<endl;
+		return 1;
+
 	}
 	else
 	{
@@ -162,7 +164,7 @@ void Automate::analyseStatique(Programme* Pr) {
            {
                 cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
         
-
+				return 1;
                 break;
             }
             else
@@ -180,20 +182,22 @@ void Automate::analyseStatique(Programme* Pr) {
 
         vector<Id*> allConstantes = Pr->getConstantes();
 
-        // Verification de l'unicité des conshttp://start.fedoraproject.org/tantes
+        // Verification de l'unicité des constantes
         vector<string> toTest;
 
-  /*      for (int i = 0 ; i<allConstantes.size() ; i++)
+        for (int i = 0 ; i<allConstantes.size() ; i++)
        {
-            if ( find(constantes.begin(), constantes.end(), allConstantes[i]) == toTest.end() )
+            if ( find(constantes.begin(), constantes.end(), allConstantes[i]->getNom()) == constantes.end() )
             {
-              constantes.insert(constantes.end(), allConstantes.begin() + i , allConstantes.begin() + 2 );
+              constantes.push_back(allConstantes[i]->getNom());
             }
             else
             {
                 cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
+				return 1;
+
             }
-        }*/
+        }
 
          //Verification des instructions.
         // Initialisation de vector d'instructions
@@ -217,11 +221,13 @@ void Automate::analyseStatique(Programme* Pr) {
 				{
 					//Affectation de constante
 					cout <<"On n'affecte pas une constante !!!!"<<endl;
+					return 1;
 				}
 				else if(variables.find(identifiants[0]->getNom())==variables.end())
 				{
 					//La variable affecté n'est pas déclaré
 					cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
+					return 1;
 				}
 				else
 				{
@@ -233,15 +239,25 @@ void Automate::analyseStatique(Programme* Pr) {
 							if (variables.find(identifiants[j]->getNom())->second==-1000)
 							{
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+							return 1;
+
 							}
+							
+
 						}
 						else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
 						{
 						//variable non affecté
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+							return 1;
+						
 						}
 					}
-
+					
+							
+							variables.find(identifiants[0]->getNom())->second=0;
+							
+						
 
 				}
 				break;
@@ -273,13 +289,14 @@ void Automate::analyseStatique(Programme* Pr) {
 								//variable non affecté
 								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 							}
-
+							
 						}
 						else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
 						{
 						//variable non affecté
 								cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
 						}
+						
 
 					}
 				}

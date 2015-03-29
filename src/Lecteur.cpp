@@ -118,7 +118,7 @@ vector<string> Lecteur::sepSym(string s , string sym)
         {
             words.push_back(sym);
         }
-        i=j+1;
+        i=j+sym.size();
         j = s.find_first_of(sym,i);
         if (j == -1)
         {
@@ -139,6 +139,7 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
     int i;
     for (i = 0 ; i<phrase.size() ; i++ )
     {
+		cout<<"|"+phrase[i]+"|"<<endl;
         if (!isTerminal(phrase[i]))
         {
             if (phrase[i].find("\n")!=-1)

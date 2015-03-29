@@ -30,7 +30,7 @@ class Automate
 		Etat *sommetEtat();
 		void avancerLecteur();
 		Symbole* courant();
-		void analyseStatique(Programme *Pr);
+		bool analyseStatique(Programme *Pr);
 
 		void afficherPiles();
 
