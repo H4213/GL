@@ -303,5 +303,7 @@ Programme* Lutin::transformation(Programme* Pr)
 Lutin::~Lutin ( )
 {
 	if(_programme != NULL)
+	{
 		delete _programme;
+	}
 }
