@@ -32,6 +32,7 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 	return result;
 }
 
+<<<<<<< HEAD
 
 vector<pair<Id*,Nombre*> > LigneDeclarationConstante::getConstantesValeurs()
 {	
@@ -45,6 +46,8 @@ vector<pair<Id*,Nombre*> > LigneDeclarationConstante::getConstantesValeurs()
 	}
 	return result;
 }
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 void LigneDeclarationConstante::executer(map<string,double> &mapV)
 {
      if(declarationConstante->estVide()==false)

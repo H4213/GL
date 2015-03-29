@@ -31,8 +31,12 @@ class Automate
 		Etat *sommetEtat();
 		void avancerLecteur();
 		Symbole* courant();
+<<<<<<< HEAD
 		bool analyseStatique(Programme *Pr);
 		Programme* transformation(Programme *Pr);
+=======
+
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 		void afficherPiles();
 
 	private:

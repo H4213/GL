@@ -141,9 +141,16 @@ void Automate::accepter()
 }
 void Automate::erreur()
 {
+<<<<<<< HEAD
 	cerr << "L'analyse syntaxique a échouée pres du Symbole '";
 	courant()->print();
 	cerr << "'";
+=======
+	Symbole *c = courant();
+	cerr << "Erreur syntaxique ("<<
+	c->getLigne()<< ":" << c->getColonne()<<")" <<
+	 " symbole '" << c->nom() << "' inattendu" << endl;
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 	error_state = true;
 }
 void Automate::avancerLecteur()
@@ -159,5 +166,8 @@ Symbole* Automate::courant()
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 

@@ -38,6 +38,7 @@ vector<Id*> DeclarationConstante::getConstantes()
 	}
 	result.push_back(id);
 
+<<<<<<< HEAD
 	return result;
 }
 
@@ -51,6 +52,8 @@ vector<pair<Id*,Nombre*> > DeclarationConstante::getConstantesValeurs()
 	}
 	pair<Id*, Nombre*> temp(id,val);
 	result.push_back(temp);
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 	return result;
 }
 

@@ -9,12 +9,15 @@ InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::I
 }
 void InstructionEcrire::transformation(vector<pair<Id*,Nombre*> > constantes)
 {
+<<<<<<< HEAD
 	expression=expression->transformation(constantes);
 	return;
 }
 
 vector<Id*> InstructionEcrire::getIds()
 {
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 	vector<Id*> resultat= expression->getIds();
 	return resultat;
 }

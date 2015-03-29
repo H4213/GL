@@ -31,6 +31,7 @@ LigneDeclarationVariable::~LigneDeclarationVariable()
 	delete declarationVariable;
 }
 
+<<<<<<< HEAD
 
 vector<pair<Id*,Nombre*> > LigneDeclarationVariable::getConstantesValeurs(){
 	vector<pair<Id*,Nombre*> > result;
@@ -38,6 +39,8 @@ vector<pair<Id*,Nombre*> > LigneDeclarationVariable::getConstantesValeurs(){
 }
 
 
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 void LigneDeclarationVariable::executer(map<string,double> &mapV)
 {
     if(declarationVariable->estVide()==false)
@@ -46,4 +49,7 @@ void LigneDeclarationVariable::executer(map<string,double> &mapV)
 	}
     mapV[id->getNom()]= INT_MAX;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49

@@ -24,7 +24,11 @@ public:
 	void OptionO();
 	void OptionDefault();
 	bool analyseStatique(Programme* Pr);
+<<<<<<< HEAD
 	Programme* transformation(Programme* Pr);
+=======
+
+>>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
 private:
 	Command _command;
 	Automate _automate;

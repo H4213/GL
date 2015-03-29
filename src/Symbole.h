@@ -25,6 +25,12 @@ class Symbole
 		virtual void print();
 		virtual void executer(map<string,double> &mapV){}
 		virtual void setEmplacement(int l , int c);
+
+		int getLigne(){return ligne;}
+		int getColonne(){return colonne;}
+
+		string nom(){return _symbole_string;}
+
 };
 
 #endif
