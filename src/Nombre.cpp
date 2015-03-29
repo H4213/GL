@@ -20,7 +20,7 @@ double Nombre::getValeur()
 }
 vector<Id*> Nombre::getIds()
 {
-	cout<<"j'arrive ici"<<endl;
+	cout<<"Nombbre"<<endl;
 	vector<Id*> result;
 	return result;
 }

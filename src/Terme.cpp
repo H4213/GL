@@ -10,3 +10,5 @@ vector<Id*> Terme::getIds()
 {
 	cout<<"terme"<<endl;
 }
+
+

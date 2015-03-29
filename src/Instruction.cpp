@@ -8,5 +8,5 @@ Instruction::Instruction() : Symbole(Identifiants::ID_INSTRUCTION)
 
 vector<Id*> Instruction::getIds()
 {
-	cout<<"?"<<endl;
+	cout<<"Instruction"<<endl;
 }

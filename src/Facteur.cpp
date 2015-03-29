@@ -7,8 +7,8 @@ Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 	est_vide = true;
 }
 
+
 vector<Id*> Facteur::getIds()
 {
-		cout<<"j'arrive ici"<<endl;
-
+	cout<<"Facteur"<<endl;
 }

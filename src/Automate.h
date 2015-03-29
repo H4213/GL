@@ -1,6 +1,6 @@
 #ifndef AUTOMATE_H
 #define AUTOMATE_H
-#include <deque>
+
 #include <vector>
 #include "Symbole.h"
 #include "Programme.h"

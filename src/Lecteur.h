@@ -40,8 +40,8 @@ class Lecteur
 {
 
     private :
-        vector<Symbole>::iterator readHeader;
-        vector<Symbole> symTerminaux;
+        vector<Symbole*>::iterator readHeader;
+        vector<Symbole*> symTerminaux;
 
 		bool isSimpleSym (string s);
         bool isDoubleSym (string s);
@@ -57,7 +57,7 @@ class Lecteur
         vector<string> sepSep(string s, string sep);
         vector<string> sepSym (string s , string sym);
         vector<string> sepWords (vector<string> s);
-        Symbole createSymbole(string s);
+        Symbole* createSymbole(string s);
 
     public :
         Lecteur(){}

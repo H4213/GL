@@ -1,6 +1,7 @@
 #include "InstructionAffectation.h"
 #include <iostream>
 #include "Identifiants.h"
+#include "Nombre.h"
 InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
 {
 	id = idO;
@@ -13,10 +14,6 @@ vector<Id*> InstructionAffectation::getIds()
 	cout<<"Indeed"<<endl;
 	vector<Id*> result;
 	result.push_back(id);
-	if((int) *expression==Identifiants::ID_EXPRESSION)
-	{
-			cout<<"?"<<endl;
-}
 	vector<Id*> temp= expression->getIds();
 	if (temp.size()!=0)
 	{

@@ -13,7 +13,7 @@ Lecteur::Lecteur (string s)
     cout << symTerminaux.size() << endl;
     for ( i = 0 ; i< symTerminaux.size() ; i++)
     {
-        symTerminaux[i].print();
+        symTerminaux[i]->print();
     }
     readHeader = symTerminaux.begin();
 }
@@ -211,7 +211,7 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
         }
         else
         {
-            Symbole newSymbole = createSymbole(phrase[i]);
+            Symbole *newSymbole = createSymbole(phrase[i]);
             result.push_back(phrase[i]);
             symTerminaux.push_back(newSymbole);
             //newSymbole.print();
@@ -219,78 +219,95 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
     }
     return result;
 }
-Symbole Lecteur::createSymbole(string s)
+Symbole* Lecteur::createSymbole(string s)
 {
-    Symbole newSym;
+    Symbole* newSym;
     if (s=="var")
     {
-        newSym = Var();
+        Var *result = new Var();
+           newSym=result;
     }
     else if (s=="const")
     {
-        newSym = Const();
+     Const * result = new Const();
+        newSym=result;
     }
     else if (s=="ecrire")
     {
-        newSym = Ecrire();
+      Ecrire * result = new Ecrire();
+         newSym=result;
     }
     else if (s=="lire")
     {
-       newSym = Lire();
+      Lire * result = new Lire();
+         newSym=result;
     }
     else if (s==":=")
     {
-        newSym = Affectation();
+      Affectation  * result = new Affectation();
+         newSym=result;
     }
     else if (s=="=")
     {
-        newSym = Egal();
+      Egal  * result = new Egal();
+         newSym=result;
     }
     else if (s=="(")
     {
-        newSym = OuvreParenthese();// Egal();
+       OuvreParenthese * result =new  OuvreParenthese();// Egal();
+          newSym=result;
     }
     else if (s==")")
     {
-        newSym = FermeParenthese();// Egal();
+       FermeParenthese * result = new FermeParenthese();// Egal();
+          newSym=result;
     }
     else if (s==";")
     {
-        newSym = PointVirgule();
+        PointVirgule * result= new PointVirgule();
+           newSym=result;
     }
     else if (s==",")
     {
-        newSym = Virgule();
+       Virgule * result=new Virgule();
+          newSym=result;
     }
     else if (s=="+")
     {
-        newSym = Addition();
+      Addition  * result=new Addition();
+         newSym=result;
     }
     else if (s=="-")
     {
-        newSym = Soustraction();
+       Soustraction * result= new Soustraction();
+          newSym=result;
     }
     else if (s=="/")
     {
-        newSym = Division();
+       Division * result= new Division();
+          newSym=result;
     }
     else if (s=="*")
     {
-        newSym = Multiplication();
+       Multiplication * result= new Multiplication();
+          newSym=result;
     }
     else if (isValSym(s))
     {
-        newSym = Nombre(s);
+        Nombre * result= new Nombre(s);
+           newSym=result;
     }
     else if (s=="$")
     {
-        newSym = EndOfFile();
+       EndOfFile * result= new EndOfFile();
+       newSym=result;
     }
     else
     {
-        newSym = Id(s);
+       Id * result=new  Id(s);   
+       newSym=result;
     }
-   return newSym;
+	return newSym;
 }
 
 
@@ -298,7 +315,7 @@ Symbole* Lecteur::getNext()
 {
 	if ( readHeader < symTerminaux.end() )
 	{
-		return &*readHeader;
+		return *readHeader;
 
 	}
 	else

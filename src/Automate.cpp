@@ -147,19 +147,27 @@ void Automate::analyseStatique(Programme* Pr) {
 	else
 	{
 		//nitialisation des maps de variables et constantes déclarés
-		map<Id*, int> variables;
-		vector<Id*> constantes;
+		map<string, int> variables;
+		vector<string> constantes;
+		
 		//Programme* Pr =dynamic_cast<Programme*> (_pileSymboles.front());
        //Recuperation des variables et verification de l'unicité
         vector<Id*> allVariables =  Pr->getVariables();
 
         for (int i = 0 ; i<allVariables.size() ; i++ )
         {
-           if (variables.find(allVariables[i]) != variables.end() )
+           if (variables.find(allVariables[i]->getNom()) != variables.end() )
            {
                 cout<< "Erreur : la variable " + allVariables[i]->getNom() + " est déclaré plus d'une fois" << endl;
+        
+
                 break;
             }
+            else
+            {
+				
+				  variables.insert(pair<string,int> (allVariables[i]->getNom(),-1000));
+			}
         }
 
         // Recuperation des constantes
@@ -186,19 +194,15 @@ void Automate::analyseStatique(Programme* Pr) {
         // Initialisation de vector d'instructions
 
         vector<Instruction*> instructions = Pr->getInstructions();
-			string s;
 
-stringstream out;
-out<<instructions.size();
-cout<< "I1: /I2:"<<endl;
-s=out.str();
-cout<<s<<endl;
 
         for (int i = 0;i<instructions.size(); i++)
         {	
 
+						cout<<"la"<<endl;
 
 			vector<Id*> identifiants = instructions[i]->getIds();
+		
 			cout<<"la"<<endl;
 
 			switch ((int) *instructions[i]){
@@ -213,8 +217,9 @@ cout<<s<<endl;
 					//Affectation de constante
 					cout <<"On n'affecte pas une constante !!!!"<<endl;
 				}
-				else if(variables.find(identifiants[0])==variables.end())
+				else if(variables.find(identifiants[0]->getNom())==variables.end())
 				{
+					variables[0];
 					//La variable affecté n'est pas déclaré
 					cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
 				}
@@ -223,14 +228,14 @@ cout<<s<<endl;
 					for( int j =1;j<identifiants.size();j++)
 					{
 
-						if (variables.find(identifiants[j])!=variables.end())
+						if (variables.find(identifiants[j]->getNom())!=variables.end())
 						{
-							if (variables.find(identifiants[j])->second==NULL)
+							if (variables.find(identifiants[j]->getNom())->second==-1000)
 							{
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 							}
 						}
-						else if (find(constantes.begin(), constantes.end(), identifiants[j])==constantes.end())
+						else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
 						{
 						//variable non affecté
 							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
@@ -248,7 +253,7 @@ cout<<s<<endl;
 						cout <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
 					}
 					else
-					if(variables.find(identifiants[0])==variables.end())
+					if(variables.find(identifiants[0]->getNom())==variables.end())
 					{
 						cout <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
 					}
@@ -261,23 +266,22 @@ cout<<s<<endl;
 					for( int j =0;j<identifiants.size();j++)
 					{
 
-						if ((variables.find(identifiants[j])!=variables.end()))
+						if ((variables.find(identifiants[j]->getNom())!=variables.end()))
 						{
-							if (variables.find(identifiants[j])->second==NULL)
+							if (variables.find(identifiants[j]->getNom())->second==-1000)
 							{
 								//variable non affecté
 								cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
 							}
 
 						}
-						else if (find(constantes.begin(),constantes.end(),identifiants[j])==constantes.end())
+						else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
 						{
 						//variable non affecté
 								cout << identifiants[j]->getNom()+" n'a pas été déclaré"<<endl;
 						}
 
 					}
-
 				}
 			}
 
