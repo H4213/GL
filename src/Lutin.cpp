@@ -1,7 +1,7 @@
-using namespace std;
+#include "Lutin.h"
 #include <iostream>
 
-#include "Lutin.h"
+using namespace std;
 
 Lutin::Lutin ( int argc, char **argv ) :
 		_command(argc, argv)
@@ -277,7 +277,7 @@ Programme* Lutin::transformation(Programme* Pr)
 		
 		
 		
-	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), declarationsConstantes[declarationsConstantes.size()-1],new Nombre(constantes[constantes.size()-1].second->getStrValeur()));
+	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), new Nombre(constantes[constantes.size()-1].second->getStrValeur()), declarationsConstantes[declarationsConstantes.size()-1]);
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
