@@ -2,8 +2,6 @@
 #define DECLARATION_H
 #include "Symbole.h"
 #include <vector>
-#include "Variable.h"
-#include "Constante.h"
 #include "Id.h"
 #include "Nombre.h"
 

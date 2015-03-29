@@ -63,8 +63,10 @@ void Lutin::ShowHelp()
 }
 void Lutin::OptionP()
 {
-
-	cout << "OptionP" << endl;
+	if (_programme != NULL )
+	{
+	    _programme->print();
+	}
 }
 void Lutin::OptionA()
 {
@@ -83,8 +85,15 @@ void Lutin::OptionE()
 }
 void Lutin::OptionO()
 {
-
-	cout << "OptionO" << endl;
+	if (_programme != NULL )
+	{
+	    if(_command.OptionExists("-p"))
+	    {
+	    	/*Programme *newProgramme = transformation(_programme);
+	    	newProgramme->print();
+	    	delete newProgramme;*/
+	    }
+	}
 }
 
 void Lutin::OptionDefault()

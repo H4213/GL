@@ -3,7 +3,6 @@
 #include "Symbole.h"
 #include "PartieDeclarative.h"
 #include "PartieInstructive.h"
-#include "Variable.h"
 
 using namespace std;
 
