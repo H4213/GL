@@ -9,11 +9,14 @@
 class LigneDeclarationConstante : public Declaration
 {
 	public:
-		LigneDeclarationConstante(Id*, DeclarationConstante*, Nombre*);
+		LigneDeclarationConstante(Id*, Nombre*, DeclarationConstante* = new DeclarationConstante());
+		LigneDeclarationConstante():Declaration(Identifiants::ID_LIGNEDECLARATIONCONSTANTE){est_vide = true;}
 		~LigneDeclarationConstante();
+		
 		vector<Id*> getConstantes();
 		vector<Id*> getVariables();
-		void executer(map<string,double> &mapV);
+		virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+		virtual void print();
 
 		vector<pair<Id*,Nombre*> > getConstantesValeurs();
 

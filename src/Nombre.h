@@ -12,11 +12,10 @@ public:
 
 	double getValeur();
 	string getStrValeur();
-	virtual double eval(map<string,double> &mapV);
-	vector<Id*> getIds();
-	
+	vector<Id*> getIds();	
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
-
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
+	
 private:
 	double valeur;
 

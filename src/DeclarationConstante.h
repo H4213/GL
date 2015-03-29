@@ -17,11 +17,10 @@ public:
 	
 	Id* getId(){return id;}
 	DeclarationConstante* getDeclarationConstante(){return declarationAutreConstante;}
-	virtual void executer(map<string,double> &mapV);
 	vector<Id*> getConstantes();
-	void print();
 	vector<pair<Id*,Nombre*> > getConstantesValeurs();
-
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+	virtual void print();
 
 private:
 	Id* id;

@@ -7,6 +7,7 @@ InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::I
 	expression = e;
 	_symbole_string = "InstructionEcrire";
 }
+
 void InstructionEcrire::transformation(vector<pair<Id*,Nombre*> > constantes)
 {
 
@@ -19,8 +20,16 @@ vector<Id*> InstructionEcrire::getIds()
 	vector<Id*> resultat= expression->getIds();
 	return resultat;
 }
-void InstructionEcrire::executer(map<string,double> &mapV)
+
+void InstructionEcrire::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
-	cout << expression->eval(mapV) << endl;
+	cout << expression->eval(mapV,mapC) << endl;
+}
+
+void InstructionEcrire::print()
+{
+	cout<<"ecrire ";
+	expression->print();
+	cout<<" ;"<<endl;
 }
 

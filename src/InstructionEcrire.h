@@ -10,12 +10,13 @@ public:
 	InstructionEcrire(Expression *e);
 	InstructionEcrire():Instruction(Identifiants::ID_INSTRUCTIONECRIRE){est_vide = true;}
 	virtual ~InstructionEcrire(){}
+	
 	vector<Id*> getIds();
 	Expression* getExpression(){return expression;}
 	void setExpression();
-	virtual void executer(map<string,double> &mapV);
 	void transformation(vector<pair<Id*,Nombre*> > constantes);
-
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+	virtual void print();
 
 private:
 	Expression *expression;

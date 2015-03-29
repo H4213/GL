@@ -12,7 +12,7 @@ PartieInstructive::PartieInstructive(Instruction *i, PartieInstructive *pI) : Sy
 vector<Instruction*> PartieInstructive::getInstructions()
 {
 	vector<Instruction*> result;
-	if (sousPartieInstructive->estVide()==false)
+	if (!sousPartieInstructive->estVide())
 	{
 			vector<Instruction*> autreInstructions = sousPartieInstructive->getInstructions();
 			result.insert(result.end(),autreInstructions.begin(),autreInstructions.end());
@@ -22,22 +22,20 @@ vector<Instruction*> PartieInstructive::getInstructions()
 	return result;
    }
 
-void PartieInstructive::executer(map<string,double> &mapV)
+void PartieInstructive::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!sousPartieInstructive->estVide())
 	{
-		sousPartieInstructive->executer(mapV);
+		sousPartieInstructive->executer(mapV , mapC);
 	}
-	instruction->executer(mapV);
-
-
+	instruction->executer(mapV , mapC);
 }
 
 void PartieInstructive::print()
 {
-	cout << _symbole_string << endl;
 	if(!sousPartieInstructive->estVide())
 	{
 		sousPartieInstructive->print();
 	}
+	instruction->print();
 }

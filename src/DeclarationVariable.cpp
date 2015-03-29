@@ -1,7 +1,6 @@
 #include "DeclarationVariable.h"
 #include <climits>
 #include <iostream>
-using namespace std;
 
 
 DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Symbole(Identifiants::ID_DECLARATIONVARIABLE)
@@ -22,19 +21,20 @@ vector<Id*> DeclarationVariable::getVariables()
 	result.push_back(id);
 	return result;
 }
-void DeclarationVariable::executer(map<string,double> &mapV)
+
+void DeclarationVariable::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
-    cout << "here" << endl;
 	if (!declarationAutreVariable->estVide())
 	{
-		declarationAutreVariable->executer(mapV);
+		declarationAutreVariable->executer(mapV , mapC);
 	}
 	mapV[id->getNom()]= INT_MAX;
 }
 
 void DeclarationVariable::print()
-{
-	cout << _symbole_string << endl;
+{	
+	cout<<", ";
+	id->print();
 	if(!declarationAutreVariable->estVide())
 	{
 		declarationAutreVariable->print();

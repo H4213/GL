@@ -9,7 +9,7 @@ public:
 	Const();
 	virtual ~Const(){}
 	
-	virtual void executer(map<string,double> &mapV){}
+	virtual void executer(map<string,double> &mapV , map<string,double> &mapC){}
 
 };
 

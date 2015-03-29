@@ -10,16 +10,17 @@
 class LigneDeclarationVariable : public Declaration
 {
 	public:
-		LigneDeclarationVariable(Id*, DeclarationVariable*);
+		LigneDeclarationVariable(Id* i, DeclarationVariable* dv = new DeclarationVariable());
+		LigneDeclarationVariable():Declaration(Identifiants::ID_LIGNEDECLARATIONVARIABLE){est_vide = true;}
 		~LigneDeclarationVariable();
+		
 		vector<Id*> getVariables();
 		vector<Id*> getConstantes();
-
-
 		vector<pair<Id*,Nombre*> > getConstantesValeurs();
+        virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+        virtual void print();
 
-        void executer(map<string,double> &mapV);
-
+	protected:
 		Id *id;
 		DeclarationVariable *declarationVariable;
 
