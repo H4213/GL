@@ -18,3 +18,10 @@ void InstructionEcrire::executer(map<string,double> &mapV , map<string,double> &
 {
 	cout << expression->eval(mapV,mapC) << endl;
 }
+
+void InstructionEcrire::print()
+{
+	cout<<"ecrire ";
+	expression->print();
+	cout<<" ;"<<endl;
+}

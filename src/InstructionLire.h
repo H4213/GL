@@ -14,6 +14,7 @@ public:
 	vector<Id*> getIds();
 	Id* getIdentifiant(){return id;}
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+	virtual void print();
 
 private:
 	Id *id;

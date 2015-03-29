@@ -7,6 +7,7 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 	id = idO;
 	_symbole_string = "InstructionLire";
 }
+
 vector<Id*> InstructionLire::getIds()
 {
 		cout<<"ici"<<endl;
@@ -16,6 +17,7 @@ vector<Id*> InstructionLire::getIds()
 	return result;
 
 }
+
 void InstructionLire::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double valeur;
@@ -37,4 +39,11 @@ void InstructionLire::executer(map<string,double> &mapV , map<string,double> &ma
 			//Erreur
 		}
 	}
+}
+
+void InstructionLire::print()
+{
+	cout<<"lire ";
+	id->print();
+	cout<<" ;"<<endl;
 }

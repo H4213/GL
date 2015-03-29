@@ -17,7 +17,7 @@ public:
 	Instruction* getInstruction(){return instruction;}
 	PartieInstructive* getPartieInstructive(){return sousPartieInstructive;}
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
-	void print();
+	virtual void print();
 
 private:
 	Instruction *instruction;

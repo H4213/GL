@@ -15,6 +15,7 @@ public:
 	
 	vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
+	virtual void print();
 
 private:
 	Expression *expression;

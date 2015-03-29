@@ -37,6 +37,12 @@ double ExpressionMultiplicative::eval(map<string,double> &mapV , map<string,doub
 			}
 		break;
 	}
-
 	return d;
+}
+
+void ExpressionMultiplicative::print()
+{
+	terme->print();
+	operationMultiplicative->print();
+	facteur->print();
 }

@@ -33,6 +33,12 @@ double ExpressionAdditive::eval(map<string,double> &mapV , map<string,double> &m
 			d = valeurExp - valeurTerme;
 		break;
 	}
-
 	return d;
+}
+
+void ExpressionAdditive::print()
+{
+	expression->print();
+	operationAdditive->print();
+	terme->print();
 }

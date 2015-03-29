@@ -33,9 +33,9 @@ void PartieInstructive::executer(map<string,double> &mapV , map<string,double> &
 
 void PartieInstructive::print()
 {
-	cout << _symbole_string << endl;
 	if(!sousPartieInstructive->estVide())
 	{
 		sousPartieInstructive->print();
 	}
+	instruction->print();
 }

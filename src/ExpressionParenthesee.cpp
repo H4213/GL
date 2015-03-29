@@ -1,4 +1,5 @@
 #include "ExpressionParenthesee.h"
+#include <iostream>	
 
 ExpressionParenthesee::ExpressionParenthesee(Expression *exp):Facteur(Identifiants::ID_EXPRESSIONPARENTHESEE)
 {
@@ -15,4 +16,11 @@ double ExpressionParenthesee::eval(map<string,double> &mapV , map<string,double>
 vector<Id*> ExpressionParenthesee::getIds()
 {
 	return expression->getIds();
+}
+
+void ExpressionParenthesee::print()
+{
+	cout<<"(";
+	expression->print();
+	cout<<")";
 }

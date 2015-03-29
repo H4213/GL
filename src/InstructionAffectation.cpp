@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Identifiants.h"
 #include "Nombre.h"
+
 InstructionAffectation::InstructionAffectation(Id *idO, Expression *e):Instruction(Identifiants::ID_INSTRUCTIONAFFECTATION)
 {
 	id = idO;
@@ -21,6 +22,7 @@ vector<Id*> InstructionAffectation::getIds()
 	return result;
 
 }
+
 void InstructionAffectation::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	string nom_var = id->getNom();
@@ -32,6 +34,14 @@ void InstructionAffectation::executer(map<string,double> &mapV , map<string,doub
 	}
 	else
 	{
-		//Erreur
+		cout<<"tentative d'affecter a une constante"<<endl;
 	}
+}
+
+void InstructionAffectation::print()
+{
+	id->print();
+	cout<<" := ";
+	expression->print();
+	cout<<" ;"<<endl;
 }

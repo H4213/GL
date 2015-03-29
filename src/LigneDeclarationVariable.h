@@ -8,7 +8,7 @@
 class LigneDeclarationVariable : public Declaration
 {
 	public:
-		LigneDeclarationVariable(Id*, DeclarationVariable*);
+		LigneDeclarationVariable(Id* i, DeclarationVariable* dv = new DeclarationVariable());
 		LigneDeclarationVariable():Declaration(Identifiants::ID_LIGNEDECLARATIONVARIABLE){est_vide = true;}
 		~LigneDeclarationVariable();
 		

@@ -23,7 +23,7 @@ void DeclarationConstante::print()
 {
 	cout<<", ";
 	id->print();
-	cout<<" = ";
+	cout<<"=";
 	val->print();
 	if(!declarationAutreConstante->estVide())
 	{

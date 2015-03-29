@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-LigneDeclarationConstante::LigneDeclarationConstante(Id*idO, DeclarationConstante*dc, Nombre *v)
+LigneDeclarationConstante::LigneDeclarationConstante(Id*idO, Nombre *v, DeclarationConstante*dc)
 : Declaration(Identifiants::ID_LIGNEDECLARATIONCONSTANTE)
 {
 	id = idO;
@@ -50,7 +50,7 @@ void LigneDeclarationConstante::print()
 {
 	cout<< _symbole_string;
 	id->print();
-	cout<<" = ";
+	cout<<"=";
 	val->print();
 	if(declarationConstante->estVide() == false)
 	{
