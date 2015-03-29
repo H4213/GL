@@ -13,12 +13,12 @@ Symbole::Symbole()
 }
 
 void Symbole::print(){
-	cout << _symbole_string << " | ";
+	cout << _symbole_string;
 }
 
 bool Symbole::estConstante(string nom, map<string,double> &mapC)
 {
-	if (mapV.find(nom) == mapC.end())
+	if (mapC.find(nom) == mapC.end())
 	{
 		return false;
 	}

@@ -15,7 +15,8 @@ class LigneDeclarationConstante : public Declaration
 		
 		vector<Id*> getConstantes();
 		vector<Id*> getVariables();
-		void executer(map<string,double> &mapV , map<string,double> &mapC);
+		virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+		virtual void print();
 
 	protected:
 		Id *id;

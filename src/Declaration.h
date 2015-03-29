@@ -16,6 +16,7 @@ public:
     virtual vector<Id*> getVariables(){}
     virtual vector<Id*> getConstantes(){}
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC){}
+	virtual void print(){}
 };
 
 

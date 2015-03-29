@@ -10,7 +10,7 @@ public:
 	Id():Facteur(Identifiants::ID_ID){}
 	virtual ~Id(){}
 
-	virtual void eval(map<string,double> &mapV , map<string,double> &mapC){}
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
 	bool operator==(const Id &);
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;} 
 	vector<Id*> getIds();

@@ -28,15 +28,11 @@ void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 	{
 		partieDeclarative->executer(map_variables , mapC);
 	}
-	//TODO: penser a enlever
-	afficherVariables();
 
 	if(!partieInstructive->estVide())
 	{
 		partieInstructive->executer(mapV , mapC);
 	}
-	//TODO: penser a enlever
-	afficherVariables();
 }
 
 void Programme::print()
@@ -55,6 +51,20 @@ void Programme::afficherVariables()
 {
 	map<string,double>::iterator it;
 	for (it=map_variables.begin(); it!=map_variables.end(); ++it)
+	{
+		cout << it->first << " => ";
+		if(it->second == 0) cout<< "vide"<<endl;
+		else
+		{
+			cout<< it->second <<endl;
+		}
+	}
+}
+
+void Programme::afficherConstantes()
+{
+	map<string,double>::iterator it;
+	for (it=map_constantes.begin(); it!=map_constantes.end(); ++it)
 	{
 		cout << it->first << " => ";
 		if(it->second == 0) cout<< "vide"<<endl;

@@ -1,11 +1,14 @@
 #include "LigneDeclarationConstante.h"
 
+#include <iostream>
+
 LigneDeclarationConstante::LigneDeclarationConstante(Id*idO, DeclarationConstante*dc, Nombre *v)
 : Declaration(Identifiants::ID_LIGNEDECLARATIONCONSTANTE)
 {
 	id = idO;
 	declarationConstante = dc;
 	val = v;
+	_symbole_string = "const ";
 }
 
 LigneDeclarationConstante::~LigneDeclarationConstante()
@@ -36,9 +39,22 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 
 void LigneDeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
-     if(declarationConstante->estVide()==false)
+     if(declarationConstante->estVide() == false)
 	{
 		declarationConstante->executer(mapV , mapC);
 	}
 	mapC[id->getNom()]= val->getValeur();
+}
+
+void LigneDeclarationConstante::print()
+{
+	cout<< _symbole_string;
+	id->print();
+	cout<<" = ";
+	val->print();
+	if(declarationConstante->estVide() == false)
+	{
+		declarationConstante->print();
+	}
+	cout<<";"<<endl;
 }

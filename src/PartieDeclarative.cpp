@@ -55,10 +55,10 @@ void PartieDeclarative::executer(map<string,double> &mapV , map<string,double> &
 
 void PartieDeclarative::print()
 {
-	cout << _symbole_string << endl;
-	if(sousPartieDeclarative != NULL)
+	if(!sousPartieDeclarative->estVide())
 	{
 		sousPartieDeclarative->print();
 	}
+	declaration->print();
 }
 

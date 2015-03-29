@@ -32,8 +32,9 @@ void DeclarationVariable::executer(map<string,double> &mapV , map<string,double>
 }
 
 void DeclarationVariable::print()
-{
-	cout << _symbole_string << endl;
+{	
+	cout<<", ";
+	id->print();
 	if(!declarationAutreVariable->estVide())
 	{
 		declarationAutreVariable->print();

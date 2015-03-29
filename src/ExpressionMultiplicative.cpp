@@ -27,7 +27,7 @@ double ExpressionMultiplicative::eval(map<string,double> &mapV , map<string,doub
 		break;
 
 		case '/':
-			if(valeurExp2 != 0)
+			if(valeurFacteur != 0)
 			{
 				d = valeurTerme / valeurFacteur;
 			}

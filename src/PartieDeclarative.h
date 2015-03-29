@@ -22,7 +22,7 @@ public:
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
-	void print();
+	virtual void print();
 
 
 private:

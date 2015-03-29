@@ -19,6 +19,7 @@
 #include "Instruction.h"
 #include "InstructionLire.h"
 #include "Id.h"
+#include "LigneDeclarationVariable.h"
 
 #include <string>
 #include <map>
@@ -70,19 +71,27 @@ int main(int argc, char *argv[])
 	/*
 	Test du constructeur declaration de variable/constante et execution des declarations
 	*/
-	// string s = "salut, ";
-	// string s1 = "ça ";
-	// string s2 = "va ";
-	// string s3 = "mlle ";
-	// string s4 = "? ";
+	Id *id1 = new Id("id1");
+	Id *id2 = new Id("id2");
+	Id *id3 = new Id("id3");
+	Id *id4 = new Id("id4");
 
-	// vector<string> v = vector<string>();
-	// v.push_back(s1);
-	// v.push_back(s2);
-	// v.push_back(s3);
-	// v.push_back(s4);
+	DeclarationVariable *dv1 = new DeclarationVariable(id4);
+	DeclarationVariable *dv2 = new DeclarationVariable(id3, dv1);
+	DeclarationVariable *dv3 = new DeclarationVariable(id2, dv2);
 
-	// Declaration *dv = new DeclarationVariable(s,v);
+	LigneDeclarationVariable *ldv = new LigneDeclarationVariable(id1, dv3);
+
+	PartieInstructive *pi = new PartieInstructive();
+	PartieDeclarative *pd = new PartieDeclarative(ldv);
+	Programme p = Programme(pd,pi);
+
+	p.print();	
+	p.afficherVariables();
+	p.executer();
+	cout<<"--------"<<endl;
+	p.afficherVariables();
+
 	// //d->print();
 
 	// string c1 = "const1";
@@ -106,9 +115,7 @@ int main(int argc, char *argv[])
 	// std::vector<Declaration*> vd;
 	// vd.push_back(dc);
 
-	// PartieInstructive *pi = new PartieInstructive();
-	// PartieDeclarative *pd = new PartieDeclarative(dv, vd);
-	// Programme p = Programme(pd,pi);
+	
 
 	// p.afficherVariables();
 	// p.executer();
@@ -122,45 +129,45 @@ int main(int argc, char *argv[])
 
 	// // ...\lutin.exe cmd.txt -option (-p -a -e -o)
 
-	FILE *fichier = NULL;
-	string contents;
-    char caractere;
-	char* options = "no option";
-	bool option_o = false;
+	// FILE *fichier = NULL;
+	// string contents;
+ //    char caractere;
+	// char* options = "no option";
+	// bool option_o = false;
 
-    if (argc == 2)
-    {
-        fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
-    }
-	 else if (argc == 3)
-	 {
-	 	fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
-	 	options = argv[2];				// Récupération de l'option
-	 }
-	 else if (argc == 4)
-	 {
-	 	fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
-	 	options = argv[2];				// Récupération de l'option
-	 	option_o = true;
-	 }
-    if (fichier != NULL)
-    {
-			fseek(fichier, 0, SEEK_END);
-			contents.resize(ftell(fichier));
-			rewind(fichier);
-			fread(&contents[0], 1, contents.size(), fichier);
-			fclose(fichier);
-    }
-    else
-	{
-		exit(EXIT_FAILURE);
-	}
+ //    if (argc == 2)
+ //    {
+ //        fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+ //    }
+	//  else if (argc == 3)
+	//  {
+	//  	fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+	//  	options = argv[2];				// Récupération de l'option
+	//  }
+	//  else if (argc == 4)
+	//  {
+	//  	fichier = fopen (argv[1], "r"); // Ouverture du fichier .txt argv[1]
+	//  	options = argv[2];				// Récupération de l'option
+	//  	option_o = true;
+	//  }
+ //    if (fichier != NULL)
+ //    {
+	// 		fseek(fichier, 0, SEEK_END);
+	// 		contents.resize(ftell(fichier));
+	// 		rewind(fichier);
+	// 		fread(&contents[0], 1, contents.size(), fichier);
+	// 		fclose(fichier);
+ //    }
+ //    else
+	// {
+	// 	exit(EXIT_FAILURE);
+	// }
 
-     Automate automate(contents);
-     Programme *p = automate.analyser();
-     automate.analyseStatique(p);
-     p->executer();
-     p->print();
+ //     Automate automate(contents);
+ //     Programme *p = automate.analyser();
+ //     automate.analyseStatique(p);
+ //     p->executer();
+ //     p->print();
 
     return 0;
 

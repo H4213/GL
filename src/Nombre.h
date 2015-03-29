@@ -10,10 +10,10 @@ public:
 	virtual ~Nombre(){}
 
 	double getValeur();
-	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
 	vector<Id*> getIds();
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
-
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
+	
 private:
 	double valeur;
 

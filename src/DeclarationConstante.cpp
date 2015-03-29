@@ -7,7 +7,7 @@ DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConst
 	id = idO;
 	declarationAutreConstante = dC;
 	val = n;
-	_symbole_string = "Declaration de la constante " /*+ constante->getNom()*/;
+	_symbole_string = "Declaration de la constante " + id->getNom();
 }
 
 void DeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
@@ -21,7 +21,10 @@ void DeclarationConstante::executer(map<string,double> &mapV , map<string,double
 
 void DeclarationConstante::print()
 {
-	cout << _symbole_string << endl;
+	cout<<", ";
+	id->print();
+	cout<<" = ";
+	val->print();
 	if(!declarationAutreConstante->estVide())
 	{
 		declarationAutreConstante->print();

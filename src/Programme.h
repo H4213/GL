@@ -17,6 +17,7 @@ public:
 	virtual ~Programme(){} //TODO: tout nettoyer!!!!
 
 	void afficherVariables();
+	void afficherConstantes();
 	vector<Instruction*> getInstructions();
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();

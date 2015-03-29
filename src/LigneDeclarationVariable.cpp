@@ -1,4 +1,5 @@
 #include "LigneDeclarationVariable.h"
+
 #include <iostream>
 #include <climits>
 
@@ -7,6 +8,7 @@ LigneDeclarationVariable::LigneDeclarationVariable(Id* idO, DeclarationVariable*
 {
 	id = idO;
 	declarationVariable = dv;
+	_symbole_string = "var ";
 }
 
 LigneDeclarationVariable::~LigneDeclarationVariable()
@@ -41,4 +43,15 @@ void LigneDeclarationVariable::executer(map<string,double> &mapV , map<string,do
 		declarationVariable->executer(mapV , mapC);
 	}
     mapV[id->getNom()]= INT_MAX;
+}
+
+void LigneDeclarationVariable::print()
+{
+	cout<< _symbole_string;
+	id->print();
+	if(declarationVariable->estVide()==false)
+	{
+		declarationVariable->print();
+	}
+	cout<<";"<<endl;
 }
