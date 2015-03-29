@@ -231,8 +231,8 @@ bool Lutin::analyseStatique(Programme* Pr)
             }
 }
 
-<<<<<<< HEAD
-Programme* Automate::transformation(Programme* Pr)
+
+Programme* Lutin::transformation(Programme* Pr)
 {
 	PartieDeclarative* PartieDeclarativeVariable;
 	PartieDeclarative* PartieDeclarativeConstante;
@@ -299,8 +299,7 @@ Programme* Automate::transformation(Programme* Pr)
 }
 
 
-=======
->>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
+
 Lutin::~Lutin ( )
 {
 	if(_programme != NULL)

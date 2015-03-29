@@ -14,37 +14,30 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 vector<Id*> PartieDeclarative::getVariables() {
 
     vector<Id*> result;
-<<<<<<< HEAD
 
     if (sousPartieDeclarative->estVide()==false)
     {
 
-=======
-    if (sousPartieDeclarative->estVide()==false)
-    {
->>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
     // Variables de la sous partie declarative
         vector<Id*> partVariables = sousPartieDeclarative->getVariables();
         if (partVariables.size()!=0)
         {
         result.insert(result.end() , partVariables.begin() , partVariables.end());
-<<<<<<< HEAD
+
 		}
-=======
->>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
+
 	}
 	if (declaration->estVide()==false)
 	{
 
 // Variable de la déclaration
 	vector<Id*> partVariables2=declaration->getVariables();
-<<<<<<< HEAD
+
 
      if (partVariables2.size()!=0)
 	{
 
-=======
->>>>>>> 4aa819774a29fb5904fe174a28a4159dde08ba49
+
     result.insert(result.end() , partVariables2.begin() , partVariables2.end());
 	}
 }
