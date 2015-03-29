@@ -248,7 +248,7 @@ bool Automate::analyseStatique(Programme* Pr) {
 						else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
 						{
 						//variable non affecté
-							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+							cout << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
 							return 1;
 						
 						}
