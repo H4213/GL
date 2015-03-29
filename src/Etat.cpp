@@ -311,8 +311,7 @@ void E11::transition(Automate & automate, Symbole *s)
 			//reduction par la regle 2 PD -> PD D PV
 
 			//depiler pv
-			//delete
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			//depiler D
 			d = (Declaration*)automate.depilerSymbole();
 			//depiler pd
@@ -381,12 +380,12 @@ void E14::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_ID:
 		case Identifiants::ID_POINTVIRGULE:
 		case Identifiants::ID_ENDOFFILE:
-			//reduction par la regle 10
+			//reduction par la regle 10 PI->PI I pv
 
 			//depiler 3 etats
 			automate.depilerEtat(3);
 			//depiler point virgule
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			//depiler I
 			I = (Instruction*)automate.depilerSymbole();
 			//depiler PI
@@ -629,8 +628,7 @@ void E22::transition(Automate & automate, Symbole *s)
              automate.depilerEtat(3);
 			 dv = (DeclarationVariable*) automate.depilerSymbole();
 			 id = (Id*)automate.depilerSymbole();
-			 //delete
-			 automate.depilerSymbole();
+			 delete automate.depilerSymbole();
 
 			 automate.reduction(new LigneDeclarationVariable(id, dv));
 
@@ -682,12 +680,12 @@ void E25::transition(Automate & automate, Symbole *s)
 	{
 		case Identifiants::ID_VIRGULE:
 		case Identifiants::ID_POINTVIRGULE:
-			//reduction regle 6
+			//reduction regle 6 V-> V v id
 
 			automate.depilerEtat(3);
 			 id = (Id*)automate.depilerSymbole();
-			 //delete
-			 automate.depilerSymbole();
+
+			 delete automate.depilerSymbole();
 
 			 dv = (DeclarationVariable*) automate.depilerSymbole();
 
@@ -740,11 +738,9 @@ void E27::transition(Automate & automate, Symbole *s)
 			automate.depilerEtat(5);
 			dc = (DeclarationConstante*)automate.depilerSymbole();
 			n = (Nombre*)automate.depilerSymbole();
-			//delete
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			id = (Id*)automate.depilerSymbole();
-			//delete
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 
 
 			automate.reduction(new LigneDeclarationConstante(id, dc, n));
@@ -823,11 +819,10 @@ void E31::transition(Automate & automate, Symbole *s)
 			automate.depilerEtat(5);
 			dc = (DeclarationConstante*)automate.depilerSymbole();
 			n = (Nombre*)automate.depilerSymbole();
-			//delete
-			automate.depilerSymbole();
+			
+			delete automate.depilerSymbole();
 			id = (Id*)automate.depilerSymbole();
-			//delete
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 
 			automate.reduction(new DeclarationConstante(id, n, dc));
 		break;
@@ -925,6 +920,7 @@ void E34::transition(Automate & automate, Symbole *s)
 
 		//non-terminaux
 		case Identifiants::ID_FACTEUR:
+		case Identifiants::ID_EXPRESSIONPARENTHESEE:
 			automate.decalage(s, new E35(), false);
 		break;
 
@@ -986,8 +982,7 @@ void E36::transition(Automate & automate, Symbole *s)
 
 			automate.depilerEtat(2);
 			e = (Expression*)automate.depilerSymbole();
-			//delete
-			automate.depilerSymbole();
+			delete automate.depilerSymbole();
 
 			automate.reduction(new InstructionEcrire(e));
 
@@ -1016,8 +1011,7 @@ void E37::transition(Automate & automate, Symbole *s)
 			automate.depilerEtat(3);
 
 			e = (Expression*)automate.depilerSymbole();
-			//delete
-            automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			id = (Id*)automate.depilerSymbole();
 
 			automate.reduction(new InstructionAffectation(id, e));

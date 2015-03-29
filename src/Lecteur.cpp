@@ -7,14 +7,15 @@ Lecteur::Lecteur (string s)
 
     sepWords(phrase);
 
-    cout << "resultat" << endl;
+    // affiche le resutat de l'analyse lexicale ::  pour les tests
+    /*cout << "resultat" << endl;
 
     int i;
     cout << symTerminaux.size() << endl;
     for ( i = 0 ; i< symTerminaux.size() ; i++)
     {
         symTerminaux[i]->print();
-    }
+    }*/
     readHeader = symTerminaux.begin();
 }
 
@@ -93,7 +94,11 @@ vector<string> Lecteur::sepSep(string s,string sep)
         if (j== -1 )
         {
             word = s.substr(i , s.size());
-            words.push_back(word);
+            if (word!= "")
+            {
+                words.push_back(word);
+            }
+
         }
     }
 
@@ -139,7 +144,7 @@ vector<string> Lecteur::sepWords(vector<string> phrase)
     int i;
     for (i = 0 ; i<phrase.size() ; i++ )
     {
-		cout<<"|"+phrase[i]+"|"<<endl;
+		//cout<<"|"+phrase[i]+"|"<<endl;
         if (!isTerminal(phrase[i]))
         {
             if (phrase[i].find("\n")!=-1)
@@ -309,7 +314,7 @@ Symbole* Lecteur::createSymbole(string s)
     }
     else
     {
-       Id * result=new  Id(s);   
+       Id * result=new  Id(s);
        newSym=result;
     }
 	return newSym;

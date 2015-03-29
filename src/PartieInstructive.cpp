@@ -29,6 +29,8 @@ void PartieInstructive::executer(map<string,double> &mapV)
 		sousPartieInstructive->executer(mapV);
 	}
 	instruction->executer(mapV);
+
+
 }
 
 void PartieInstructive::print()

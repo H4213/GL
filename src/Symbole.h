@@ -8,21 +8,23 @@ using namespace std;
 
 class Symbole
 {
-	protected: 
+	protected:
 		int _ident;
 		string _symbole_string;
 		bool est_vide;
-		
-	public: 
+		int ligne;
+		int colonne;
+
+	public:
 		Symbole();
-		Symbole(int id): _ident(id){est_vide = false;}		
+		Symbole(int id): _ident(id){est_vide = false;}
 		virtual ~Symbole(){}
 
 		operator int() const {return _ident;}
 		bool estVide(){return est_vide;}
 		virtual void print();
 		virtual void executer(map<string,double> &mapV){}
+		virtual void setEmplacement(int l , int c);
 };
 
 #endif
-	

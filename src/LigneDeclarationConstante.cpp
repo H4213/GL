@@ -23,7 +23,7 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
 	result.push_back(id);
-	
+
 	if (declarationConstante->estVide()==false)
 	{
 	vector<Id*> autresConstantes = declarationConstante->getConstantes();
@@ -31,6 +31,7 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 	}
 	return result;
 }
+
 
 vector<pair<Id*,Nombre*> > LigneDeclarationConstante::getConstantesValeurs()
 {	
@@ -43,4 +44,12 @@ vector<pair<Id*,Nombre*> > LigneDeclarationConstante::getConstantesValeurs()
 		result.insert(result.end(),vecTemp.begin(), vecTemp.end());
 	}
 	return result;
+
+void LigneDeclarationConstante::executer(map<string,double> &mapV)
+{
+     if(declarationConstante->estVide()==false)
+	{
+		declarationConstante->executer(mapV);
+	}
+	mapV[id->getNom()]= val->getValeur();
 }

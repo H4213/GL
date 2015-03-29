@@ -4,8 +4,8 @@
 
 InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTIONLIRE)
 {
-	id = idO;	
-	_symbole_string = "InstructionEcrire";
+	id = idO;
+	_symbole_string = "InstructionLire";
 }
 Instruction* InstructionLire::transformation(vector<pair<Id*,Nombre*> > constantes){
 	Instruction* i;
@@ -19,11 +19,11 @@ vector<Id*> InstructionLire::getIds()
 	vector<Id*> result;
 	result.push_back(id);
 	return result;
-	
+
 }
 void InstructionLire::executer(map<string,double> &mapV)
 {
-	/*double valeur;
+	double valeur;
 	if(not(cin >> valeur))
 	{
 		cout<< "error!!!"<<endl;
@@ -31,7 +31,7 @@ void InstructionLire::executer(map<string,double> &mapV)
 	}
 	else
 	{
-		string nom_var = variable->getNom();
+		string nom_var = id->getNom();
 		if (mapV.find(nom_var) != mapV.end())
 		{
 			mapV[nom_var] = valeur;
@@ -41,6 +41,5 @@ void InstructionLire::executer(map<string,double> &mapV)
 			cout<< "error!!!"<<endl;
 			//Erreur
 		}
-	}*/
-
+	}
 }

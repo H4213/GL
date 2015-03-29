@@ -16,7 +16,7 @@ void DeclarationConstante::executer(map<string,double> &mapV)
 	{
 		declarationAutreConstante->executer(mapV);
 	}
-	//mapV[constante->getNom()] = constante->getValeur();
+	mapV[id->getNom()] = val->getValeur();
 }
 
 void DeclarationConstante::print()
@@ -37,7 +37,7 @@ vector<Id*> DeclarationConstante::getConstantes()
 		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());
 	}
 	result.push_back(id);
-	
+
 	return result;
 }
 

@@ -1,5 +1,6 @@
 #include "LigneDeclarationVariable.h"
 #include <iostream>
+#include <climits>
 LigneDeclarationVariable::LigneDeclarationVariable(Id* idO, DeclarationVariable* dv)
 : Declaration(Identifiants::ID_LIGNEDECLARATIONVARIABLE)
 {
@@ -30,8 +31,19 @@ LigneDeclarationVariable::~LigneDeclarationVariable()
 	delete declarationVariable;
 }
 
+
 vector<pair<Id*,Nombre*> > LigneDeclarationVariable::getConstantesValeurs(){
 	vector<pair<Id*,Nombre*> > result;
 	return result;
+}
+
+
+void LigneDeclarationVariable::executer(map<string,double> &mapV)
+{
+    if(declarationVariable->estVide()==false)
+	{
+		declarationVariable->executer(mapV);
+	}
+    mapV[id->getNom()]= INT_MAX;
 }
 

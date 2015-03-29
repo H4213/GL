@@ -14,13 +14,9 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 vector<Id*> PartieDeclarative::getVariables() {
 
     vector<Id*> result;
-    		cout<<" Programme4"<<endl;
-
-    //Le problème de segmentation vient de là! boucle sur les sousPartieDeclarative
 
     if (sousPartieDeclarative->estVide()==false)
     {
-
 
     // Variables de la sous partie declarative
         vector<Id*> partVariables = sousPartieDeclarative->getVariables();
@@ -34,36 +30,29 @@ vector<Id*> PartieDeclarative::getVariables() {
 
 // Variable de la déclaration
 	vector<Id*> partVariables2=declaration->getVariables();
+
      if (partVariables2.size()!=0)
 	{
+
     result.insert(result.end() , partVariables2.begin() , partVariables2.end());
 	}
 }
     return result;
-	
+
 }
 vector<Id*> PartieDeclarative::getConstantes() {
 	vector<Id*> result;
 	if(sousPartieDeclarative->estVide()==false)
 	{
-	vector<Id*> partConstantes= sousPartieDeclarative->getConstantes();
-    result.insert(result.end() , partConstantes.begin() , partConstantes.end());	
+        vector<Id*> partConstantes= sousPartieDeclarative->getConstantes();
+        result.insert(result.end() , partConstantes.begin() , partConstantes.end());
 	}
-	
-	
-	
     // Variable de la déclaration
-    			
-
-	vector<Id*> partConstantes2=declaration->getConstantes();
-    result.insert(result.end() , partConstantes2.begin() , partConstantes2.end());	     
+        vector<Id*> partConstantes2=declaration->getConstantes();
+        result.insert(result.end() , partConstantes2.begin() , partConstantes2.end());
 
     return result;
-
-   
-
-
-}	
+}
 
 
 void PartieDeclarative::executer(map<string,double> &mapV)
@@ -71,8 +60,10 @@ void PartieDeclarative::executer(map<string,double> &mapV)
 	if(!sousPartieDeclarative->estVide())
 	{
 		sousPartieDeclarative->executer(mapV);
+
 	}
 	declaration->executer(mapV);
+
 }
 
 void PartieDeclarative::print()

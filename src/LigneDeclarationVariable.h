@@ -14,7 +14,11 @@ class LigneDeclarationVariable : public Declaration
 		~LigneDeclarationVariable();
 		vector<Id*> getVariables();
 		vector<Id*> getConstantes();
+
 		vector<pair<Id*,Nombre*> > getConstantesValeurs();
+
+        void executer(map<string,double> &mapV);
+
 	protected:
 		Id *id;
 		DeclarationVariable *declarationVariable;

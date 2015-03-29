@@ -1,5 +1,5 @@
 #include "DeclarationVariable.h"
-
+#include <climits>
 #include <iostream>
 using namespace std;
 
@@ -8,27 +8,28 @@ DeclarationVariable::DeclarationVariable(Id *idO, DeclarationVariable *dV) : Sym
 {
 	id = idO;
 	declarationAutreVariable = dV;
-	_symbole_string = "Declaration de la variable " /*+ id->getNom()*/;
-	
+	_symbole_string = "Declaration de la variable "+ id->getNom();
+
 }
 vector<Id*> DeclarationVariable::getVariables()
 {
 	vector<Id*> result;
 	if (declarationAutreVariable->estVide() == false)
 	{
-	vector<Id*> autresVariables=declarationAutreVariable->getVariables();
-	result.insert(result.end(), autresVariables.begin(), autresVariables.end());
+        vector<Id*> autresVariables=declarationAutreVariable->getVariables();
+        result.insert(result.end(), autresVariables.begin(), autresVariables.end());
 	}
 	result.push_back(id);
 	return result;
 }
 void DeclarationVariable::executer(map<string,double> &mapV)
 {
+    cout << "here" << endl;
 	if (!declarationAutreVariable->estVide())
 	{
-		declarationAutreVariable->executer(mapV);		
+		declarationAutreVariable->executer(mapV);
 	}
-	//mapV[variable->getNom()]; 	
+	mapV[id->getNom()]= INT_MAX;
 }
 
 void DeclarationVariable::print()
@@ -49,5 +50,5 @@ void DeclarationVariable::compterVariables()
 	{
 		declarationAutreVariable->compterVariables();
 	}
-	
+
 }

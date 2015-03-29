@@ -15,3 +15,8 @@ Symbole::Symbole()
 void Symbole::print(){
 	cout << _symbole_string << " | ";
 }
+void Symbole::setEmplacement(int l , int c)
+{
+    ligne = l;
+    colonne = c;
+}

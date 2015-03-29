@@ -8,7 +8,6 @@ Expression::Expression():Symbole(Identifiants::ID_EXPRESSION)
 }
 vector<Id*> Expression::getIds()
 {
-			cout<<"j'arrive ici"<<endl;
 
 }
 Expression* Expression::transformation(vector<pair<Id*,Nombre*> > constantes)

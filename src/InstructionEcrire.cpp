@@ -4,18 +4,17 @@
 
 InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::ID_INSTRUCTIONECRIRE)
 {
-	expression = e;	
+	expression = e;
 	_symbole_string = "InstructionEcrire";
 }
-Instruction* Instruction::transformation(vector<pair<Id*,Nombre*> > constantes)
+void Instruction::transformation(vector<pair<Id*,Nombre*> > constantes)
 {
+	expression=expression->transformation();
 	
 }
 
 vector<Id*> InstructionEcrire::getIds()
 {
-		cout<<"lol"<<endl;
-
 	vector<Id*> resultat= expression->getIds();
 	return resultat;
 }
