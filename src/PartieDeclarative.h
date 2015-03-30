@@ -4,8 +4,8 @@
 #include "Declaration.h"
 #include "DeclarationVariable.h"
 #include "DeclarationConstante.h"
-#include "Variable.h"
-#include "Constante.h"
+
+
 #include "Id.h"
 #include <vector>
 #include "Nombre.h"
