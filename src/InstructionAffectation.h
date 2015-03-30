@@ -14,10 +14,13 @@ public:
 	Id* getId(){return id;}
 	Expression* getExpression(){return expression;}
 	vector<Id*> getIds();
-	void transformation(vector<pair<Id*,Nombre*> > constantes);
+
+	Instruction* transformation(map<string,double> constantes);
+
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	virtual void print();
 	
+
 private:
 	Id *id;
 	Expression *expression;

@@ -12,4 +12,8 @@ vector<Id*> Terme::getIds()
 	cout<<"terme"<<endl;
 }
 
+Expression* Terme::transformation(map<string,double> constantes)
+{
+}
+
 

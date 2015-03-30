@@ -1,7 +1,7 @@
 #include "ExpressionAdditive.h"
 	
 #include <iostream>
-
+#include <sstream>
 ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditive *opA):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
 {
 	expression = e;
@@ -10,36 +10,56 @@ ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditiv
 	_symbole_string = "ExpressionAdditive";
 }
 
-Expression* ExpressionAdditive::transformation(vector<pair<Id*,Nombre*> > constantes)
+Expression* ExpressionAdditive::transformation(map<string,double> constantes)
 {
-	expression=expression->transformation(constantes);
-	terme=terme->transformation(constantes);
-	
-	/*double valeur1;
+
+	Expression * newExpression=expression->transformation(constantes);
+	Terme * newTerme=(Terme*)terme->transformation(constantes);
+	OperationAdditive * newOpA;
+	if ((char) *operationAdditive =='+')
+	{
+	newOpA=new Addition();
+	}
+	else if((char) *operationAdditive =='-')
+	{
+	newOpA=new Soustraction();
+	}
+	double valeur1;
 	double valeur2;
-	if ((int) terme ==identifiants::ID_NOMBRE)
+
+	if (dynamic_cast<Nombre*> (newTerme)!=NULL)
 	{
-		valeur2=terme->getValeur();
+
+		valeur2=((Nombre*)newTerme)->getValeur();
+		if (valeur2==0)
+		{
+			return newExpression;
+		}
 	}
-	if ((int) expression ==identifiants::ID_NOMBRE)
+	if (dynamic_cast<Nombre*> (newExpression)!=NULL)
 	{
-		valeur1=expression->getValeur();
+
+
+		valeur1=((Nombre*)newExpression)->getValeur();
+		if (valeur1==0)
+		{
+			return newTerme ;
+		}
 	}
-	if ((int) terme ==identifiants::ID_ID)
+	if (dynamic_cast<Nombre*> (newExpression)!=NULL && dynamic_cast<Nombre*> (newTerme)!=NULL )
 	{
-		if(std::find(constantes.begin(),constantes.end()
-		valeur2=terme->getValeur();
+		double valeur3=valeur1+valeur2;
+		std::ostringstream strs;
+		strs <<valeur3;
+		std::string str = strs.str();
+		Nombre * nombreRes=new Nombre(str);
+		return nombreRes;
 	}
-	if ((int) expression ==identifiants::ID_ID)
+	else
 	{
-		valeur1=terme->getValeur();
+		ExpressionAdditive * exprRes = new ExpressionAdditive(newExpression,newTerme,newOpA);
+		return exprRes;
 	}
-	if ((int) expression==identifiants::ID_NOMBRE && (int) terme==identifiants::ID_NOMBRE)
-	{
-		terme
-		Nombre* nb = 
-	}*/
-	
 }
 vector<Id*> ExpressionAdditive::getIds()
 {

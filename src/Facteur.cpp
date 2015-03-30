@@ -7,7 +7,9 @@ Facteur::Facteur():Terme(Identifiants::ID_FACTEUR)
 	est_vide = true;
 }
 
-
+Expression* Facteur::transformation(map<string,double> constantes)
+{
+}
 vector<Id*> Facteur::getIds()
 {
 	cout<<"Facteur"<<endl;

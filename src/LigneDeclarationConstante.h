@@ -18,7 +18,7 @@ class LigneDeclarationConstante : public Declaration
 		virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 		virtual void print();
 
-		vector<pair<Id*,Nombre*> > getConstantesValeurs();
+		map<string,double> getConstantesValeurs();
 
 	protected:
 		Id *id;

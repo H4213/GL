@@ -7,12 +7,14 @@ InstructionEcrire::InstructionEcrire( Expression *e):Instruction(Identifiants::I
 	expression = e;
 	_symbole_string = "InstructionEcrire";
 }
+Instruction* InstructionEcrire::transformation(map<string,double> constantes)
 
-void InstructionEcrire::transformation(vector<pair<Id*,Nombre*> > constantes)
+
 {
 
-	expression=expression->transformation(constantes);
-	return;
+	Expression * newExpression=expression->transformation(constantes);
+	InstructionEcrire * newInstruction = new InstructionEcrire(newExpression);
+	return newInstruction;
 }
 
 vector<Id*> InstructionEcrire::getIds()

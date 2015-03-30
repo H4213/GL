@@ -36,8 +36,8 @@ vector<Id*> LigneDeclarationVariable::getConstantes()
 	return result;
 }
 
-vector<pair<Id*,Nombre*> > LigneDeclarationVariable::getConstantesValeurs(){
-	vector<pair<Id*,Nombre*> > result;
+map<string,double> LigneDeclarationVariable::getConstantesValeurs(){
+	map<string,double> result;
 	return result;
 }
 

@@ -22,22 +22,16 @@ vector<Instruction*> Programme::getInstructions()
 
 vector<Id*> Programme::getVariables() {
 	vector<Id*> result;
-			cout<<" Programme1"<<endl;
+			
 
 	if (partieDeclarative->estVide()==false)
 	{
-		cout<<" ?"<<endl;
+		
 
     result= partieDeclarative->getVariables();
 
 	}
-	for (int i=0; i<result.size();i++)
-	{
-				cout<<" ?"<<endl;
-
-		cout<<result[i]->getNom()<<endl;
-	}
-		cout<<" Programme2"<<endl;
+	
 
 	return result;
 	
@@ -55,15 +49,6 @@ vector<Id*> Programme::getConstantes()
 	return  result;
 }
 
-vector<pair<Id*,Nombre*> > Programme::getConstantesValeurs()
-{
-	vector<pair<Id*,Nombre*> > result;
-	if (partieDeclarative->estVide()==false)
-	{
-		result=partieDeclarative->getConstantesValeurs();
-	}
-	return result;
-}
 
 void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
@@ -104,6 +89,17 @@ void Programme::afficherVariables()
 	}
 }
 
+
+map<string, double> Programme::getConstantesValeurs()
+	{
+		map<string,double> result;
+		if (partieDeclarative->estVide()==false)
+		{
+			result=partieDeclarative->getConstantesValeurs();
+		}
+		return result;
+	}
+	
 void Programme::afficherConstantes()
 {
 	map<string,double>::iterator it;
@@ -112,6 +108,7 @@ void Programme::afficherConstantes()
 		cout << it->first << " => ";
 		if(it->second == 0) cout<< "vide"<<endl;
 		else
+
 		{
 			cout<< it->second <<endl;
 		}

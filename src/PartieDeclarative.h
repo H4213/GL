@@ -4,13 +4,12 @@
 #include "Declaration.h"
 #include "DeclarationVariable.h"
 #include "DeclarationConstante.h"
-
-
 #include "Id.h"
-#include <vector>
 #include "Nombre.h"
 #include "LigneDeclarationVariable.h"
 #include "LigneDeclarationConstante.h"
+
+#include <vector>
 
 using namespace std;
 
@@ -26,9 +25,10 @@ public:
 	PartieDeclarative* getPartieDeclarative(){return sousPartieDeclarative;}
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();
-	vector<pair<Id*,Nombre*> > getConstantesValeurs();
+	map<string,double> getConstantesValeurs();
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	virtual void print();
+
 
 private:
 	Declaration *declaration;

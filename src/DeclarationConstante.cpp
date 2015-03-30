@@ -44,16 +44,16 @@ vector<Id*> DeclarationConstante::getConstantes()
 	return result;
 }
 
-vector<pair<Id*,Nombre*> > DeclarationConstante::getConstantesValeurs()
+map<string,double> DeclarationConstante::getConstantesValeurs()
 {
-	vector<pair<Id*,Nombre*> > result;
+	map<string,double> result;
 	if (declarationAutreConstante->estVide()==false)
 	{
-		vector<pair<Id*,Nombre*> > vecTemp = declarationAutreConstante->getConstantesValeurs();
-		result.insert(result.end(),vecTemp.begin(),vecTemp.end());
+		map<string,double> vecTemp = declarationAutreConstante->getConstantesValeurs();
+		result.insert(vecTemp.begin(),vecTemp.end());
 	}
-	pair<Id*, Nombre*> temp(id,val);
-	result.push_back(temp);
+	pair<string, double> temp(id->getNom(),val->getValeur());
+	result.insert(temp);
 	
 	return result;
 }
