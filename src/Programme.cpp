@@ -73,6 +73,7 @@ void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 
 void Programme::print()
 {
+	cout << "\n------ Impression du programme -------\n" << endl;
 	if(!partieDeclarative->estVide())
 	{
 		partieDeclarative->print();
@@ -81,6 +82,7 @@ void Programme::print()
 	{
 		partieInstructive->print();
 	}
+	cout << "\n------- Fin du programme -------" << endl;
 }
 
 void Programme::afficherVariables()
