@@ -11,7 +11,8 @@ Nombre::Nombre(string v):Facteur(Identifiants::ID_NOMBRE)
 
 Expression* Nombre::transformation(map<string,double> constantes)
 {
-	return this;
+    Nombre * newNombre= new Nombre(valeur);
+	return newNombre;
 }
 
 

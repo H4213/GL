@@ -5,4 +5,4 @@ var e;
 b :=3-2;
 a := 0-3;
 ecrire a*b;
-
+lire e;
