@@ -1,10 +1,10 @@
 #if !defined ( DECLARATION_H )
 #define DECLARATION_H
 #include "Symbole.h"
-#include <vector>
 #include "Id.h"
 #include "Nombre.h"
 
+#include <vector>
 
 class Declaration : public Symbole {
 

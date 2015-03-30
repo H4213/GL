@@ -3,7 +3,7 @@ LIBPATH =
 LIBS =   -lboost_regex
 COMP = g++
 COMPFLAGS = -c
-EXEC = Grammaire
+EXEC = lut
 CLEAN = clean
 INT = $(wildcard *.cpp)
 REAL = ${INT:.h =.cpp}
