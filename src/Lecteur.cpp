@@ -220,7 +220,11 @@ vector<string> Lecteur::sepWords(vector<string> phrase , map<string,int> &countO
             }
             else
             {
-                cout<<"erreur lexical "<< phrase[i]<<" n'est pas reconnu"<<endl;
+                vector<int> emplacement = findEmplacement(phrase[i] , countOccurence[phrase[i]]);
+                int line = emplacement[0];
+                int column = emplacement [1];
+                countOccurence[phrase[i]]++;
+                cerr<<"Erreur lexicale ("<<line << ":"<< column << ")"<<" caractere "<< phrase[i]<<endl;
             }
         }
         else

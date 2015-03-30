@@ -70,7 +70,6 @@ void Lutin::OptionP()
 }
 void Lutin::OptionA()
 {
-
 	if (_programme != NULL )
 	{
 	    analyseStatique(_programme);
@@ -87,12 +86,10 @@ void Lutin::OptionO()
 {
 	if (_programme != NULL )
 	{
-	    if(_command.OptionExists("-p"))
-	    {
-	    	/*Programme *newProgramme = transformation(_programme);
-	    	newProgramme->print();
-	    	delete newProgramme;*/
-	    }
+        Programme *newProgramme = transformation(_programme);
+        newProgramme->print();
+        delete newProgramme;*/
+	   // }
 	}
 }
 
@@ -150,7 +147,7 @@ bool Lutin::analyseStatique(Programme* Pr)
         }
         else
         {
-            cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
+            cerr << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
             return 1;
         }
     }
@@ -167,13 +164,13 @@ bool Lutin::analyseStatique(Programme* Pr)
                 if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
                 {
                     //Affectation de constante
-                    cout <<"On n'affecte pas une constante !!!!"<<endl;
+                    cerr <<"On n'affecte pas une constante !!!!"<<endl;
                     return 1;
                 }
                 else if(variables.find(identifiants[0]->getNom())==variables.end())
                 {
                     //La variable affecté n'est pas déclaré
-                    cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
+                    cerr << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
                     return 1;
                 }
                 else
@@ -184,14 +181,14 @@ bool Lutin::analyseStatique(Programme* Pr)
                         {
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
-                                cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                                cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
                                 return 1;
                             }
                         }
                         else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
                         {
                             //variable non affecté
-                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
                             return 1;
                         }
                     }
@@ -225,7 +222,7 @@ bool Lutin::analyseStatique(Programme* Pr)
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
                             //variable non affecté
-                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
                             return 1;
                             }
                         }
@@ -245,11 +242,11 @@ Programme* Lutin::transformation(Programme* Pr)
 {
 	PartieDeclarative* PartieDeclarativeVariable;
 	PartieDeclarative* PartieDeclarativeConstante;
-	
+
 	//Transformation de la partieDeclarative
 	vector<Id*> variables  = Pr->getVariables();
 	vector<pair<Id*,Nombre*> > constantes = Pr->getConstantesValeurs();
-	
+
 	DeclarationVariable* finVariable= new DeclarationVariable();
 	DeclarationConstante* finConstante= new DeclarationConstante();
 	PartieDeclarative* finPartieDeclarative= new PartieDeclarative();
@@ -257,43 +254,43 @@ Programme* Lutin::transformation(Programme* Pr)
 	vector<DeclarationVariable*> declarationsVariables;
 	vector<DeclarationConstante*> declarationsConstantes;
 	vector<PartieDeclarative*> partiesDeclaratives;
-	
+
 	partiesDeclaratives.push_back(finPartieDeclarative);
 	declarationsVariables.push_back(finVariable);
 	declarationsConstantes.push_back(finConstante);
 	if(variables.size()!=0)
 	{
-		
+
 		for (int i=0;i<variables.size()-1;i++)
 		{
 			DeclarationVariable* decl=new DeclarationVariable(new Id(variables[i]->getNom()), declarationsVariables[i]);
 			declarationsVariables.push_back(decl);
 		}
 		LigneDeclarationVariable* lDV = new LigneDeclarationVariable(new Id(variables[variables.size()-1]->getNom()),declarationsVariables[declarationsVariables.size()-1]);
-		
+
 		PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDV,partiesDeclaratives[partiesDeclaratives.size()-1]);
 		partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
 	if(constantes.size()!=0)
 	{
-		
+
 		for (int i=0;i<constantes.size()-1;i++)
 		{
 
 			DeclarationConstante* declC = new DeclarationConstante(new Id(constantes[i].first->getNom()), new Nombre(constantes[i].second->getStrValeur()), declarationsConstantes[i]);
 			declarationsConstantes.push_back(declC);
 		}
-		
-		
-		
+
+
+
 	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), new Nombre(constantes[constantes.size()-1].second->getStrValeur()), declarationsConstantes[declarationsConstantes.size()-1]);
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
-	
-	
-	
-	
+
+
+
+
 	//Partie Declarative transformé
 	// Transformation de la partie Instructive
     vector<Instruction*> instructions = Pr->getInstructions();
@@ -302,7 +299,7 @@ Programme* Lutin::transformation(Programme* Pr)
 	{
 		instructions[i]->transformation(constantes);
 	}
-	
+
 	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],Pr->getPartieInstructive());
 	return PrResult;
 }
