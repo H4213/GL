@@ -14,31 +14,35 @@ vector<Id*> ExpressionMultiplicative::getIds()
 	result.insert(result.end(),temp.begin(),temp.end());
 	return result;
 }
-double ExpressionMultiplicative::eval(map<string,double> &mapV)
+double ExpressionMultiplicative::eval(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double d;
-	double valeurTerme = terme->eval(mapV);
-	double valeurFacteur = facteur->eval(mapV);
+	double valeurTerme = terme->eval(mapV,mapC);
+	double valeurFacteur = facteur->eval(mapV,mapC);
 
-	switch(char(*operationMultiplicative))//tester cast to char
+	switch(char(*operationMultiplicative))
 	{
 		case '*':
-			//tester
 			d = valeurTerme * valeurFacteur;
 		break;
 
 		case '/':
-			//tester
-			/*if(valeurExp2 != 0)
+			if(valeurFacteur != 0)
 			{
 				d = valeurTerme / valeurFacteur;
 			}
 			else
 			{
 				// TODO: erreur (division par zero)
-			}*/
+			}
 		break;
 	}
-
 	return d;
+}
+
+void ExpressionMultiplicative::print()
+{
+	terme->print();
+	operationMultiplicative->print();
+	facteur->print();
 }

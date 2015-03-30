@@ -8,33 +8,86 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	_symbole_string = "Programme";
 }
 
-	vector<Instruction*> Programme::getInstructions()
+vector<Instruction*> Programme::getInstructions()
+{
+	vector<Instruction*> result;
+
+	if (partieInstructive->estVide()==false)
 	{
-		return partieInstructive->getInstructions();
+
+		result = partieInstructive->getInstructions();
 	}
+	return result;
+}
 
 vector<Id*> Programme::getVariables() {
-    return partieDeclarative->getVariables();
+	vector<Id*> result;
+			cout<<" Programme1"<<endl;
+
+	if (partieDeclarative->estVide()==false)
+	{
+		cout<<" ?"<<endl;
+
+    result= partieDeclarative->getVariables();
+
+	}
+	for (int i=0; i<result.size();i++)
+	{
+				cout<<" ?"<<endl;
+
+		cout<<result[i]->getNom()<<endl;
+	}
+		cout<<" Programme2"<<endl;
+
+	return result;
+	
 }
 
 vector<Id*> Programme::getConstantes()
 {
-    return partieDeclarative->getConstantes();
+	vector<Id*> result;
+	if (partieDeclarative->estVide()==false)
+	{
+	
+    result = partieDeclarative->getConstantes();
+
+	}
+	return  result;
 }
 
-void Programme::executer(map<string,double> &mapV)
+vector<pair<Id*,Nombre*> > Programme::getConstantesValeurs()
+{
+	vector<pair<Id*,Nombre*> > result;
+	if (partieDeclarative->estVide()==false)
+	{
+		result=partieDeclarative->getConstantesValeurs();
+	}
+	return result;
+}
+
+void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!partieDeclarative->estVide())
 	{
-		partieDeclarative->executer(mapV);
+		partieDeclarative->executer(map_variables , mapC);
 	}
-	afficherVariables();
 
 	if(!partieInstructive->estVide())
 	{
-		partieInstructive->executer(mapV);
+		partieInstructive->executer(mapV , mapC);
 	}
-	afficherVariables();
+}
+
+void Programme::print()
+{
+	if(!partieDeclarative->estVide())
+	{
+		partieDeclarative->print();
+	}
+	if(!partieInstructive->estVide())
+	{
+		partieInstructive->print();
+	}
 }
 
 void Programme::afficherVariables()
@@ -50,4 +103,19 @@ void Programme::afficherVariables()
 		}
 	}
 }
+
+void Programme::afficherConstantes()
+{
+	map<string,double>::iterator it;
+	for (it=map_constantes.begin(); it!=map_constantes.end(); ++it)
+	{
+		cout << it->first << " => ";
+		if(it->second == 0) cout<< "vide"<<endl;
+		else
+		{
+			cout<< it->second <<endl;
+		}
+	}
+}
+
 

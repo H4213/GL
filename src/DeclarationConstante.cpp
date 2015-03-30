@@ -7,21 +7,24 @@ DeclarationConstante::DeclarationConstante(Id *idO,  Nombre *n, DeclarationConst
 	id = idO;
 	declarationAutreConstante = dC;
 	val = n;
-	_symbole_string = "Declaration de la constante " /*+ constante->getNom()*/;
+	_symbole_string = "Declaration de la constante " + id->getNom();
 }
 
-void DeclarationConstante::executer(map<string,double> &mapV)
+void DeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!declarationAutreConstante->estVide())
 	{
-		declarationAutreConstante->executer(mapV);
+		declarationAutreConstante->executer(mapV , mapC);
 	}
-	mapV[id->getNom()] = val->getValeur();
+	mapC[id->getNom()] = val->getValeur();
 }
 
 void DeclarationConstante::print()
 {
-	cout << _symbole_string << endl;
+	cout<<", ";
+	id->print();
+	cout<<"=";
+	val->print();
 	if(!declarationAutreConstante->estVide())
 	{
 		declarationAutreConstante->print();
@@ -31,7 +34,7 @@ void DeclarationConstante::print()
 vector<Id*> DeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
-	if (declarationAutreConstante!=NULL)
+	if (!declarationAutreConstante->estVide())
 	{
 		vector<Id*> autresConstantes = declarationAutreConstante->getConstantes();
 		result.insert(result.end(),autresConstantes.begin(), autresConstantes.end());
@@ -40,5 +43,20 @@ vector<Id*> DeclarationConstante::getConstantes()
 
 	return result;
 }
+
+vector<pair<Id*,Nombre*> > DeclarationConstante::getConstantesValeurs()
+{
+	vector<pair<Id*,Nombre*> > result;
+	if (declarationAutreConstante->estVide()==false)
+	{
+		vector<pair<Id*,Nombre*> > vecTemp = declarationAutreConstante->getConstantesValeurs();
+		result.insert(result.end(),vecTemp.begin(),vecTemp.end());
+	}
+	pair<Id*, Nombre*> temp(id,val);
+	result.push_back(temp);
+	
+	return result;
+}
+
 
 

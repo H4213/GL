@@ -4,15 +4,22 @@
 #include "Declaration.h"
 #include "DeclarationVariable.h"
 #include "Id.h"
+#include "Nombre.h"
+
 
 class LigneDeclarationVariable : public Declaration
 {
 	public:
-		LigneDeclarationVariable(Id*, DeclarationVariable*);
+		LigneDeclarationVariable(Id* i, DeclarationVariable* dv = new DeclarationVariable());
+		LigneDeclarationVariable():Declaration(Identifiants::ID_LIGNEDECLARATIONVARIABLE){est_vide = true;}
 		~LigneDeclarationVariable();
+		
 		vector<Id*> getVariables();
 		vector<Id*> getConstantes();
-        void executer(map<string,double> &mapV);
+		vector<pair<Id*,Nombre*> > getConstantesValeurs();
+        virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
+        virtual void print();
+
 	protected:
 		Id *id;
 		DeclarationVariable *declarationVariable;

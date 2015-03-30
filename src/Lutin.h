@@ -25,6 +25,10 @@ public:
 	void OptionDefault();
 	bool analyseStatique(Programme* Pr);
 
+	Programme* transformation(Programme* Pr);
+
+
+
 private:
 	Command _command;
 	Automate _automate;

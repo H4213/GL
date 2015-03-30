@@ -15,15 +15,18 @@ class Symbole
 		int ligne;
 		int colonne;
 
-	public:
+		bool estConstante(string nom, map<string,double> &mapC);
+		bool estVariable(string nom, map<string,double> &mapV);
+		
+	public: 
 		Symbole();
 		Symbole(int id): _ident(id){est_vide = false;}
 		virtual ~Symbole(){}
 
 		operator int() const {return _ident;}
 		bool estVide(){return est_vide;}
+		virtual void executer(map<string,double> &mapV , map<string,double> &mapC){}
 		virtual void print();
-		virtual void executer(map<string,double> &mapV){}
 		virtual void setEmplacement(int l , int c);
 
 		int getLigne(){return ligne;}

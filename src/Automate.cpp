@@ -13,14 +13,14 @@ Automate::Automate()
 
 Automate::~Automate()
 {
-	deque<Symbole*>::iterator is = _pileSymboles.begin();
-	while(is != _pileSymboles.end())
+	if(error_state)
 	{
-		//on suprimme tout sauf le programme construit
-		if(*(*is) != Identifiants::ID_PROGRAMME)
-		delete *is;
-		is++;
-	}/**/
+		deque<Symbole*>::iterator is = _pileSymboles.begin();
+		while(is != _pileSymboles.end())
+		{
+			delete *is++;
+		}
+	}
 
 	deque<Etat*>::iterator ie = _pileEtats.begin();
 	while(ie != _pileEtats.end())
@@ -81,7 +81,9 @@ Programme*  Automate::analyser(string fileContent)
 	}
 	delete lecteur;
 
+	if(!error_state)
 	return (Programme*)_pileSymboles.front();
+	else return NULL;
 
 }
 
@@ -141,10 +143,12 @@ void Automate::accepter()
 }
 void Automate::erreur()
 {
+
 	Symbole *c = courant();
 	cerr << "Erreur syntaxique ("<<
 	c->getLigne()<< ":" << c->getColonne()<<")" <<
 	 " symbole '" << c->nom() << "' inattendu" << endl;
+
 	error_state = true;
 }
 void Automate::avancerLecteur()
@@ -156,7 +160,6 @@ Symbole* Automate::courant()
 {
 	return lecteur->getNext();
 }
-
 
 
 

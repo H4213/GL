@@ -13,19 +13,31 @@ PartieDeclarative::PartieDeclarative(Declaration *d, PartieDeclarative *pD) : Sy
 
 vector<Id*> PartieDeclarative::getVariables() {
 
-    vector<Id*> result;
-    if (sousPartieDeclarative->estVide()==false)
-    {
+	vector<Id*> result;
+
+	if (sousPartieDeclarative->estVide()==false)
+	{
     // Variables de la sous partie declarative
-        vector<Id*> partVariables = sousPartieDeclarative->getVariables();
-        result.insert(result.end() , partVariables.begin() , partVariables.end());
+		vector<Id*> partVariables = sousPartieDeclarative->getVariables();
+		if (partVariables.size()!=0)
+		{
+			result.insert(result.end() , partVariables.begin() , partVariables.end());
+		}
 	}
-// Variable de la déclaration
-	vector<Id*> partVariables2=declaration->getVariables();
-    result.insert(result.end() , partVariables2.begin() , partVariables2.end());
-    return result;
+	if (declaration->estVide()==false)
+	{
+	// Variable de la déclaration
+		vector<Id*> partVariables2=declaration->getVariables();
+
+		if (partVariables2.size()!=0)
+		{
+			result.insert(result.end() , partVariables2.begin() , partVariables2.end());
+		}
+	}
+	return result;
 
 }
+
 vector<Id*> PartieDeclarative::getConstantes() {
 	vector<Id*> result;
 	if(sousPartieDeclarative->estVide()==false)
@@ -41,23 +53,45 @@ vector<Id*> PartieDeclarative::getConstantes() {
 }
 
 
-void PartieDeclarative::executer(map<string,double> &mapV)
+void PartieDeclarative::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	if(!sousPartieDeclarative->estVide())
 	{
-		sousPartieDeclarative->executer(mapV);
+		sousPartieDeclarative->executer(mapV , mapC);
 
 	}
-	declaration->executer(mapV);
+	declaration->executer(mapV , mapC);
 
 }
 
 void PartieDeclarative::print()
 {
-	cout << _symbole_string << endl;
-	if(sousPartieDeclarative != NULL)
+	if(!sousPartieDeclarative->estVide())
 	{
 		sousPartieDeclarative->print();
 	}
+	declaration->print();
 }
+
+vector<pair<Id*,Nombre*> > PartieDeclarative::getConstantesValeurs()
+{
+	vector<pair<Id*,Nombre*> > result;
+
+	if (sousPartieDeclarative->estVide()==false)
+	{
+		result = sousPartieDeclarative->getConstantesValeurs();
+	}
+
+	if(declaration->estVide()==false)
+	{
+		vector<pair<Id*,Nombre*> > temp=declaration->getConstantesValeurs();
+		if (temp.size()!=0)
+		{
+		result.insert(result.end(),temp.begin(),temp.end());
+		}
+	}
+
+	return result;
+}
+
 
