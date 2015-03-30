@@ -10,6 +10,10 @@ Lutin::Lutin ( int argc, char **argv ) :
 	bool showHelp = false;
 
 	_programme = NULL;
+	_command.SetNoArgFor("-p");
+	_command.SetNoArgFor("-a");
+	_command.SetNoArgFor("-e");
+	_command.SetNoArgFor("-o");
 
 	//on récupère le nom de fichier comme un argument sans option
 	string inputfile = _command.getArgument("s0");
@@ -39,6 +43,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 	bool option_a = _command.OptionExists("-a");
 	bool option_e = _command.OptionExists("-e");
 	bool option_o = _command.OptionExists("-o");
+	
 
 	bool option_default = (_command.OptionCount()==0);
 
