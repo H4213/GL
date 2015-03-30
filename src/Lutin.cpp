@@ -92,7 +92,7 @@ void Lutin::OptionO()
 	if (_programme != NULL )
 	{
 	   	Programme *newProgramme = transformation(_programme);
-        delete _programme;
+        // delete _programme;
         _programme = newProgramme;
 
 	}
