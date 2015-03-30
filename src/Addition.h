@@ -9,7 +9,7 @@ public:
 	Addition();
 	virtual ~Addition(){}
 
-	void executer(map<string,double> &mapV){}
+	void executer(map<string,double> &mapV , map<string,double> &mapC){}
 
 };
 

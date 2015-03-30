@@ -10,9 +10,11 @@ public:
 	Expression();
 	Expression(int id):Symbole(id){}
 	virtual ~Expression(){}
-	virtual vector<Id*> getIds();
-	virtual double eval(map<string,double> &mapV){}
+
 	virtual Expression* transformation(map<string,double> constantes);
+	virtual vector<Id*> getIds(){}
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC){}
+
 
 };
 

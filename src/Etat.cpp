@@ -1,4 +1,4 @@
-#include "Etat.h"
+	#include "Etat.h"
 #include "Automate.h"
 #include "Symbole.h"
 #include "Identifiants.h"
@@ -743,7 +743,7 @@ void E27::transition(Automate & automate, Symbole *s)
 			delete automate.depilerSymbole();
 
 
-			automate.reduction(new LigneDeclarationConstante(id, dc, n));
+			automate.reduction(new LigneDeclarationConstante(id, n, dc));
 
 		break;
 

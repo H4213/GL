@@ -1,11 +1,14 @@
 #include "LigneDeclarationConstante.h"
 
-LigneDeclarationConstante::LigneDeclarationConstante(Id*idO, DeclarationConstante*dc, Nombre *v)
+#include <iostream>
+
+LigneDeclarationConstante::LigneDeclarationConstante(Id*idO, Nombre *v, DeclarationConstante*dc)
 : Declaration(Identifiants::ID_LIGNEDECLARATIONCONSTANTE)
 {
 	id = idO;
 	declarationConstante = dc;
 	val = v;
+	_symbole_string = "const ";
 }
 
 LigneDeclarationConstante::~LigneDeclarationConstante()
@@ -14,11 +17,13 @@ LigneDeclarationConstante::~LigneDeclarationConstante()
 	delete declarationConstante;
 	delete val;
 }
+
 vector<Id*> LigneDeclarationConstante::getVariables()
 {
 	vector<Id*> result;
 	return result;
 }
+
 vector<Id*> LigneDeclarationConstante::getConstantes()
 {
 	vector<Id*> result;
@@ -33,8 +38,8 @@ vector<Id*> LigneDeclarationConstante::getConstantes()
 }
 
 
-
 map<string,double> LigneDeclarationConstante::getConstantesValeurs()
+
 {	
 	map<string,double> result;
 	pair<string,double> temp (id->getNom(),val->getValeur());
@@ -48,11 +53,24 @@ map<string,double> LigneDeclarationConstante::getConstantesValeurs()
 	return result;
 }
 
-void LigneDeclarationConstante::executer(map<string,double> &mapV)
+void LigneDeclarationConstante::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
-     if(declarationConstante->estVide()==false)
+     if(declarationConstante->estVide() == false)
 	{
-		declarationConstante->executer(mapV);
+		declarationConstante->executer(mapV , mapC);
 	}
-	mapV[id->getNom()]= val->getValeur();
+	mapC[id->getNom()]= val->getValeur();
+}
+
+void LigneDeclarationConstante::print()
+{
+	cout<< _symbole_string;
+	id->print();
+	cout<<"=";
+	val->print();
+	if(declarationConstante->estVide() == false)
+	{
+		declarationConstante->print();
+	}
+	cout<<";"<<endl;
 }

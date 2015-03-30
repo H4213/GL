@@ -6,15 +6,17 @@
 
 class Id : public Facteur {
 
-public :
+public:
 	Id(string nom);
 	Id():Facteur(Identifiants::ID_ID){}
 	virtual ~Id(){}
-	virtual void executer(map<string,double> &mapV){}
-	bool operator==(const Id &);
 
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
+	bool operator==(const Id &);
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;} 
+
 	Expression* transformation(map<string,double>  constantes);
+
 
 	vector<Id*> getIds();
 	string getNom() const;

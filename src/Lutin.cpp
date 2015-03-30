@@ -1,7 +1,7 @@
-using namespace std;
+#include "Lutin.h"
 #include <iostream>
 
-#include "Lutin.h"
+using namespace std;
 
 Lutin::Lutin ( int argc, char **argv ) :
 		_command(argc, argv)
@@ -63,8 +63,10 @@ void Lutin::ShowHelp()
 }
 void Lutin::OptionP()
 {
-
-	cout << "OptionP" << endl;
+	if (_programme != NULL )
+	{
+	    _programme->print();
+	}
 }
 void Lutin::OptionA()
 {
@@ -83,8 +85,15 @@ void Lutin::OptionE()
 }
 void Lutin::OptionO()
 {
-
-	cout << "OptionO" << endl;
+	if (_programme != NULL )
+	{
+	    if(_command.OptionExists("-p"))
+	    {
+	    	/*Programme *newProgramme = transformation(_programme);
+	    	newProgramme->print();
+	    	delete newProgramme;*/
+	    }
+	}
 }
 
 void Lutin::OptionDefault()
@@ -282,7 +291,12 @@ Programme* Lutin::transformation(Programme* Pr)
 			std::string str = strs.str();
 
 		
-	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes.begin()->first), declarationsConstantes[declarationsConstantes.size()-1],new Nombre(str));
+
+	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes.begin()->first),new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
+
+		
+		
+
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
@@ -319,5 +333,7 @@ Programme* Lutin::transformation(Programme* Pr)
 Lutin::~Lutin ( )
 {
 	if(_programme != NULL)
+	{
 		delete _programme;
+	}
 }

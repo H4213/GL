@@ -11,8 +11,12 @@ public:
 	Facteur(int id):Terme(id){}
 	virtual ~Facteur(){}
 	virtual vector<Id*> getIds();
-	virtual double eval(map<string,double> &mapV){}
+
 	virtual Expression* transformation(map<string,double>constantes);
+
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC){}
+
+
 	void convertToTerme(){_ident=Identifiants::ID_TERME;}
 
 };

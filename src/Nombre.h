@@ -12,12 +12,14 @@ public:
 
 	double getValeur();
 	string getStrValeur();
-	virtual double eval(map<string,double> &mapV);
+
 	vector<Id*> getIds();
 	Expression* transformation(map<string,double> constantes);
 
-	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
 
+	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;}
+	virtual double eval(map<string,double> &mapV , map<string,double> &mapC);
+	
 private:
 	double valeur;
 

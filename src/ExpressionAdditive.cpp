@@ -64,15 +64,15 @@ vector<Id*> ExpressionAdditive::getIds()
 	resultat.insert(resultat.end(),temp.begin(),temp.end());
 	return resultat;
 }
-double ExpressionAdditive::eval(map<string,double> &mapV)
+
+double ExpressionAdditive::eval(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double d;
-	double valeurExp = expression->eval(mapV);
-	double valeurTerme = terme->eval(mapV);
+	double valeurExp = expression->eval(mapV,mapC);
+	double valeurTerme = terme->eval(mapV,mapC);
 
 	switch(char(*operationAdditive))
 	{
-		cout<<"dentro do switch"<<endl;
 		case '+':
 			d = valeurExp + valeurTerme;
 		break;
@@ -80,6 +80,12 @@ double ExpressionAdditive::eval(map<string,double> &mapV)
 			d = valeurExp - valeurTerme;
 		break;
 	}
-
 	return d;
+}
+
+void ExpressionAdditive::print()
+{
+	expression->print();
+	operationAdditive->print();
+	terme->print();
 }

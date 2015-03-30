@@ -7,10 +7,8 @@ Declaration::Declaration() : Symbole(Identifiants::ID_DECLARATION)
 	est_vide = true;
 }
 
-Declaration::Declaration(int id) : Symbole(id)
-{
 
-}
+
 vector<Id*> Declaration::getVariables() {
 
 }
@@ -21,4 +19,5 @@ vector<Id*> Declaration::getConstantes() {
 map<string,double> Declaration::getConstantesValeurs(){
 	
 }
+
 
