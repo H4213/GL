@@ -8,8 +8,9 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 	_symbole_string = "InstructionLire";
 }
 
-void InstructionLire::transformation(vector<pair<Id*,Nombre*> > constantes){
-	return;
+Instruction * InstructionLire::transformation(map<string,double> constantes){
+	Instruction * newInstruction = new InstructionLire(id);
+	return newInstruction;
 }
 
 vector<Id*> InstructionLire::getIds()
@@ -23,21 +24,24 @@ vector<Id*> InstructionLire::getIds()
 void InstructionLire::executer(map<string,double> &mapV , map<string,double> &mapC)
 {
 	double valeur;
+	string nom_var = id->getNom();
+
+	cout<<"Introduire la valeur pour la variable "<<nom_var<<" : ";
+
 	if(not(cin >> valeur))
 	{
-		cout<< "Ce n'est pas un double"<<endl;
+		cerr<< "ERREUR: Ce n'est pas un chifre"<<endl;
 		//Erreur
 	}
 	else
 	{
-		string nom_var = id->getNom();
 		if (estVariable(nom_var, mapV) && !estConstante(nom_var, mapC))
 		{
 			mapV[nom_var] = valeur;
 		}
 		else
 		{
-			cout<< "Variable non declarée"<<endl;
+			cerr<< "ERREUR: Variable non declarée"<<endl;
 			//Erreur
 		}
 	}
@@ -47,5 +51,5 @@ void InstructionLire::print()
 {
 	cout<<"lire ";
 	id->print();
-	cout<<" ;"<<endl;
+	cout<<";"<<endl;
 }

@@ -45,47 +45,76 @@ Expression* ExpressionMultiplicative::transformation(map<string,double> constant
 	Terme * newTerme=(Terme*)(terme->transformation(constantes));
 	Facteur * newFacteur=(Facteur*)(facteur->transformation(constantes));
 	OperationMultiplicative * newOpM;
-	if ((char) *operationMultiplicative =='*')
-	{
-	newOpM=new Multiplication();
-	}
-	else if((char) *operationMultiplicative =='-')
-	{
-	newOpM=new Division();
-	}
 	double valeur1;
 	double valeur2;
-	
-	if ((int) *newTerme ==Identifiants::ID_NOMBRE)
+	if ((char) *operationMultiplicative =='*')
 	{
-		valeur1=((Nombre*)newTerme)->getValeur();
-		if (valeur1==1)
-		{
-			return newFacteur;
-		}
+        newOpM=new Multiplication();
+        if (dynamic_cast<Nombre*>(newTerme)!=NULL)
+        {
+            valeur1=((Nombre*)newTerme)->getValeur();
+            if (valeur1==1)
+            {
+                return newFacteur;
+            }
+        }
+        if (dynamic_cast<Nombre*>(newFacteur)!=NULL)
+        {
+            valeur2=((Nombre*)newFacteur)->getValeur();
+            if (valeur2==1)
+            {
+                return newTerme ;
+            }
+        }
+        if (dynamic_cast<Nombre*>(newTerme)!=NULL && dynamic_cast<Nombre*>(newFacteur)!=NULL)
+        {
+            double valeur3=valeur1*valeur2;
+            std::ostringstream strs;
+            strs <<valeur3;
+            std::string str = strs.str();
+            Nombre * nombreRes=new Nombre(str);
+            return nombreRes;
+        }
+        else
+        {
+            ExpressionMultiplicative * exprRes = new ExpressionMultiplicative(newTerme,newFacteur,newOpM);
+            return exprRes;
+        }
+
 	}
-	if ((int) *newFacteur ==Identifiants::ID_NOMBRE)
+	else if((char) *operationMultiplicative =='/')
 	{
-		valeur2=((Nombre*)newFacteur)->getValeur();
-		if (valeur2==1)
-		{
-			return newTerme ;
-		}
+        newOpM=new Division();
+        if (dynamic_cast<Nombre*>(newTerme)!=NULL)
+        {
+            valeur1=((Nombre*)newTerme)->getValeur();
+        }
+        if (dynamic_cast<Nombre*>(newFacteur)!=NULL)
+        {
+            valeur2=((Nombre*)newFacteur)->getValeur();
+            if (valeur2==1)
+            {
+                return newTerme ;
+            }
+        }
+        if (dynamic_cast<Nombre*>(newTerme)!=NULL && dynamic_cast<Nombre*>(newFacteur)!=NULL)
+        {
+            double valeur3=valeur1/valeur2;
+            std::ostringstream strs;
+            strs <<valeur3;
+            std::string str = strs.str();
+            Nombre * nombreRes=new Nombre(str);
+            return nombreRes;
+        }
+        else
+        {
+            ExpressionMultiplicative * exprRes = new ExpressionMultiplicative(newTerme,newFacteur,newOpM);
+            return exprRes;
+        }
+
 	}
-	if ((int) *newTerme ==Identifiants::ID_NOMBRE && (int) *newFacteur ==Identifiants::ID_NOMBRE )
-	{
-		double valeur3=valeur1+valeur2;
-		std::ostringstream strs;
-		strs <<valeur3;
-		std::string str = strs.str();
-		Nombre * nombreRes=new Nombre(str);
-		return nombreRes;
-	}
-	else
-	{
-		ExpressionMultiplicative * exprRes = new ExpressionMultiplicative(newTerme,newFacteur,newOpM);
-		return exprRes;
-	}
+
+
 
 }
 void ExpressionMultiplicative::print()

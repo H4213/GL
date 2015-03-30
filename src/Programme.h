@@ -13,7 +13,7 @@ public:
 
 	Programme(PartieDeclarative *partieD, PartieInstructive *partieI);
 	Programme():Symbole(Identifiants::ID_PROGRAMME){est_vide=true;}
-	virtual ~Programme(){} //TODO: tout nettoyer!!!!
+	virtual ~Programme(); //TODO: tout nettoyer!!!!
 
 	void afficherVariables();
 	void afficherConstantes();
