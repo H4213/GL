@@ -1,27 +1,27 @@
 #-----------------------------------------------------------------------------------
-LIBPATH =-L/home/amine/Documents/Grammaire/
-LIBS =   
+LIBPATH =
+LIBS =   -lboost_regex
 COMP = g++
 COMPFLAGS = -c
-EXEC = Grammaire
+EXEC = lut
 CLEAN = clean
 INT = $(wildcard *.cpp)
 REAL = ${INT:.h =.cpp}
-OBJ = ${INT:.cpp=.o} 
+OBJ = ${INT:.cpp=.o}
 EDL = g++
 EDLFLAGS = -o
 RM = rm
 ECHO = echo
 RMFLAGS = -f
-INCPATH =-I/home/amine/Documents/Grammaire/
-SRCPATH =  
+INCPATH =
+SRCPATH = 
 #====================================================================================
 .PHONY 	: $(CLEAN)
 all	: $(EXEC)
 $(EXEC) : $(OBJ)
 	$(ECHO) Edl $(EXEC)
 	$(EDL) $(EDLFLAGS) $(EXEC) $(OBJ) $(LIBPATH) $(LIBS)
-  
+
 
 %.o 	: %.cpp
 	$(ECHO) compil de $<
