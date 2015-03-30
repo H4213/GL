@@ -87,12 +87,12 @@ void Lutin::OptionO()
 {
 	if (_programme != NULL )
 	{
-	    if(_command.OptionExists("-p"))
-	    {
-	    	/*Programme *newProgramme = transformation(_programme);
+	    //if(_command.OptionExists("-p"))
+	    //{
+	    	Programme *newProgramme = transformation(_programme);
 	    	newProgramme->print();
-	    	delete newProgramme;*/
-	    }
+	    	delete newProgramme;
+	   // }
 	}
 }
 
@@ -261,6 +261,7 @@ Programme* Lutin::transformation(Programme* Pr)
 	partiesDeclaratives.push_back(finPartieDeclarative);
 	declarationsVariables.push_back(finVariable);
 	declarationsConstantes.push_back(finConstante);
+	//Declaration de Variables
 	if(variables.size()!=0)
 	{
 		
@@ -274,10 +275,13 @@ Programme* Lutin::transformation(Programme* Pr)
 		PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDV,partiesDeclaratives[partiesDeclaratives.size()-1]);
 		partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
+	
+	//Declaration de Constantes
 	if(constantes.size()!=0)
 	{
-		
-		for (map<string,double>::iterator it=constantes.begin()++;it!=constantes.end();++it)
+		map<string,double>::iterator it=constantes.begin();
+		it++;
+		for (it;it!=constantes.end();++it)
 		{
 			std::ostringstream strs;
 			strs << it->second;
@@ -286,7 +290,7 @@ Programme* Lutin::transformation(Programme* Pr)
 			DeclarationConstante* declC = new DeclarationConstante(new Id(it->first), new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
 			declarationsConstantes.push_back(declC);
 		}
-		std::ostringstream strs;
+			std::ostringstream strs;
 			strs <<constantes.begin()->second;
 			std::string str = strs.str();
 
@@ -302,28 +306,31 @@ Programme* Lutin::transformation(Programme* Pr)
 	}
 	
 	
-	
-	
 	//Partie Declarative transformé
 	// Transformation de la partie Instructive
 	PartieInstructive * partieInstructiveVide= new PartieInstructive();
     vector<Instruction*> instructions = Pr->getInstructions();
 	vector<PartieInstructive*> newInstructions;
+
 	for (int i=0;i<instructions.size();i++)
 	{
-		
-		if (i=0)
+		if (i==0)
 		{
-			PartieInstructive * pITemp = new PartieInstructive(instructions[i]->transformation(constantes),partieInstructiveVide);
-			newInstructions[0] =pITemp;
+			Instruction* instru=instructions[0]->transformation(constantes);
+			
+			PartieInstructive* pITemp = new PartieInstructive(instru,partieInstructiveVide);	
+					
+
+			newInstructions.push_back(pITemp);
+
 		}
 		else
 		{
 			PartieInstructive * pITemp = new PartieInstructive(instructions[i]->transformation(constantes),newInstructions[i-1]);
-			newInstructions[i] = pITemp;
+			newInstructions.push_back(pITemp);
 		}
 	}
-	
+
 	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],newInstructions[newInstructions.size()-1]);
 	return PrResult;
 }

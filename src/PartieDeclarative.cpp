@@ -27,7 +27,9 @@ vector<Id*> PartieDeclarative::getVariables() {
 	if (declaration->estVide()==false)
 	{
 	// Variable de la déclaration
+
 		vector<Id*> partVariables2=declaration->getVariables();
+	
 
 		if (partVariables2.size()!=0)
 		{

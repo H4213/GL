@@ -12,6 +12,7 @@ ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditiv
 
 Expression* ExpressionAdditive::transformation(map<string,double> constantes)
 {
+
 	Expression * newExpression=expression->transformation(constantes);
 	Terme * newTerme=(Terme*)terme->transformation(constantes);
 	OperationAdditive * newOpA;
@@ -25,24 +26,27 @@ Expression* ExpressionAdditive::transformation(map<string,double> constantes)
 	}
 	double valeur1;
 	double valeur2;
-	
-	if ((int) *newTerme ==Identifiants::ID_NOMBRE)
+
+	if (dynamic_cast<Nombre*> (newTerme)!=NULL)
 	{
-		valeur2=((Nombre*)terme)->getValeur();
+
+		valeur2=((Nombre*)newTerme)->getValeur();
 		if (valeur2==0)
 		{
 			return newExpression;
 		}
 	}
-	if ((int) *newExpression ==Identifiants::ID_NOMBRE)
+	if (dynamic_cast<Nombre*> (newExpression)!=NULL)
 	{
+
+
 		valeur1=((Nombre*)newExpression)->getValeur();
 		if (valeur1==0)
 		{
 			return newTerme ;
 		}
 	}
-	if ((int) *newExpression ==Identifiants::ID_NOMBRE && (int) *newTerme ==Identifiants::ID_NOMBRE )
+	if (dynamic_cast<Nombre*> (newExpression)!=NULL && dynamic_cast<Nombre*> (newTerme)!=NULL )
 	{
 		double valeur3=valeur1+valeur2;
 		std::ostringstream strs;

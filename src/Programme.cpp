@@ -22,22 +22,16 @@ vector<Instruction*> Programme::getInstructions()
 
 vector<Id*> Programme::getVariables() {
 	vector<Id*> result;
-			cout<<" Programme1"<<endl;
+			
 
 	if (partieDeclarative->estVide()==false)
 	{
-		cout<<" ?"<<endl;
+		
 
     result= partieDeclarative->getVariables();
 
 	}
-	for (int i=0; i<result.size();i++)
-	{
-				cout<<" ?"<<endl;
-
-		cout<<result[i]->getNom()<<endl;
-	}
-		cout<<" Programme2"<<endl;
+	
 
 	return result;
 	
