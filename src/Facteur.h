@@ -12,7 +12,7 @@ public:
 	virtual ~Facteur(){}
 	virtual vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV){}
-
+	virtual Expression* transformation(map<string,double>constantes);
 	void convertToTerme(){_ident=Identifiants::ID_TERME;}
 
 };

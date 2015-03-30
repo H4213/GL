@@ -84,9 +84,9 @@ void Programme::afficherVariables()
 	}
 }
 
-vector<pair<Id*,Nombre*> > Programme::getConstantesValeurs()
+map<string, double> Programme::getConstantesValeurs()
 	{
-		vector<pair<Id*,Nombre*> > result;
+		map<string,double> result;
 		if (partieDeclarative->estVide()==false)
 		{
 			result=partieDeclarative->getConstantesValeurs();

@@ -12,7 +12,7 @@ public:
 	virtual ~Instruction(){}
 	virtual vector<Id*> getIds();
 	virtual void executer(map<string,double> &mapV){}
-	virtual void transformation(vector<pair<Id*,Nombre*> > constantes);
+	virtual Instruction* transformation(map<string,double> constantes);
 };
 
 

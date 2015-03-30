@@ -79,9 +79,9 @@ void PartieDeclarative::print()
 	}
 }
 
-vector<pair<Id*,Nombre*> > PartieDeclarative::getConstantesValeurs()
+map<string,double> PartieDeclarative::getConstantesValeurs()
 {
-	vector<pair<Id*,Nombre*> > result;
+	map<string,double> result;
 
 	if (sousPartieDeclarative->estVide()==false)
 	{
@@ -90,10 +90,10 @@ vector<pair<Id*,Nombre*> > PartieDeclarative::getConstantesValeurs()
 
 	if(declaration->estVide()==false)
 	{
-		vector<pair<Id*,Nombre*> > temp=declaration->getConstantesValeurs();
+		map<string,double> temp=declaration->getConstantesValeurs();
 		if (temp.size()!=0)
 		{
-		result.insert(result.end(),temp.begin(),temp.end());
+		result.insert(temp.begin(),temp.end());
 		}
 	}
 

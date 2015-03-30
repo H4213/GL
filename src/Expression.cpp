@@ -10,6 +10,6 @@ vector<Id*> Expression::getIds()
 {
 
 }
-Expression* Expression::transformation(vector<pair<Id*,Nombre*> > constantes)
+Expression* Expression::transformation(map<string,double> constantes)
 {
 }

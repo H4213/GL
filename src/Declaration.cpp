@@ -18,7 +18,7 @@ vector<Id*> Declaration::getVariables() {
 vector<Id*> Declaration::getConstantes() {
 
 }
-vector<pair<Id*,Nombre*> > Declaration::getConstantesValeurs(){
+map<string,double> Declaration::getConstantesValeurs(){
 	
 }
 

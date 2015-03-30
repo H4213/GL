@@ -20,7 +20,7 @@ public:
 	virtual void executer(map<string,double> &mapV);
 	vector<Id*> getConstantes();
 	void print();
-	vector<pair<Id*,Nombre*> > getConstantesValeurs();
+	map<string,double> getConstantesValeurs();
 
 
 private:

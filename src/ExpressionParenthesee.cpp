@@ -6,6 +6,12 @@ ExpressionParenthesee::ExpressionParenthesee(Expression *exp):Facteur(Identifian
 	_symbole_string = "ExpressionParenthesee";
 }
 
+Expression* ExpressionParenthesee::transformation(map<string,double> constantes)
+{
+	Expression * expNouveau = expression->transformation(constantes);
+	ExpressionParenthesee * result = new ExpressionParenthesee(expNouveau);
+	return result;
+}
 double ExpressionParenthesee::eval(map<string,double> &mapV)
 {
 	double d = expression->eval(mapV);

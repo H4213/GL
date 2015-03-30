@@ -17,7 +17,7 @@ public:
 
     virtual vector<Id*> getVariables();
     virtual vector<Id*> getConstantes();
-    virtual vector<pair<Id*,Nombre*> > getConstantesValeurs();
+    virtual map<string,double> getConstantesValeurs();
 	virtual void executer(map<string,double> &mapV){}
 };
 

@@ -29,7 +29,7 @@ public:
 	vector<Id*> getConstantes();
 	virtual void executer(map<string,double> &mapV);
 	void print();
-	vector<pair<Id*,Nombre*> > getConstantesValeurs();
+	map<string,double> getConstantesValeurs();
 
 
 private:

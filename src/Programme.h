@@ -21,7 +21,7 @@ public:
 	vector<Instruction*> getInstructions();
 	vector<Id*> getVariables();
 	vector<Id*> getConstantes();
-	vector<pair<Id*,Nombre*> > getConstantesValeurs();
+	map<string,double> getConstantesValeurs();
 	PartieInstructive* getPartieInstructive(){return partieInstructive;}
 	PartieDeclarative* getPartieDeclarative(){return partieDeclarative;}
 	void executer(){executer(map_variables);}

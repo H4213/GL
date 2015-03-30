@@ -1,7 +1,10 @@
 #if !defined ( EXPRESSIONMULTIPLICATIVE_H )
 #define EXPRESSIONMULTIPLICATIVE_H
-#include "Expression.h"
+
 #include "OperationMultiplicative.h"
+#include "Division.h"
+#include "Multiplication.h"
+#include "Nombre.h"
 #include "Terme.h"
 #include "Facteur.h"
 
@@ -13,7 +16,7 @@ public:
 	virtual ~ExpressionMultiplicative(){}
 	vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV);
-
+	Expression* transformation(map<string,double> constantes);
 private:
 	Terme *terme;
 	Facteur *facteur;

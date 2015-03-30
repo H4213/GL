@@ -14,7 +14,7 @@ public:
 	Expression* getExpression(){return expression;}
 	void setExpression();
 	virtual void executer(map<string,double> &mapV);
-	void transformation(vector<pair<Id*,Nombre*> > constantes);
+	Instruction* transformation(map<string,double> constantes);
 
 
 private:

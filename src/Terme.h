@@ -13,7 +13,7 @@ public:
 	vector<Id*> getIds();
 	virtual double eval(map<string,double> &mapV){}
 	void convertToExpression(){_ident=Identifiants::ID_EXPRESSION;}
-
+	virtual Expression* transformation(map<string,double> constantes);
 };
 
 

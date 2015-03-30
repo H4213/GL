@@ -22,10 +22,12 @@ vector<Id*> InstructionAffectation::getIds()
 
 }
 
-void InstructionAffectation::transformation(vector<pair<Id*,Nombre*> > constantes)
+Instruction* InstructionAffectation::transformation(map<string, double> constantes)
 {
-	expression=expression->transformation(constantes);
-	return;
+	Expression * newExpression=expression->transformation(constantes);
+	Id * newId=new Id(id->getNom());
+	InstructionAffectation* newInstruction=new InstructionAffectation(newId,newExpression);
+	return newInstruction;
 }
 void InstructionAffectation::executer(map<string,double> &mapV)
 {

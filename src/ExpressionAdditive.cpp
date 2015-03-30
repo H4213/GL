@@ -1,7 +1,7 @@
 #include "ExpressionAdditive.h"
 	
 #include <iostream>
-
+#include <sstream>
 ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditive *opA):Expression(Identifiants::ID_EXPRESSIONADDITIVE)
 {
 	expression = e;
@@ -10,36 +10,52 @@ ExpressionAdditive::ExpressionAdditive(Expression *e, Terme *t, OperationAdditiv
 	_symbole_string = "ExpressionAdditive";
 }
 
-Expression* ExpressionAdditive::transformation(vector<pair<Id*,Nombre*> > constantes)
+Expression* ExpressionAdditive::transformation(map<string,double> constantes)
 {
-	expression=expression->transformation(constantes);
-	terme=terme->transformation(constantes);
-	
-	/*double valeur1;
+	Expression * newExpression=expression->transformation(constantes);
+	Terme * newTerme=(Terme*)terme->transformation(constantes);
+	OperationAdditive * newOpA;
+	if ((char) *operationAdditive =='+')
+	{
+	newOpA=new Addition();
+	}
+	else if((char) *operationAdditive =='-')
+	{
+	newOpA=new Soustraction();
+	}
+	double valeur1;
 	double valeur2;
-	if ((int) terme ==identifiants::ID_NOMBRE)
-	{
-		valeur2=terme->getValeur();
-	}
-	if ((int) expression ==identifiants::ID_NOMBRE)
-	{
-		valeur1=expression->getValeur();
-	}
-	if ((int) terme ==identifiants::ID_ID)
-	{
-		if(std::find(constantes.begin(),constantes.end()
-		valeur2=terme->getValeur();
-	}
-	if ((int) expression ==identifiants::ID_ID)
-	{
-		valeur1=terme->getValeur();
-	}
-	if ((int) expression==identifiants::ID_NOMBRE && (int) terme==identifiants::ID_NOMBRE)
-	{
-		terme
-		Nombre* nb = 
-	}*/
 	
+	if ((int) *newTerme ==Identifiants::ID_NOMBRE)
+	{
+		valeur2=((Nombre*)terme)->getValeur();
+		if (valeur2==0)
+		{
+			return newExpression;
+		}
+	}
+	if ((int) *newExpression ==Identifiants::ID_NOMBRE)
+	{
+		valeur1=((Nombre*)newExpression)->getValeur();
+		if (valeur1==0)
+		{
+			return newTerme ;
+		}
+	}
+	if ((int) *newExpression ==Identifiants::ID_NOMBRE && (int) *newTerme ==Identifiants::ID_NOMBRE )
+	{
+		double valeur3=valeur1+valeur2;
+		std::ostringstream strs;
+		strs <<valeur3;
+		std::string str = strs.str();
+		Nombre * nombreRes=new Nombre(str);
+		return nombreRes;
+	}
+	else
+	{
+		ExpressionAdditive * exprRes = new ExpressionAdditive(newExpression,newTerme,newOpA);
+		return exprRes;
+	}
 }
 vector<Id*> ExpressionAdditive::getIds()
 {

@@ -16,7 +16,7 @@ class LigneDeclarationVariable : public Declaration
 		vector<Id*> getConstantes();
 
 
-		vector<pair<Id*,Nombre*> > getConstantesValeurs();
+		map<string,double> getConstantesValeurs();
 
         void executer(map<string,double> &mapV);
 

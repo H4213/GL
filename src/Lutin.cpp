@@ -239,7 +239,7 @@ Programme* Lutin::transformation(Programme* Pr)
 	
 	//Transformation de la partieDeclarative
 	vector<Id*> variables  = Pr->getVariables();
-	vector<pair<Id*,Nombre*> > constantes = Pr->getConstantesValeurs();
+	map<string,double > constantes = Pr->getConstantesValeurs();
 	
 	DeclarationVariable* finVariable= new DeclarationVariable();
 	DeclarationConstante* finConstante= new DeclarationConstante();
@@ -268,16 +268,21 @@ Programme* Lutin::transformation(Programme* Pr)
 	if(constantes.size()!=0)
 	{
 		
-		for (int i=0;i<constantes.size()-1;i++)
+		for (map<string,double>::iterator it=constantes.begin()++;it!=constantes.end();++it)
 		{
+			std::ostringstream strs;
+			strs << it->second;
+			std::string str = strs.str();
 
-			DeclarationConstante* declC = new DeclarationConstante(new Id(constantes[i].first->getNom()), new Nombre(constantes[i].second->getStrValeur()), declarationsConstantes[i]);
+			DeclarationConstante* declC = new DeclarationConstante(new Id(it->first), new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
 			declarationsConstantes.push_back(declC);
 		}
+		std::ostringstream strs;
+			strs <<constantes.begin()->second;
+			std::string str = strs.str();
+
 		
-		
-		
-	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), declarationsConstantes[declarationsConstantes.size()-1],new Nombre(constantes[constantes.size()-1].second->getStrValeur()));
+	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes.begin()->first), declarationsConstantes[declarationsConstantes.size()-1],new Nombre(str));
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
@@ -287,14 +292,25 @@ Programme* Lutin::transformation(Programme* Pr)
 	
 	//Partie Declarative transformé
 	// Transformation de la partie Instructive
+	PartieInstructive * partieInstructiveVide= new PartieInstructive();
     vector<Instruction*> instructions = Pr->getInstructions();
-
+	vector<PartieInstructive*> newInstructions;
 	for (int i=0;i<instructions.size();i++)
 	{
-		instructions[i]->transformation(constantes);
+		
+		if (i=0)
+		{
+			PartieInstructive * pITemp = new PartieInstructive(instructions[i]->transformation(constantes),partieInstructiveVide);
+			newInstructions[0] =pITemp;
+		}
+		else
+		{
+			PartieInstructive * pITemp = new PartieInstructive(instructions[i]->transformation(constantes),newInstructions[i-1]);
+			newInstructions[i] = pITemp;
+		}
 	}
 	
-	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],Pr->getPartieInstructive());
+	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],newInstructions[newInstructions.size()-1]);
 	return PrResult;
 }
 

@@ -2,6 +2,7 @@
 #define ID_H
 #include "Symbole.h"
 #include "Facteur.h"
+#include "Nombre.h"
 
 class Id : public Facteur {
 
@@ -13,6 +14,7 @@ public :
 	bool operator==(const Id &);
 
 	void convertToFacteur(){_ident = Identifiants::ID_FACTEUR;} 
+	Expression* transformation(map<string,double>  constantes);
 
 	vector<Id*> getIds();
 	string getNom() const;
