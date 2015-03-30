@@ -10,10 +10,10 @@ public:
 	InstructionLire(Id *idO);
 	InstructionLire():Instruction(Identifiants::ID_INSTRUCTIONLIRE){est_vide = true;}
 	virtual ~InstructionLire(){}
-	
+
 	vector<Id*> getIds();
 	Id* getIdentifiant(){return id;}
-	void transformation(vector<pair<Id*,Nombre*> > constantes);
+	Instruction * transformation(map<string,double> constantes);
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	virtual void print();
 
@@ -23,4 +23,4 @@ private:
 };
 
 
-#endif 
+#endif

@@ -8,8 +8,9 @@ InstructionLire::InstructionLire(Id *idO):Instruction(Identifiants::ID_INSTRUCTI
 	_symbole_string = "InstructionLire";
 }
 
-void InstructionLire::transformation(vector<pair<Id*,Nombre*> > constantes){
-	return;
+Instruction * InstructionLire::transformation(map<string,double> constantes){
+	Instruction * newInstruction = new InstructionLire(id);
+	return newInstruction;
 }
 
 vector<Id*> InstructionLire::getIds()
