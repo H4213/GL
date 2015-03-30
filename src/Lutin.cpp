@@ -70,7 +70,6 @@ void Lutin::OptionP()
 }
 void Lutin::OptionA()
 {
-
 	if (_programme != NULL )
 	{
 	    analyseStatique(_programme);
@@ -87,12 +86,10 @@ void Lutin::OptionO()
 {
 	if (_programme != NULL )
 	{
-	    //if(_command.OptionExists("-p"))
-	    //{
-	    	Programme *newProgramme = transformation(_programme);
-	    	newProgramme->print();
-	    	delete newProgramme;
-	   // }
+	   	Programme *newProgramme = transformation(_programme);
+        delete _programme;
+        _programme = newProgramme;
+
 	}
 }
 
@@ -150,13 +147,14 @@ bool Lutin::analyseStatique(Programme* Pr)
         }
         else
         {
-            cout << "La constante " + allConstantes[i]->getNom() + " a été declaré plus d'une fois" << endl;
+            cerr << "La constante " + allConstantes[i]->getNom() + " a ete declaré plus d'une fois" << endl;
             return 1;
         }
     }
 
     //Verification des instructions.
     // Initialisation de vector d'instructions
+    vector<string> variableUtilise;
     vector<Instruction*> instructions = Pr->getInstructions();
     for (int i = 0;i<instructions.size(); i++)
         {
@@ -164,16 +162,17 @@ bool Lutin::analyseStatique(Programme* Pr)
         switch ((int) *instructions[i]){
             case Identifiants::ID_INSTRUCTIONAFFECTATION:
                 //Cas d'une instruction d'affectation
+                variableUtilise.push_back(identifiants[0]->getNom());
                 if (find(constantes.begin(), constantes.end(),identifiants[0]->getNom())!=constantes.end())
                 {
                     //Affectation de constante
-                    cout <<"On n'affecte pas une constante !!!!"<<endl;
+                    cerr <<"Tentative d'affectation de la constante" << identifiants[0]->getNom()<<endl;
                     return 1;
                 }
                 else if(variables.find(identifiants[0]->getNom())==variables.end())
                 {
                     //La variable affecté n'est pas déclaré
-                    cout << "La variable "+identifiants[0]->getNom()+" n'a pas été déclaré"<<endl;
+                    cerr << "La variable "+identifiants[0]->getNom()+" n'a pas ete déclaree"<<endl;
                     return 1;
                 }
                 else
@@ -184,14 +183,14 @@ bool Lutin::analyseStatique(Programme* Pr)
                         {
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
-                                cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                                cerr << "La variable "+identifiants[j]->getNom()+" n'a pas ete affectee"<<endl;
                                 return 1;
                             }
                         }
                         else if (find(constantes.begin(), constantes.end(), identifiants[j]->getNom())==constantes.end())
                         {
                             //variable non affecté
-                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été declaré"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas ete declaree"<<endl;
                             return 1;
                         }
                     }
@@ -201,6 +200,8 @@ bool Lutin::analyseStatique(Programme* Pr)
 
                 case Identifiants::ID_INSTRUCTIONLIRE:
 
+
+                        variableUtilise.push_back(identifiants[0]->getNom());
                         if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
                         {
                             cerr <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
@@ -220,22 +221,32 @@ bool Lutin::analyseStatique(Programme* Pr)
                 case Identifiants::ID_INSTRUCTIONECRIRE:
                     for( int j =0;j<identifiants.size();j++)
                     {
+                        variableUtilise.push_back(identifiants[j]->getNom());
                         if ((variables.find(identifiants[j]->getNom())!=variables.end()))
                         {
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
                             //variable non affecté
-                            cout << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
                             return 1;
                             }
                         }
                         else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
                         {
-                            //variable non affecté
-                            cerr << "une valeur dans l'expression "<< identifiants[j]->getNom() << " n'est pas connue."<<endl;
+
+                            cerr << identifiants[j]->getNom()+" n'a pas ete declare"<<endl;
                             return 1;
                         }
                     }
+                }
+            }
+            //verification de l'utilisation des variables
+            map<string,int>::iterator it;
+            for (it = variables.begin() ; it!=variables.end() ; it++)
+            {
+                if (find(variableUtilise.begin(), variableUtilise.end() , it->first ) == variableUtilise.end())
+                {
+                    cerr << "variable non utilisee :" <<  it->first << endl;
                 }
             }
 }
@@ -245,11 +256,11 @@ Programme* Lutin::transformation(Programme* Pr)
 {
 	PartieDeclarative* PartieDeclarativeVariable;
 	PartieDeclarative* PartieDeclarativeConstante;
-	
+
 	//Transformation de la partieDeclarative
 	vector<Id*> variables  = Pr->getVariables();
 	map<string,double > constantes = Pr->getConstantesValeurs();
-	
+
 	DeclarationVariable* finVariable= new DeclarationVariable();
 	DeclarationConstante* finConstante= new DeclarationConstante();
 	PartieDeclarative* finPartieDeclarative= new PartieDeclarative();
@@ -257,28 +268,29 @@ Programme* Lutin::transformation(Programme* Pr)
 	vector<DeclarationVariable*> declarationsVariables;
 	vector<DeclarationConstante*> declarationsConstantes;
 	vector<PartieDeclarative*> partiesDeclaratives;
-	
+
 	partiesDeclaratives.push_back(finPartieDeclarative);
 	declarationsVariables.push_back(finVariable);
 	declarationsConstantes.push_back(finConstante);
 	//Declaration de Variables
 	if(variables.size()!=0)
 	{
-		
+
 		for (int i=0;i<variables.size()-1;i++)
 		{
 			DeclarationVariable* decl=new DeclarationVariable(new Id(variables[i]->getNom()), declarationsVariables[i]);
 			declarationsVariables.push_back(decl);
 		}
 		LigneDeclarationVariable* lDV = new LigneDeclarationVariable(new Id(variables[variables.size()-1]->getNom()),declarationsVariables[declarationsVariables.size()-1]);
-		
+
 		PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDV,partiesDeclaratives[partiesDeclaratives.size()-1]);
 		partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
-	
+
 	//Declaration de Constantes
 	if(constantes.size()!=0)
 	{
+
 		map<string,double>::iterator it=constantes.begin();
 		it++;
 		for (it;it!=constantes.end();++it)
@@ -290,26 +302,26 @@ Programme* Lutin::transformation(Programme* Pr)
 			DeclarationConstante* declC = new DeclarationConstante(new Id(it->first), new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
 			declarationsConstantes.push_back(declC);
 		}
+
 			std::ostringstream strs;
 			strs <<constantes.begin()->second;
 			std::string str = strs.str();
 
-		
+
 
 	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes.begin()->first),new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
 
-		
-		
+
+
 
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
-	
-	
+
 	//Partie Declarative transformé
 	// Transformation de la partie Instructive
 	PartieInstructive * partieInstructiveVide= new PartieInstructive();
-    vector<Instruction*> instructions = Pr->getInstructions();
+    	vector<Instruction*> instructions = Pr->getInstructions();
 	vector<PartieInstructive*> newInstructions;
 
 	for (int i=0;i<instructions.size();i++)
@@ -317,9 +329,9 @@ Programme* Lutin::transformation(Programme* Pr)
 		if (i==0)
 		{
 			Instruction* instru=instructions[0]->transformation(constantes);
-			
-			PartieInstructive* pITemp = new PartieInstructive(instru,partieInstructiveVide);	
-					
+
+			PartieInstructive* pITemp = new PartieInstructive(instru,partieInstructiveVide);
+
 
 			newInstructions.push_back(pITemp);
 
@@ -331,7 +343,9 @@ Programme* Lutin::transformation(Programme* Pr)
 		}
 	}
 
+
 	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],newInstructions[newInstructions.size()-1]);
+
 	return PrResult;
 }
 

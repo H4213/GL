@@ -137,7 +137,7 @@ void Automate::reduction(Symbole *s)
 void Automate::accepter()
 {
 
-	cout <<endl << "L'analyse syntaxique a réussi! " << endl;
+	//cout <<endl << "L'analyse syntaxique a réussi! " << endl;
 	success_state = true;;
 
 }
