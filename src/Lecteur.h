@@ -56,8 +56,10 @@ class Lecteur
 
         vector<string> sepSep(string s, string sep);
         vector<string> sepSym (string s , string sym);
-        vector<string> sepWords (vector<string> s);
+        vector<string> sepWords (vector<string> s , map<string,int> &occ);
         Symbole* createSymbole(string s);
+        string code; // corp du code
+        vector<int> findEmplacement(string s , int lastOcc ); // trouve la ligne (case 1) et la colonne (case 2) du string actuel dans le code
 
     public :
         Lecteur(){}
