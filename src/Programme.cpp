@@ -8,6 +8,14 @@ Programme::Programme(PartieDeclarative *partieD, PartieInstructive *partieI) : S
 	_symbole_string = "Programme";
 }
 
+Programme::~Programme()
+{
+	partieDeclarative->~PartieDeclarative();
+	partieInstructive->~PartieInstructive();
+	delete partieDeclarative;
+	delete partieInstructive;
+}
+
 vector<Instruction*> Programme::getInstructions()
 {
 	vector<Instruction*> result;
@@ -65,6 +73,7 @@ void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 
 void Programme::print()
 {
+	cout << "\n------ Impression du programme -------\n" << endl;
 	if(!partieDeclarative->estVide())
 	{
 		partieDeclarative->print();
@@ -73,6 +82,7 @@ void Programme::print()
 	{
 		partieInstructive->print();
 	}
+	cout << "\n------- Fin du programme -------" << endl;
 }
 
 void Programme::afficherVariables()

@@ -25,7 +25,7 @@ void InstructionLire::executer(map<string,double> &mapV , map<string,double> &ma
 	double valeur;
 	string nom_var = id->getNom();
 
-	cout<<"Introduire la valeur pour la variable "<<nom_var<<":"<<endl;
+	cout<<"Introduire la valeur pour la variable "<<nom_var<<" : ";
 
 	if(not(cin >> valeur))
 	{
@@ -50,5 +50,5 @@ void InstructionLire::print()
 {
 	cout<<"lire ";
 	id->print();
-	cout<<" ;"<<endl;
+	cout<<";"<<endl;
 }

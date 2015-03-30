@@ -51,5 +51,5 @@ void InstructionAffectation::print()
 	id->print();
 	cout<<" := ";
 	expression->print();
-	cout<<" ;"<<endl;
+	cout<<";"<<endl;
 }

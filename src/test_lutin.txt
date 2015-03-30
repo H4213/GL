@@ -5,6 +5,8 @@ var e;
 b :=3;
 a := (c+d)*3-5;
 ecrire a*b;
+lire b;
+ecrire b;
 b := 5;
 e := b+d;
 ecrire e;
