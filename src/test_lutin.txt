@@ -8,3 +8,5 @@ ecrire a*b;
 b := 5;
 e := b+d;
 ecrire e;
+lire q;
+ecrire q;
