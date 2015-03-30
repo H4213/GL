@@ -14,8 +14,6 @@ void InstructionLire::transformation(vector<pair<Id*,Nombre*> > constantes){
 
 vector<Id*> InstructionLire::getIds()
 {
-		cout<<"ici"<<endl;
-
 	vector<Id*> result;
 	result.push_back(id);
 	return result;
