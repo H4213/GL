@@ -7,3 +7,9 @@ Expression::Expression():Symbole(Identifiants::ID_EXPRESSION)
 	est_vide = true;
 }
 
+
+Expression* Expression::transformation(map<string,double> constantes)
+{
+}
+
+

@@ -18,9 +18,14 @@ public:
 	Id* getId(){return id;}
 	DeclarationConstante* getDeclarationConstante(){return declarationAutreConstante;}
 	vector<Id*> getConstantes();
-	vector<pair<Id*,Nombre*> > getConstantesValeurs();
+
+	map<string,double> getConstantesValeurs();
+
+
+
 	virtual void executer(map<string,double> &mapV , map<string,double> &mapC);
 	virtual void print();
+
 
 private:
 	Id* id;

@@ -9,7 +9,14 @@ Nombre::Nombre(string v):Facteur(Identifiants::ID_NOMBRE)
 	_symbole_string = v;
 }
 
+Expression* Nombre::transformation(map<string,double> constantes)
+{
+	return this;
+}
+
+
 double Nombre::eval(map<string,double> &mapV , map<string,double> &mapC)
+
 {
 	return valeur;
 }

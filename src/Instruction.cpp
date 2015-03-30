@@ -7,7 +7,7 @@ Instruction::Instruction() : Symbole(Identifiants::ID_INSTRUCTION)
 	est_vide = true;
 }
 
-void Instruction::transformation(vector<pair<Id*,Nombre*> > constantes)
+Instruction* Instruction::transformation(map<string,double>  constantes)
 {
 	
 }

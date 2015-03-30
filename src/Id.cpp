@@ -1,5 +1,5 @@
 #include "Id.h"
-
+#include <sstream>
 #include <string>
 using namespace std;
 
@@ -19,6 +19,23 @@ vector<Id*> Id::getIds()
 string Id::getNom() const
 {
 	return _symbole_string;
+}
+Expression* Id::transformation(map<string,double> constantes)
+{
+	
+		if (constantes.find(_symbole_string)!=constantes.end())
+		{
+			std::ostringstream strs;
+			strs <<constantes.find(_symbole_string)->second;
+			std::string str = strs.str();
+			Nombre * result= new Nombre(str);
+			return result;
+		}
+		else
+		{
+			return this;
+		}
+		
 }
 
 bool Id::operator==(const Id& b)

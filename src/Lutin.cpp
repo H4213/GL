@@ -86,10 +86,10 @@ void Lutin::OptionO()
 {
 	if (_programme != NULL )
 	{
-        Programme *newProgramme = transformation(_programme);
-        newProgramme->print();
-        delete newProgramme;*/
-	   // }
+	   	Programme *newProgramme = transformation(_programme);
+	    	newProgramme->print();
+	    	delete newProgramme;
+	   
 	}
 }
 
@@ -245,8 +245,8 @@ Programme* Lutin::transformation(Programme* Pr)
 
 	//Transformation de la partieDeclarative
 	vector<Id*> variables  = Pr->getVariables();
-	vector<pair<Id*,Nombre*> > constantes = Pr->getConstantesValeurs();
-
+	map<string,double > constantes = Pr->getConstantesValeurs();
+	
 	DeclarationVariable* finVariable= new DeclarationVariable();
 	DeclarationConstante* finConstante= new DeclarationConstante();
 	PartieDeclarative* finPartieDeclarative= new PartieDeclarative();
@@ -258,6 +258,7 @@ Programme* Lutin::transformation(Programme* Pr)
 	partiesDeclaratives.push_back(finPartieDeclarative);
 	declarationsVariables.push_back(finVariable);
 	declarationsConstantes.push_back(finConstante);
+	//Declaration de Variables
 	if(variables.size()!=0)
 	{
 
@@ -271,36 +272,66 @@ Programme* Lutin::transformation(Programme* Pr)
 		PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDV,partiesDeclaratives[partiesDeclaratives.size()-1]);
 		partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
+	
+	//Declaration de Constantes
 	if(constantes.size()!=0)
 	{
 
-		for (int i=0;i<constantes.size()-1;i++)
+		map<string,double>::iterator it=constantes.begin();
+		it++;
+		for (it;it!=constantes.end();++it)
 		{
+			std::ostringstream strs;
+			strs << it->second;
+			std::string str = strs.str();
 
-			DeclarationConstante* declC = new DeclarationConstante(new Id(constantes[i].first->getNom()), new Nombre(constantes[i].second->getStrValeur()), declarationsConstantes[i]);
+			DeclarationConstante* declC = new DeclarationConstante(new Id(it->first), new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
 			declarationsConstantes.push_back(declC);
 		}
 
+			std::ostringstream strs;
+			strs <<constantes.begin()->second;
+			std::string str = strs.str();
 
+		
 
-	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes[constantes.size()-1].first->getNom()), new Nombre(constantes[constantes.size()-1].second->getStrValeur()), declarationsConstantes[declarationsConstantes.size()-1]);
+	LigneDeclarationConstante* lDC = new LigneDeclarationConstante(new Id(constantes.begin()->first),new Nombre(str), declarationsConstantes[declarationsConstantes.size()-1]);
+
+		
+		
+
 	PartieDeclarative* partieDeclarativeTemp= new PartieDeclarative(lDC,partiesDeclaratives[partiesDeclaratives.size()-1]);
 	partiesDeclaratives.push_back(partieDeclarativeTemp);
 	}
-
-
-
-
+	
 	//Partie Declarative transformé
 	// Transformation de la partie Instructive
-    vector<Instruction*> instructions = Pr->getInstructions();
+	PartieInstructive * partieInstructiveVide= new PartieInstructive();
+    	vector<Instruction*> instructions = Pr->getInstructions();
+	vector<PartieInstructive*> newInstructions;
 
 	for (int i=0;i<instructions.size();i++)
 	{
-		instructions[i]->transformation(constantes);
+		if (i==0)
+		{
+			Instruction* instru=instructions[0]->transformation(constantes);
+			
+			PartieInstructive* pITemp = new PartieInstructive(instru,partieInstructiveVide);	
+					
+
+			newInstructions.push_back(pITemp);
+
+		}
+		else
+		{
+			PartieInstructive * pITemp = new PartieInstructive(instructions[i]->transformation(constantes),newInstructions[i-1]);
+			newInstructions.push_back(pITemp);
+		}
 	}
 
-	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],Pr->getPartieInstructive());
+
+	Programme* PrResult = new Programme(partiesDeclaratives[partiesDeclaratives.size()-1],newInstructions[newInstructions.size()-1]);
+
 	return PrResult;
 }
 
