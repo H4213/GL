@@ -1,0 +1,8 @@
+------ Impression du programme -------
+
+var a;
+lire a;
+ecrire (a);
+
+------- Fin du programme -------
+

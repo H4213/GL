@@ -1,0 +1,12 @@
+------ Impression du programme -------
+
+var e, b, a;
+const c=4, d=6;
+a := 25;
+lire b;
+ecrire a*b;
+e := b+6;
+ecrire e;
+
+------- Fin du programme -------
+
