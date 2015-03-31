@@ -768,7 +768,7 @@ void E27::transition(Automate & automate, Symbole *s)
 		break;
 
 		case Identifiants::ID_ID:
-			automate.decalage(new Virugule(), new E28(), false);
+			automate.decalage(new Virgule(), new E28(), false);
 			automate.decalage(s, new E29(), true);
 			cout << "Erreur récupérée (virgule manquante)" <<endl;
 		break;
