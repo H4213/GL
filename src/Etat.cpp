@@ -18,6 +18,7 @@
 #include "Facteur.h"
 #include "DeclarationVariable.h"
 #include "DeclarationConstante.h"
+#include "Virgule.h"
 
 #include "ExpressionParenthesee.h"
 
@@ -804,7 +805,7 @@ void E29::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_NOMBRE:
 			automate.decalage(new Egal(), new E30(), false);
 			automate.decalage(s, new E31(), true);
-			cout << Erreur récupérée (égal manquant) <<endl;
+			cout << "Erreur récupérée (égal manquant)" <<endl;
 		break;
 
 
