@@ -1,0 +1,8 @@
+linevar  a,b; 
+size :1
+lineconst c = 4; 
+size :1
+lineconst d = 6;
+size :1
+linevar e;
+size :1

@@ -1,0 +1,39 @@
+erreur lexical  n'est pas reconnu
+resultat
+24
+var | x | , | k | ; | const | r | = | 5 | ; | const | t | = | 2 | , | c | = | 8 | , | p | = | 88 | ; | $ | Symbole: var | Etat: E0
+
+ pile symb :
+ pile etat :E0,
+reduction 
+ decalage 
+Symbole: var | Etat: E2
+
+ pile symb :
+ pile etat :E2,E0,
+decalage avec consommation
+Symbole: x | Etat: E5
+
+ pile symb :
+ pile etat :E5,E2,E0,
+decalage avec consommation
+Symbole: , | Etat: E12
+
+ pile symb :
+ pile etat :E12,E5,E2,E0,
+reduction 
+ decalage 
+Symbole: , | Etat: E22
+
+ pile symb :
+ pile etat :E22,E12,E5,E2,E0,
+decalage avec consommation
+Symbole: k | Etat: E24
+
+ pile symb :
+ pile etat :E24,E22,E12,E5,E2,E0,
+decalage avec consommation
+Symbole: ; | Etat: E25
+
+ pile symb :
+ pile etat :E25,E24,E22,E12,E5,E2,E0,
