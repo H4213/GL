@@ -1,2 +1,7 @@
-const a = 5;
-ecrire a;
+------ Impression du programme -------
+
+const a=5;
+ecrire 5;
+
+------- Fin du programme -------
+

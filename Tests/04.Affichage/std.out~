@@ -1,11 +1,10 @@
-const f = 2, i= 2;
-var b a;
+var a;
+var b; 
 const c = 4;
 const d = 6;
 var e;
-ecrire i;
 a := (c+d)*3-5;
 lire b;
 ecrire a*b;
-e b+d;
+e := b+d;
 ecrire e;
