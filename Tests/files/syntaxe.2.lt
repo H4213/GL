@@ -1,3 +1,4 @@
-const a b 5;
+const a  2;
+const b = 5;
 ecrire a;
 ecrire b;

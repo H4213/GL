@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ../lut -a ../files/double.lt
+=======
+../lut ../files/double.lt
+>>>>>>> 4708cc518ce1ee9806f1e9664c67afa8b269e828

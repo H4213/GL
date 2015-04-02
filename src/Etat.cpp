@@ -385,7 +385,7 @@ void E13::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_NOMBRE:
 			automate.decalage(new Egal(), new E23(), false);
 			automate.decalage(s, new E26(), true);
-			cout << "Erreur récupérée (égal manquant)" <<endl;
+			//cout << "Erreur récupérée (égal manquant)" <<endl;
 		break;
 
 		default:
