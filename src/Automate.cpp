@@ -148,7 +148,8 @@ void Automate::erreur()
 	cerr << "Erreur syntaxique ("<<
 	c->getLigne()<< ":" << c->getColonne()<<")" <<
 	 " symbole '" << c->nom() << "' inattendu" << endl;
-
+	
+	//cerr << sommetEtat()->nom() << endl;
 	error_state = true;
 }
 void Automate::avancerLecteur()
