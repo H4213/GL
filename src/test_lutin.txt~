@@ -1,10 +1,8 @@
-var a,b; 
-const c = 4; 
+var a,a, q;
+const c = 4;
 const d = 6;
 var e;
-b :=3;
-a := (c+d)*3-5;
+b :=3-2;
+a := 0-3;
 ecrire a*b;
-b := 5;
-e := b+d;
-ecrire e;
+lire e;

@@ -3,7 +3,8 @@ LIBPATH =
 LIBS =   -lboost_regex
 COMP = g++
 COMPFLAGS = -c
-EXEC = lut
+EXEC = lut 
+EXECTEST = ../Tests/lut
 CLEAN = clean
 INT = $(wildcard *.cpp)
 REAL = ${INT:.h =.cpp}
@@ -17,10 +18,14 @@ INCPATH =
 SRCPATH = 
 #====================================================================================
 .PHONY 	: $(CLEAN)
-all	: $(EXEC)
+all	: $(EXEC) $(EXECTEST)
 $(EXEC) : $(OBJ)
 	$(ECHO) Edl $(EXEC)
 	$(EDL) $(EDLFLAGS) $(EXEC) $(OBJ) $(LIBPATH) $(LIBS)
+
+$(EXECTEST) : $(OBJ)
+	$(ECHO) Edl $(EXECTEST)
+	$(EDL) $(EDLFLAGS) $(EXECTEST) $(OBJ) $(LIBPATH) $(LIBS)
 
 
 %.o 	: %.cpp

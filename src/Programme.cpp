@@ -30,19 +30,19 @@ vector<Instruction*> Programme::getInstructions()
 
 vector<Id*> Programme::getVariables() {
 	vector<Id*> result;
-			
+
 
 	if (partieDeclarative->estVide()==false)
 	{
-		
+
 
     result= partieDeclarative->getVariables();
 
 	}
-	
+
 
 	return result;
-	
+
 }
 
 vector<Id*> Programme::getConstantes()
@@ -50,7 +50,7 @@ vector<Id*> Programme::getConstantes()
 	vector<Id*> result;
 	if (partieDeclarative->estVide()==false)
 	{
-	
+
     result = partieDeclarative->getConstantes();
 
 	}
@@ -73,7 +73,7 @@ void Programme::executer(map<string,double> &mapV , map<string,double> &mapC)
 
 void Programme::print()
 {
-	cout << "\n------ Impression du programme -------\n" << endl;
+	//cout << "\n------ Impression du programme -------\n" << endl;
 	if(!partieDeclarative->estVide())
 	{
 		partieDeclarative->print();
@@ -82,7 +82,7 @@ void Programme::print()
 	{
 		partieInstructive->print();
 	}
-	cout << "\n------- Fin du programme -------" << endl;
+	//cout << "\n------- Fin du programme -------" << endl;
 }
 
 void Programme::afficherVariables()
@@ -109,7 +109,7 @@ map<string, double> Programme::getConstantesValeurs()
 		}
 		return result;
 	}
-	
+
 void Programme::afficherConstantes()
 {
 	map<string,double>::iterator it;

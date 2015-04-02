@@ -43,7 +43,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 	bool option_a = _command.OptionExists("-a");
 	bool option_e = _command.OptionExists("-e");
 	bool option_o = _command.OptionExists("-o");
-	
+
 
 	bool option_default = (_command.OptionCount()==0);
 
@@ -209,13 +209,13 @@ bool Lutin::analyseStatique(Programme* Pr)
                         variableUtilise.push_back(identifiants[0]->getNom());
                         if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
                         {
-                            cerr <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
+                            cerr <<"La constante "+identifiants[0]->getNom()+" ne peut etre reecrite"<<endl;
                             return 1;
                         }
                         else
                         if(variables.find(identifiants[0]->getNom())==variables.end())
                         {
-                            cerr <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
+                            cerr <<"La variable "+identifiants[0]->getNom()+" n'est pas déclaree"<<endl;
                             return 1;
                         }
                         else
@@ -232,7 +232,7 @@ bool Lutin::analyseStatique(Programme* Pr)
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
                             //variable non affecté
-                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas ete affecte"<<endl;
                             return 1;
                             }
                         }

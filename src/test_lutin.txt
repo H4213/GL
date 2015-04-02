@@ -1,4 +1,4 @@
-var a,b, q;
+var a, a, q;
 const c = 4;
 const d = 6;
 var e;
