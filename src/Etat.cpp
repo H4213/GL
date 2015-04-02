@@ -217,6 +217,26 @@ void E8::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_AFFECTATION:
 			automate.decalage(s, new E15(), true);
 		break;
+
+		case Identifiants::ID_EGAL:
+			automate.decalage(new Affectation(), new E15(), true);
+			//cout << "Erreur récupérée (= à la place de :=)" << endl;
+		break;
+		
+		
+		case Identifiants::ID_NOMBRE:
+			automate.decalage(new Affectation(), new E15(), false);
+			automate.decalage(s, new E21(), true);
+		break;
+		case Identifiants::ID_ID:
+			automate.decalage(new Affectation(), new E15(), false);
+			automate.decalage(s, new E20(), true);
+		break;
+		case Identifiants::ID_OUVREPARENTHESE:
+			automate.decalage(new Affectation(), new E15(), false);
+			automate.decalage(s, new E19(), true);
+		break;
+
 		default:
 			automate.erreur();
 		break;
@@ -338,9 +358,9 @@ void E12::transition(Automate & automate, Symbole *s)
 
 		case Identifiants::ID_VIRGULE:
 		case Identifiants::ID_POINTVIRGULE:
+		case Identifiants::ID_ID:
 			//reduction par la regle 7 V -> .
 			automate.reduction(new DeclarationVariable());
-
 		break;
 
 		///non terminaux
@@ -360,6 +380,12 @@ void E13::transition(Automate & automate, Symbole *s)
 
 		case Identifiants::ID_EGAL:
 			automate.decalage(s, new E23(), true);
+		break;
+
+		case Identifiants::ID_NOMBRE:
+			automate.decalage(new Egal(), new E23(), false);
+			automate.decalage(s, new E26(), true);
+			cout << "Erreur récupérée (égal manquant)" <<endl;
 		break;
 
 		default:
@@ -636,6 +662,13 @@ void E22::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_VIRGULE:
 			automate.decalage(s, new E24(), true);
 		break;
+
+		case Identifiants::ID_ID:
+			automate.decalage(new Virgule(), new E24(), false);
+			automate.decalage(s, new E25(), true);
+			//cout << "Erreur récupérée (virugule manquant)" <<endl;
+		break; 
+
 		default:
 			automate.erreur();
 		break;
@@ -714,6 +747,10 @@ void E26::transition(Automate & automate, Symbole *s)
 		case Identifiants::ID_DECLARATIONCONSTANTE:
 			automate.decalage(s, new E27, false);
 		break;
+		
+		case Identifiants::ID_ID:
+			automate.reduction(new DeclarationConstante());
+		break;
 
 		default:
 			automate.erreur();
@@ -747,6 +784,12 @@ void E27::transition(Automate & automate, Symbole *s)
 
 		break;
 
+		case Identifiants::ID_ID:
+			automate.decalage(new Virgule(), new E28(), false);
+			automate.decalage(s, new E29(), true);
+			//cout << "Erreur récupérée (virgule manquante)" <<endl;
+		break;
+
 		default:
 			automate.erreur();
 		break;
@@ -776,11 +819,11 @@ void E29::transition(Automate & automate, Symbole *s)
 		break;
 
 
-		/*case Identifiants::ID_NOMBRE:
-		automate.decalage(new Egal(), new E30(), false);
-		automate.decalage(s, new E31(), true);
-		cout << Erreur récupérée (égal manquant) <<endl;
-		break;*/
+		case Identifiants::ID_NOMBRE:
+			automate.decalage(new Egal(), new E30(), false);
+			automate.decalage(s, new E31(), true);
+			//cout << "Erreur récupérée (égal manquant)" <<endl;
+		break;
 
 
 		default:

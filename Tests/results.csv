@@ -1,0 +1,22 @@
+Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
+01.NoArgument;Echec;Non testé;Ok;Non testé;Echec
+02.FichierInexistant;Echec;Non testé;Ok;Non testé;Echec
+03.FichierExistant;Ok;Non testé;Non testé;Non testé;Ok
+04.Affichage;Echec;Echec;Non testé;Non testé;Echec
+05.DoubleDeclaration;Ok;Non testé;Echec;Non testé;Echec
+06.1.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.2.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.3.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.4.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.5.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.6.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+07.Execution;Ok;Echec;Non testé;Non testé;Echec
+08.1.Optimisation;Ok;Ok;Non testé;Non testé;Ok
+08.2.Optimisation;Ok;Ok;Non testé;Non testé;Ok
+09.ErreurLexicale;Ok;Non testé;Ok;Non testé;Ok
+10.ErreurSyntaxique;Ok;Non testé;Echec;Non testé;Echec
+11.1.NonInitialisation;Ok;Non testé;Echec;Non testé;Echec
+12.1.Syntaxe;Echec;Echec;Echec;Non testé;Echec
+12.1.Transformation;Echec;Non testé;Echec;Non testé;Echec
+12.2.Synt;Echec;Echec;Echec;Non testé;Echec
+12.3.Syntaxe;Echec;Echec;Echec;Non testé;Echec
