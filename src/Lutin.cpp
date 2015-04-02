@@ -43,7 +43,7 @@ Lutin::Lutin ( int argc, char **argv ) :
 	bool option_a = _command.OptionExists("-a");
 	bool option_e = _command.OptionExists("-e");
 	bool option_o = _command.OptionExists("-o");
-	
+
 
 	bool option_default = (_command.OptionCount()==0);
 
@@ -152,7 +152,7 @@ bool Lutin::analyseStatique(Programme* Pr)
         }
         else
         {
-            cerr << "La constante " + allConstantes[i]->getNom() + " a ete declaré plus d'une fois" << endl;
+            cerr << "La constante " + allConstantes[i]->getNom() + " a ete declare plus d'une fois" << endl;
             return 1;
         }
     }
@@ -177,7 +177,7 @@ bool Lutin::analyseStatique(Programme* Pr)
                 else if(variables.find(identifiants[0]->getNom())==variables.end())
                 {
                     //La variable affecté n'est pas déclaré
-                    cerr << "La variable "+identifiants[0]->getNom()+" n'a pas ete déclaree"<<endl;
+                    cerr << "La variable "+identifiants[0]->getNom()+" n'a pas ete declaree"<<endl;
                     return 1;
                 }
                 else
@@ -209,13 +209,13 @@ bool Lutin::analyseStatique(Programme* Pr)
                         variableUtilise.push_back(identifiants[0]->getNom());
                         if(find(constantes.begin(),constantes.end(),identifiants[0]->getNom())!=constantes.end())
                         {
-                            cerr <<"La constante "+identifiants[0]->getNom()+" ne peut être réécrite"<<endl;
+                            cerr <<"La constante "+identifiants[0]->getNom()+" ne peut être reecrite"<<endl;
                             return 1;
                         }
                         else
                         if(variables.find(identifiants[0]->getNom())==variables.end())
                         {
-                            cerr <<"La variable "+identifiants[0]->getNom()+" n'est pas déclarée"<<endl;
+                            cerr <<"La variable "+identifiants[0]->getNom()+" n'est pas declaree"<<endl;
                             return 1;
                         }
                         else
@@ -232,14 +232,14 @@ bool Lutin::analyseStatique(Programme* Pr)
                             if (variables.find(identifiants[j]->getNom())->second==1)
                             {
                             //variable non affecté
-                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas été affecté"<<endl;
+                            cerr << "La variable "+identifiants[j]->getNom()+" n'a pas ete affectee"<<endl;
                             return 1;
                             }
                         }
                         else if (find(constantes.begin(),constantes.end(),identifiants[j]->getNom())==constantes.end())
                         {
 
-                            cerr << identifiants[j]->getNom()+" n'a pas ete declare"<<endl;
+                            cerr << identifiants[j]->getNom()+" n'a pas ete declaree"<<endl;
                             return 1;
                         }
                     }

@@ -4,18 +4,18 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 03.FichierExistant;Ok;Non testé;Non testé;Non testé;Ok
 04.Affichage;Ok;Ok;Non testé;Non testé;Ok
 05.DoubleDeclaration;Ok;Non testé;Ok;Non testé;Ok
-06.1.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.1.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
 06.2.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
 06.3.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
-06.4.AnalyseStatique;Ok;Non testé;Echec;Non testé;Echec
+06.4.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
 06.5.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
 06.6.AnalyseStatique;Ok;Non testé;Ok;Non testé;Ok
-07.Execution;Ok;Echec;Non testé;Non testé;Echec
+07.Execution;Ok;Ok;Non testé;Non testé;Ok
 08.1.Optimisation;Ok;Ok;Non testé;Non testé;Ok
 08.2.Optimisation;Ok;Ok;Non testé;Non testé;Ok
 09.ErreurLexicale;Ok;Non testé;Ok;Non testé;Ok
 10.ErreurSyntaxique;Ok;Non testé;Non testé;Non testé;Ok
-11.1.NonInitialisation;Ok;Non testé;Echec;Non testé;Echec
+11.1.NonInitialisation;Ok;Non testé;Ok;Non testé;Ok
 12.1.Syntaxe;Ok;Ok;Non testé;Non testé;Ok
 12.1.Transformation;Ok;Non testé;Ok;Non testé;Ok
 12.2.Synt;Ok;Ok;Non testé;Non testé;Ok

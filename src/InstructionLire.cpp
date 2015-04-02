@@ -29,7 +29,7 @@ void InstructionLire::executer(map<string,double> &mapV , map<string,double> &ma
 
 	while(!double_ok)
 	{
-		cout<<"Introduire la valeur pour la variable "<<nom_var<<" : ";
+		//cout<<"Introduire la valeur pour la variable "<<nom_var<<" : ";
 
 		if(not(cin >> valeur))
 		{
@@ -53,7 +53,7 @@ void InstructionLire::executer(map<string,double> &mapV , map<string,double> &ma
 		}
 	}
 
-	
+
 }
 
 void InstructionLire::print()
